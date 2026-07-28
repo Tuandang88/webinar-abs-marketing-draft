@@ -151,6 +151,12 @@
   .card{background:var(--ink-900);border:1px solid var(--ink-700);border-radius:14px;padding:20px}
   .card h3{margin:0 0 6px;font-size:16.5px;font-weight:600}
   .card p{margin:0;font-size:14px;color:var(--ink-500)}
+  .speakers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+  .speaker{display:flex;gap:18px;align-items:flex-start;background:var(--ink-900);border:1px solid var(--ink-700);border-radius:14px;padding:20px}
+  .speaker img{width:112px;height:112px;border-radius:12px;object-fit:cover;object-position:top;flex:none;border:2px solid var(--boss-orange)}
+  .sp-role{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--boss-orange)}
+  .speaker h3{margin:2px 0 8px;font-size:17.5px;font-weight:700}
+  .speaker ul{margin:0;padding-left:16px;font-size:13.5px;color:var(--ink-500);line-height:1.6}
   .note{font-size:13.5px;color:var(--ink-500);font-style:italic;margin-top:16px}
 
   /* ==== Benefits: 2x2 card + icon ==== */
@@ -258,6 +264,7 @@
     .hero{grid-template-columns:1fr;gap:36px;padding-top:24px}
     .stats{grid-template-columns:repeat(2,1fr)}
     .cards3{grid-template-columns:1fr}
+    .speakers{grid-template-columns:1fr}
     .benefits{grid-template-columns:1fr}
     .cta-box{grid-template-columns:1fr;padding:24px}
     .cta-box .form-col{order:-1}
@@ -278,7 +285,7 @@
 </head>
 <body>
 
-<div class="draft">Bản nháp nội bộ v7 · 18/07/2026 · chờ duyệt, chưa phải trang chính thức</div>
+<div class="draft">Bản nháp nội bộ v8 · 28/07/2026 · chờ duyệt, chưa phải trang chính thức</div>
 
 <div class="wrap">
 
@@ -299,7 +306,7 @@
       <span class="pill">Chuỗi <b>4 buổi webinar miễn phí</b> · Marketing</span>
       <h1>Nhân viên Marketing thời&nbsp;AI:<br>
           <span class="t-orange">Làm chủ Agent, X10 hiệu suất</span></h1>
-      <p class="hero-sub">Xem AI Agent làm thật 4 mảng việc tốn thời gian nhất của marketer: <b>báo cáo · soi đối thủ · landing page · content</b>. Thực chiến, không lý thuyết.</p>
+      <p class="hero-sub">Xem AI Agent làm thật 4 mảng việc tốn thời gian nhất của marketer: <b>báo cáo · landing page · content · quảng cáo</b>. Thực chiến, không lý thuyết.</p>
       <div class="hero-cta">
         <a class="btn" href="#dang-ky">Giữ chỗ miễn phí ngay</a>
         <span class="hero-meta">Mỗi tuần 1 buổi · 90 phút · Online</span>
@@ -401,24 +408,24 @@
 
     <div class="tabs" role="tablist" aria-label="Chọn buổi webinar">
       <button class="tab" role="tab" aria-selected="true" aria-controls="p1" id="t1">
-        <b>BUỔI 1</b><span>Trợ lý Agent đầu tiên</span>
+        <b>BUỔI 1</b><span>AI CAN, YOU KNOW?</span>
       </button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="p2" id="t2">
-        <b>BUỔI 2</b><span>Điệp viên soi đối thủ</span>
+        <b>BUỔI 2</b><span>Landing page 60 phút</span>
       </button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="p3" id="t3">
-        <b>BUỔI 3</b><span>Landing page 60 phút</span>
+        <b>BUỔI 3</b><span>Content tự động khi ngủ</span>
       </button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="p4" id="t4">
-        <b>BUỔI 4</b><span>Content tự động khi ngủ</span>
+        <b>BUỔI 4</b><span>Agent setup &amp; tối ưu ads</span>
       </button>
     </div>
 
     <!-- BUỔI 1 -->
     <div class="panel active" id="p1" role="tabpanel" aria-labelledby="t1">
       <div class="session">
-        <span class="s-meta">Tuần 1 · [ngày/giờ] · 90 phút · Online</span>
-        <h3>Trợ lý AI Agent đầu tiên của bạn: giao việc, nó tự làm</h3>
+        <span class="s-meta">Tuần 1 · [ngày/giờ] · 90 phút · Online · Diễn giả: Mai Xuân Đạt · Host: Phùng Thái Học</span>
+        <h3>AI CAN, YOU KNOW? — Cách AI Agent giúp ích cho người làm Marketing mà bạn chưa biết</h3>
         <div class="prow"><div class="ptag"><b>P1</b> · 15'</div><div class="ptext"><b>AI Chat vs AI Agent</b>: vì sao bạn mới dùng 10% sức mạnh AI.</div></div>
         <div class="prow"><div class="ptag"><b>P2</b> · 30'</div><div class="ptext">Demo: Agent <b>tự gợi ý 10 việc</b> đúng nghề marketing, đúng công ty bạn.</div></div>
         <div class="prow"><div class="ptag"><b>P3</b> · 30'</div><div class="ptext">Demo: thả file Excel, Agent <b>tự viết báo cáo hoàn chỉnh</b> kèm cảnh báo bất thường.</div></div>
@@ -431,19 +438,6 @@
     <div class="panel" id="p2" role="tabpanel" aria-labelledby="t2">
       <div class="session">
         <span class="s-meta">Tuần 2 · [ngày/giờ] · 90 phút · Online</span>
-        <h3>Điệp viên thị trường: Agent tự thu thập, tự phân tích, tự nộp báo cáo đối thủ</h3>
-        <div class="prow"><div class="ptag"><b>P1</b> · 10'</div><div class="ptext">Vì sao research bằng AI Chat vẫn tốn cả ngày: ranh giới giữa "chat" và "agent".</div></div>
-        <div class="prow"><div class="ptag"><b>P2</b> · 35'</div><div class="ptext">Demo: Agent <b>tự soi nhiều đối thủ cùng lúc</b>, tự xuất file so sánh giá, sản phẩm, điểm hở.</div></div>
-        <div class="prow"><div class="ptag"><b>P3</b> · 25'</div><div class="ptext">Demo: Agent <b>tự tải video đối thủ, bóc lời thoại</b>, lộ công thức chốt khách của họ.</div></div>
-        <div class="prow"><div class="ptag"><b>P4</b> · 20'</div><div class="ptext">Q&amp;A + 🎁 quà học thử 5 bài miễn phí.</div></div>
-        <p class="loi-ich"><b>Mang về:</b> research 2 ngày rút còn 15 phút. Hết cảnh bí ý tưởng content.</p>
-      </div>
-    </div>
-
-    <!-- BUỔI 3 -->
-    <div class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
-      <div class="session">
-        <span class="s-meta">Tuần 3 · [ngày/giờ] · 90 phút · Online</span>
         <h3>Design 1 landing page bán hàng chỉ trong 60 phút</h3>
         <div class="prow"><div class="ptag"><b>P1</b> · 10'</div><div class="ptext">Landing page là nút thắt của mọi chiến dịch: chờ designer cả tuần, chiến dịch nguội mất.</div></div>
         <div class="prow"><div class="ptag"><b>P2</b> · 60'</div><div class="ptext">Demo xuyên suốt: từ brief, Agent <b>viết nội dung, thiết kế, dựng trang hoàn chỉnh</b> kèm form thu lead và email cảm ơn tự động. Chỉnh live trong vài giây.</div></div>
@@ -452,10 +446,10 @@
       </div>
     </div>
 
-    <!-- BUỔI 4 -->
-    <div class="panel" id="p4" role="tabpanel" aria-labelledby="t4">
+    <!-- BUỔI 3 -->
+    <div class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
       <div class="session">
-        <span class="s-meta">Tuần 4 · [ngày/giờ] · 90 phút · Online</span>
+        <span class="s-meta">Tuần 3 · [ngày/giờ] · 90 phút · Online</span>
         <h3>Xây hệ thống sản xuất content tự động, ngay cả khi bạn đang ngủ</h3>
         <div class="prow"><div class="ptag"><b>P1</b> · 10'</div><div class="ptext">Từ "làm nhanh" đến "tự chạy", như nồi cơm hẹn giờ: 6h sáng cơm tự chín.</div></div>
         <div class="prow"><div class="ptag"><b>P2</b> · 25'</div><div class="ptext">Demo: dạy Agent <b>giọng thương hiệu</b>, content hết "mùi AI".</div></div>
@@ -463,6 +457,52 @@
         <div class="prow"><div class="ptag"><b>P4</b> · 15'</div><div class="ptext">Demo: hệ thống <b>tự viết content theo lịch</b>, tự báo cáo về Telegram mỗi sáng.</div></div>
         <div class="prow"><div class="ptag"><b>P5</b> · 10'</div><div class="ptext">Lộ trình tự xây + Q&amp;A + 🎁 quà học thử 5 bài miễn phí.</div></div>
         <p class="loi-ich"><b>Mang về:</b> việc lặp tự chạy, thời gian dành cho chiến lược và sáng tạo.</p>
+      </div>
+    </div>
+
+    <!-- BUỔI 4 -->
+    <div class="panel" id="p4" role="tabpanel" aria-labelledby="t4">
+      <div class="session">
+        <span class="s-meta">Tuần 4 · [ngày/giờ] · 90 phút · Online</span>
+        <h3>Xây dựng AI Agent setup và tối ưu quảng cáo</h3>
+        <div class="prow"><div class="ptag"><b>P1</b> · 10'</div><div class="ptext">Chạy ads kiểu thủ công: sáng nào cũng canh số liệu, tối ưu theo cảm tính, báo cáo luôn chậm 1 nhịp so với tiền đang tiêu.</div></div>
+        <div class="prow"><div class="ptag"><b>P2</b> · 30'</div><div class="ptext">Demo: Agent <b>tự đọc số liệu tài khoản quảng cáo</b>, chỉ ra chiến dịch đang lỗ, CPL bất thường — và giải thích vì sao.</div></div>
+        <div class="prow"><div class="ptag"><b>P3</b> · 30'</div><div class="ptext">Demo: giao Agent <b>setup chiến dịch mới từ brief</b>: content ads, target, ngân sách, cấu trúc camp — nộp lại cho bạn duyệt trước khi bấm chạy.</div></div>
+        <div class="prow"><div class="ptag"><b>P4</b> · 10'</div><div class="ptext">Demo: Agent <b>trực số liệu theo lịch</b>, chi phí vượt ngưỡng là báo động về Telegram kèm đề xuất xử lý.</div></div>
+        <div class="prow"><div class="ptag"><b>P5</b> · 10'</div><div class="ptext">Lộ trình tự xây + Q&amp;A + 🎁 quà học thử 5 bài miễn phí.</div></div>
+        <p class="loi-ich"><b>Mang về:</b> quy trình giao Agent setup và tối ưu ads, hết cảnh ngồi canh số liệu bằng tay mỗi sáng.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DIỄN GIẢ BUỔI 1 ===== -->
+  <section>
+    <p class="sec-eyebrow">Buổi mở màn</p>
+    <h2>Diễn giả <span class="t-orange">Buổi 1</span></h2>
+    <div class="speakers">
+      <div class="speaker">
+        <img src="images/mai-xuan-dat.jpg" alt="Mai Xuân Đạt">
+        <div>
+          <span class="sp-role">Diễn giả</span>
+          <h3>Mai Xuân Đạt</h3>
+          <ul>
+            <li>Người sáng lập <b>Agent Boss</b> — chương trình thực hành AI Agent cho người đi làm non-tech</li>
+            <li>Founder <b>SEONGON</b> — AI Search Growth Partner, hơn 100 nhân sự</li>
+            <li>Sáng lập <b>John Academy</b> — đào tạo hơn 3.000 CEO, cố vấn hơn 300 doanh nghiệp về Quản trị Mục tiêu &amp; OKRs</li>
+            <li>Tác giả các đầu sách hơn 30.000 bản phát hành: <i>OKRs — Hiểu đúng, Làm đúng · Tổ chức &amp; Đám đông · Đội Trưởng · Chiến binh</i></li>
+          </ul>
+        </div>
+      </div>
+      <div class="speaker">
+        <img src="images/phung-thai-hoc.jpg" alt="Phùng Thái Học">
+        <div>
+          <span class="sp-role">Host</span>
+          <h3>Phùng Thái Học</h3>
+          <ul>
+            <li>Chủ quán <b>Trà Đá</b></li>
+            <li>Người dẫn dắt phần trò chuyện &amp; Q&amp;A cùng khán giả trong buổi mở màn</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -534,7 +574,7 @@
 <footer>
   <div class="wrap">
     <span>© 2026 John Academy · Chương trình Agent Boss · Mai Xuân Đạt · Quản trị doanh nghiệp AI Agents</span>
-    <span>Bản nháp nội bộ để duyệt · v7 · 18/07/2026</span>
+    <span>Bản nháp nội bộ để duyệt · v8 · 28/07/2026</span>
   </div>
 </footer>
 
