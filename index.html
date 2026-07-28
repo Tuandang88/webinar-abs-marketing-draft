@@ -151,12 +151,6 @@
   .card{background:var(--ink-900);border:1px solid var(--ink-700);border-radius:14px;padding:20px}
   .card h3{margin:0 0 6px;font-size:16.5px;font-weight:600}
   .card p{margin:0;font-size:14px;color:var(--ink-500)}
-  .speakers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
-  .speaker{display:flex;gap:18px;align-items:flex-start;background:var(--ink-900);border:1px solid var(--ink-700);border-radius:14px;padding:20px}
-  .speaker img{width:112px;height:112px;border-radius:12px;object-fit:cover;object-position:top;flex:none;border:2px solid var(--boss-orange)}
-  .sp-role{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--boss-orange)}
-  .speaker h3{margin:2px 0 8px;font-size:17.5px;font-weight:700}
-  .speaker ul{margin:0;padding-left:16px;font-size:13.5px;color:var(--ink-500);line-height:1.6}
   .note{font-size:13.5px;color:var(--ink-500);font-style:italic;margin-top:16px}
 
   /* ==== Benefits: 2x2 card + icon ==== */
@@ -198,14 +192,23 @@
   }
   .s-meta{font-size:14px;color:var(--ink-500);font-variant-numeric:tabular-nums}
   .session h3{font-size:clamp(20px,2.6vw,25px);font-weight:700;letter-spacing:-0.01em;margin:8px 0 14px;line-height:1.3;text-wrap:balance}
-  .prow{display:flex;gap:16px;padding:12px 0;border-top:1px solid var(--ink-700);align-items:baseline}
-  .ptag{
-    flex:0 0 84px;font-size:13.5px;font-weight:700;color:var(--ink-500);
-    letter-spacing:.04em;font-variant-numeric:tabular-nums;white-space:nowrap;
-  }
-  .ptag b{color:var(--white)}
-  .ptext{font-size:16px;color:var(--ink-100);line-height:1.6}
-  .ptext b{color:var(--white)}
+  .sp-strip{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 4px}
+  .sp{display:flex;gap:18px;align-items:center;background:var(--agent-dark);border:1px solid var(--ink-700);border-radius:14px;padding:18px}
+  .sp img{width:150px;height:150px;border-radius:14px;object-fit:cover;object-position:top;flex:none;border:2px solid var(--boss-orange)}
+  .sp-role{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--boss-orange)}
+  .sp h4{margin:2px 0 7px;font-size:18.5px;font-weight:700;color:var(--white)}
+  .sp p{margin:0;font-size:13.5px;color:var(--ink-500);line-height:1.6}
+  .sp p b{color:var(--ink-100)}
+  .sp-tba{justify-content:center;border-style:dashed;color:var(--ink-500);font-size:14px;min-height:70px}
+  .agenda-label{margin:22px 0 6px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--boss-orange);text-transform:uppercase}
+  .agenda{position:relative}
+  .agenda::before{content:'';position:absolute;left:37px;top:18px;bottom:18px;width:2px;background:var(--ink-700)}
+  .a-item{position:relative;display:flex;gap:20px;padding:11px 0;align-items:flex-start}
+  .a-time{position:relative;z-index:1;flex:0 0 76px;text-align:center;font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--boss-orange);background:var(--agent-dark);border:1px solid rgba(255,106,26,.5);border-radius:999px;padding:6px 0;font-variant-numeric:tabular-nums}
+  .a-body{padding-top:4px}
+  .a-body b{font-size:16px;color:var(--white);line-height:1.4}
+  .a-body p{margin:3px 0 0;font-size:14.5px;color:var(--ink-500);line-height:1.6}
+  .a-body p b{font-size:inherit;color:var(--ink-100)}
   .loi-ich{
     margin:16px 0 0;padding:13px 17px;border-left:3px solid var(--boss-orange);
     background:var(--agent-dark);border-radius:0 10px 10px 0;
@@ -264,15 +267,16 @@
     .hero{grid-template-columns:1fr;gap:36px;padding-top:24px}
     .stats{grid-template-columns:repeat(2,1fr)}
     .cards3{grid-template-columns:1fr}
-    .speakers{grid-template-columns:1fr}
+    .sp-strip{grid-template-columns:1fr}
+    .sp img{width:104px;height:104px}
     .benefits{grid-template-columns:1fr}
     .cta-box{grid-template-columns:1fr;padding:24px}
     .cta-box .form-col{order:-1}
     .tabs{margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px}
     .tab{min-width:150px;flex:0 0 auto}
     .session{padding:20px}
-    .prow{flex-direction:column;gap:2px}
-    .ptag{flex:none}
+    .a-time{flex-basis:62px;font-size:11.5px}
+    .agenda::before{left:30px}
     .wordmark small{display:none}
     body{padding-bottom:66px}
     .sticky-cta{
@@ -285,7 +289,7 @@
 </head>
 <body>
 
-<div class="draft">Bản nháp nội bộ v8 · 28/07/2026 · chờ duyệt, chưa phải trang chính thức</div>
+<div class="draft">Bản nháp nội bộ v9 · 28/07/2026 · chờ duyệt, chưa phải trang chính thức</div>
 
 <div class="wrap">
 
@@ -424,13 +428,34 @@
     <!-- BUỔI 1 -->
     <div class="panel active" id="p1" role="tabpanel" aria-labelledby="t1">
       <div class="session">
-        <span class="s-meta">Tuần 1 · [ngày/giờ] · 90 phút · Online · Diễn giả: Mai Xuân Đạt · Host: Phùng Thái Học</span>
+        <span class="s-meta">Tuần 1 · [ngày/giờ] · 90 phút · Online</span>
         <h3>AI CAN, YOU KNOW? — Cách AI Agent giúp ích cho người làm Marketing mà bạn chưa biết</h3>
-        <div class="prow"><div class="ptag"><b>P1</b> · 15'</div><div class="ptext"><b>AI Chat vs AI Agent</b>: vì sao bạn mới dùng 10% sức mạnh AI.</div></div>
-        <div class="prow"><div class="ptag"><b>P2</b> · 30'</div><div class="ptext">Demo: Agent <b>tự gợi ý 10 việc</b> đúng nghề marketing, đúng công ty bạn.</div></div>
-        <div class="prow"><div class="ptag"><b>P3</b> · 30'</div><div class="ptext">Demo: thả file Excel, Agent <b>tự viết báo cáo hoàn chỉnh</b> kèm cảnh báo bất thường.</div></div>
-        <div class="prow"><div class="ptag"><b>P4</b> · 15'</div><div class="ptext">Q&amp;A + 🎁 quà học thử 5 bài miễn phí.</div></div>
-        <p class="loi-ich"><b>Mang về:</b> cách giao AI làm báo cáo, việc đang nuốt 2 tiếng mỗi tuần của bạn.</p>
+        <div class="sp-strip">
+          <div class="sp">
+            <img src="images/mai-xuan-dat.jpg" alt="Mai Xuân Đạt">
+            <div>
+              <span class="sp-role">Diễn giả</span>
+              <h4>Mai Xuân Đạt</h4>
+              <p>Người sáng lập <b>Agent Boss</b> · Founder <b>SEONGON</b> — hơn 100 nhân sự · Sáng lập <b>John Academy</b> — đào tạo hơn 3.000 CEO · Tác giả 4 đầu sách hơn 30.000 bản phát hành</p>
+            </div>
+          </div>
+          <div class="sp">
+            <img src="images/phung-thai-hoc.jpg" alt="Phùng Thái Học">
+            <div>
+              <span class="sp-role">Host</span>
+              <h4>Phùng Thái Học</h4>
+              <p>Chủ quán <b>Trà Đá</b> · Dẫn dắt phần trò chuyện &amp; Q&amp;A cùng khán giả</p>
+            </div>
+          </div>
+        </div>
+        <p class="agenda-label">Agenda buổi 1</p>
+        <div class="agenda">
+          <div class="a-item"><span class="a-time">15'</span><div class="a-body"><b>Talk mở màn Đạt × Học: "AI cũng hay, mà chưa đổi được cách làm việc?"</b><p>Vì sao đa số marketer mới dùng <b>10% sức mạnh AI</b> — dừng ở AI Chat, chưa chạm tới AI Agent.</p></div></div>
+          <div class="a-item"><span class="a-time">25'</span><div class="a-body"><b>AI CAN — bản đồ 10 việc marketing Agent làm được mà bạn chưa biết</b><p>Demo: Agent tự hỏi về công việc của bạn, rồi <b>tự gợi ý 10 đầu việc nó gánh được</b> — từ báo cáo, landing page, content đến quảng cáo. Đúng nghề, đúng công ty bạn.</p></div></div>
+          <div class="a-item"><span class="a-time">30'</span><div class="a-body"><b>YOU KNOW? — xem tận mắt 1 việc thật, làm từ đầu đến cuối</b><p>Thả file Excel số liệu ads, Agent tự đọc, tự phân tích, <b>tự viết báo cáo hoàn chỉnh</b> kèm cảnh báo bất thường — việc đang nuốt 2 tiếng mỗi tuần của bạn.</p></div></div>
+          <div class="a-item"><span class="a-time">20'</span><div class="a-body"><b>Talk &amp; Q&amp;A cùng host Phùng Thái Học</b><p>Việc nào của BẠN giao được cho Agent ngay tuần này + 🎁 quà học thử 5 bài miễn phí.</p></div></div>
+        </div>
+        <p class="loi-ich"><b>Mang về:</b> nhìn thấy chính việc của mình trong bản đồ 10 việc Agent làm được + cách giao AI làm báo cáo ngay tuần này.</p>
       </div>
     </div>
 
@@ -439,9 +464,15 @@
       <div class="session">
         <span class="s-meta">Tuần 2 · [ngày/giờ] · 90 phút · Online</span>
         <h3>Design 1 landing page bán hàng chỉ trong 60 phút</h3>
-        <div class="prow"><div class="ptag"><b>P1</b> · 10'</div><div class="ptext">Landing page là nút thắt của mọi chiến dịch: chờ designer cả tuần, chiến dịch nguội mất.</div></div>
-        <div class="prow"><div class="ptag"><b>P2</b> · 60'</div><div class="ptext">Demo xuyên suốt: từ brief, Agent <b>viết nội dung, thiết kế, dựng trang hoàn chỉnh</b> kèm form thu lead và email cảm ơn tự động. Chỉnh live trong vài giây.</div></div>
-        <div class="prow"><div class="ptag"><b>P3</b> · 20'</div><div class="ptext">Q&amp;A + 🎁 quà học thử 5 bài miễn phí.</div></div>
+        <div class="sp-strip">
+          <div class="sp sp-tba">🎤 Diễn giả &amp; host buổi 2 sẽ được công bố sớm</div>
+        </div>
+        <p class="agenda-label">Agenda buổi 2</p>
+        <div class="agenda">
+          <div class="a-item"><span class="a-time">10'</span><div class="a-body"><b>Landing page — nút thắt của mọi chiến dịch</b><p>Chờ designer + kỹ thuật cả tuần, chi phí đội lên, chiến dịch nguội mất.</p></div></div>
+          <div class="a-item"><span class="a-time">60'</span><div class="a-body"><b>Demo xuyên suốt: dựng landing page bán hàng từ số 0</b><p>Từ brief, Agent <b>viết nội dung, thiết kế, dựng trang hoàn chỉnh</b> kèm form thu lead và email cảm ơn tự động. Chỉnh live theo lệnh trong vài giây.</p></div></div>
+          <div class="a-item"><span class="a-time">20'</span><div class="a-body"><b>Tổng kết &amp; Q&amp;A</b><p>Quy trình brief → landing hoàn chỉnh + 🎁 quà học thử 5 bài miễn phí.</p></div></div>
+        </div>
         <p class="loi-ich"><b>Mang về:</b> việc chờ cả tuần nay tự làm trong 1 buổi tối, không phụ thuộc ai.</p>
       </div>
     </div>
@@ -451,11 +482,17 @@
       <div class="session">
         <span class="s-meta">Tuần 3 · [ngày/giờ] · 90 phút · Online</span>
         <h3>Xây hệ thống sản xuất content tự động, ngay cả khi bạn đang ngủ</h3>
-        <div class="prow"><div class="ptag"><b>P1</b> · 10'</div><div class="ptext">Từ "làm nhanh" đến "tự chạy", như nồi cơm hẹn giờ: 6h sáng cơm tự chín.</div></div>
-        <div class="prow"><div class="ptag"><b>P2</b> · 25'</div><div class="ptext">Demo: dạy Agent <b>giọng thương hiệu</b>, content hết "mùi AI".</div></div>
-        <div class="prow"><div class="ptag"><b>P3</b> · 30'</div><div class="ptext">Demo: từ 1 lịch đăng, Agent <b>bung 20 brief gửi designer trong 2 phút</b>.</div></div>
-        <div class="prow"><div class="ptag"><b>P4</b> · 15'</div><div class="ptext">Demo: hệ thống <b>tự viết content theo lịch</b>, tự báo cáo về Telegram mỗi sáng.</div></div>
-        <div class="prow"><div class="ptag"><b>P5</b> · 10'</div><div class="ptext">Lộ trình tự xây + Q&amp;A + 🎁 quà học thử 5 bài miễn phí.</div></div>
+        <div class="sp-strip">
+          <div class="sp sp-tba">🎤 Diễn giả &amp; host buổi 3 sẽ được công bố sớm</div>
+        </div>
+        <p class="agenda-label">Agenda buổi 3</p>
+        <div class="agenda">
+          <div class="a-item"><span class="a-time">10'</span><div class="a-body"><b>Từ "làm nhanh" đến "tự chạy"</b><p>Như nồi cơm hẹn giờ: 6h sáng cơm tự chín — hệ thống tự làm việc theo lịch, không cần bạn ngồi đó.</p></div></div>
+          <div class="a-item"><span class="a-time">25'</span><div class="a-body"><b>Demo: dạy Agent "giọng thương hiệu"</b><p>Từ vài bài viết cũ, mọi content ra <b>đúng tông thương hiệu</b>, hết "mùi AI".</p></div></div>
+          <div class="a-item"><span class="a-time">30'</span><div class="a-body"><b>Demo: 1 lịch đăng → 20 brief hoàn chỉnh trong 2 phút</b><p>Đủ tiêu đề, nội dung, mô tả hình, kích thước từng kênh — <b>gửi thẳng designer</b>.</p></div></div>
+          <div class="a-item"><span class="a-time">15'</span><div class="a-body"><b>Demo: đóng gói thành hệ thống chạy theo lịch</b><p>Agent <b>tự viết content theo kế hoạch tuần</b>, tự tổng hợp kết quả gửi về Telegram mỗi sáng.</p></div></div>
+          <div class="a-item"><span class="a-time">10'</span><div class="a-body"><b>Lộ trình tự xây &amp; Q&amp;A</b><p>+ 🎁 quà học thử 5 bài miễn phí.</p></div></div>
+        </div>
         <p class="loi-ich"><b>Mang về:</b> việc lặp tự chạy, thời gian dành cho chiến lược và sáng tạo.</p>
       </div>
     </div>
@@ -465,44 +502,18 @@
       <div class="session">
         <span class="s-meta">Tuần 4 · [ngày/giờ] · 90 phút · Online</span>
         <h3>Xây dựng AI Agent setup và tối ưu quảng cáo</h3>
-        <div class="prow"><div class="ptag"><b>P1</b> · 10'</div><div class="ptext">Chạy ads kiểu thủ công: sáng nào cũng canh số liệu, tối ưu theo cảm tính, báo cáo luôn chậm 1 nhịp so với tiền đang tiêu.</div></div>
-        <div class="prow"><div class="ptag"><b>P2</b> · 30'</div><div class="ptext">Demo: Agent <b>tự đọc số liệu tài khoản quảng cáo</b>, chỉ ra chiến dịch đang lỗ, CPL bất thường — và giải thích vì sao.</div></div>
-        <div class="prow"><div class="ptag"><b>P3</b> · 30'</div><div class="ptext">Demo: giao Agent <b>setup chiến dịch mới từ brief</b>: content ads, target, ngân sách, cấu trúc camp — nộp lại cho bạn duyệt trước khi bấm chạy.</div></div>
-        <div class="prow"><div class="ptag"><b>P4</b> · 10'</div><div class="ptext">Demo: Agent <b>trực số liệu theo lịch</b>, chi phí vượt ngưỡng là báo động về Telegram kèm đề xuất xử lý.</div></div>
-        <div class="prow"><div class="ptag"><b>P5</b> · 10'</div><div class="ptext">Lộ trình tự xây + Q&amp;A + 🎁 quà học thử 5 bài miễn phí.</div></div>
+        <div class="sp-strip">
+          <div class="sp sp-tba">🎤 Diễn giả &amp; host buổi 4 sẽ được công bố sớm</div>
+        </div>
+        <p class="agenda-label">Agenda buổi 4</p>
+        <div class="agenda">
+          <div class="a-item"><span class="a-time">10'</span><div class="a-body"><b>Chạy ads kiểu thủ công đang tốn của bạn những gì</b><p>Sáng nào cũng canh số liệu, tối ưu theo cảm tính, báo cáo luôn chậm 1 nhịp so với tiền đang tiêu.</p></div></div>
+          <div class="a-item"><span class="a-time">30'</span><div class="a-body"><b>Demo: Agent tự đọc số liệu tài khoản quảng cáo</b><p>Chỉ ra <b>chiến dịch đang lỗ, CPL bất thường</b> — và giải thích vì sao: kênh nào, nhóm quảng cáo nào, thay đổi gì gây ra.</p></div></div>
+          <div class="a-item"><span class="a-time">30'</span><div class="a-body"><b>Demo: giao Agent setup chiến dịch mới từ brief</b><p>Content ads, target, ngân sách, cấu trúc camp — Agent <b>nộp lại bản đầy đủ để bạn duyệt</b> trước khi bấm chạy.</p></div></div>
+          <div class="a-item"><span class="a-time">10'</span><div class="a-body"><b>Demo: Agent trực số liệu theo lịch</b><p>Chi phí vượt ngưỡng là <b>báo động về Telegram</b> kèm đề xuất xử lý — không cần bạn ngồi canh.</p></div></div>
+          <div class="a-item"><span class="a-time">10'</span><div class="a-body"><b>Lộ trình tự xây &amp; Q&amp;A</b><p>+ 🎁 quà học thử 5 bài miễn phí.</p></div></div>
+        </div>
         <p class="loi-ich"><b>Mang về:</b> quy trình giao Agent setup và tối ưu ads, hết cảnh ngồi canh số liệu bằng tay mỗi sáng.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== DIỄN GIẢ BUỔI 1 ===== -->
-  <section>
-    <p class="sec-eyebrow">Buổi mở màn</p>
-    <h2>Diễn giả <span class="t-orange">Buổi 1</span></h2>
-    <div class="speakers">
-      <div class="speaker">
-        <img src="images/mai-xuan-dat.jpg" alt="Mai Xuân Đạt">
-        <div>
-          <span class="sp-role">Diễn giả</span>
-          <h3>Mai Xuân Đạt</h3>
-          <ul>
-            <li>Người sáng lập <b>Agent Boss</b> — chương trình thực hành AI Agent cho người đi làm non-tech</li>
-            <li>Founder <b>SEONGON</b> — AI Search Growth Partner, hơn 100 nhân sự</li>
-            <li>Sáng lập <b>John Academy</b> — đào tạo hơn 3.000 CEO, cố vấn hơn 300 doanh nghiệp về Quản trị Mục tiêu &amp; OKRs</li>
-            <li>Tác giả các đầu sách hơn 30.000 bản phát hành: <i>OKRs — Hiểu đúng, Làm đúng · Tổ chức &amp; Đám đông · Đội Trưởng · Chiến binh</i></li>
-          </ul>
-        </div>
-      </div>
-      <div class="speaker">
-        <img src="images/phung-thai-hoc.jpg" alt="Phùng Thái Học">
-        <div>
-          <span class="sp-role">Host</span>
-          <h3>Phùng Thái Học</h3>
-          <ul>
-            <li>Chủ quán <b>Trà Đá</b></li>
-            <li>Người dẫn dắt phần trò chuyện &amp; Q&amp;A cùng khán giả trong buổi mở màn</li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>
@@ -574,7 +585,7 @@
 <footer>
   <div class="wrap">
     <span>© 2026 John Academy · Chương trình Agent Boss · Mai Xuân Đạt · Quản trị doanh nghiệp AI Agents</span>
-    <span>Bản nháp nội bộ để duyệt · v8 · 28/07/2026</span>
+    <span>Bản nháp nội bộ để duyệt · v9 · 28/07/2026</span>
   </div>
 </footer>
 
