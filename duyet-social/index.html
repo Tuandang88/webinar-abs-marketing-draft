@@ -36,6 +36,25 @@
   .img img{width:100%;max-width:520px;border-radius:12px;border:1px solid rgba(255,255,255,.14)}
   .lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);font-weight:700;padding:16px 24px 0}
   footer{margin-top:60px;color:var(--gray);font-size:13.5px;text-align:center}
+
+  .status{margin-left:auto;padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:700;white-space:nowrap}
+  .status.cho{background:rgba(156,163,175,.15);border:1.5px solid rgba(156,163,175,.5);color:#C4CBD4}
+  .status.ok{background:rgba(34,197,94,.15);border:1.5px solid rgba(34,197,94,.6);color:#4ADE80}
+  .status.sua{background:rgba(255,106,26,.15);border:1.5px solid rgba(255,106,26,.6);color:#FF8A4A}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding:18px 24px;border-top:1px solid rgba(255,255,255,.1);background:rgba(5,13,22,.5)}
+  .abtn{border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:12px 22px;border-radius:999px}
+  .abtn.duyet{background:#22C55E;color:#052e14}
+  .abtn.sua{background:transparent;color:#FF8A4A;border:1.5px solid rgba(255,106,26,.6)}
+  .abtn.tai{background:transparent;color:#E5E7EB;border:1.5px solid rgba(255,255,255,.3);text-decoration:none;display:inline-block}
+  .abtn:disabled{opacity:.45;cursor:not-allowed}
+  .cmtbox{display:none;padding:0 24px 20px;background:rgba(5,13,22,.5)}
+  .cmtbox.open{display:block}
+  .cmtbox textarea{width:100%;min-height:90px;background:var(--navy);border:1.5px solid rgba(255,255,255,.25);border-radius:12px;color:#fff;font-family:'Inter',sans-serif;font-size:15px;padding:12px 14px;resize:vertical}
+  .cmtbox textarea:focus{outline:none;border-color:var(--orange)}
+  .cmtrow{margin-top:10px;display:flex;gap:10px}
+  .sentnote{padding:10px 24px 18px;background:rgba(5,13,22,.5);color:var(--gray);font-size:14px;display:none}
+  .sentnote b{color:#FF8A4A}
+  .reset{margin-left:8px;background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -53,7 +72,7 @@
   </table>
 
   <!-- BÀI 1 -->
-  <div class="post">
+  <div class="post" data-post="Bài 1 — Giới thiệu webinar (01/08)" data-img="images/post1.png" data-dl="bai1-gioi-thieu-webinar.png">
     <div class="post-head"><span class="date">T7 · 01/08</span><h2>Bài 1 — Giới thiệu webinar</h2></div>
     <div class="cols">
       <div>
@@ -94,7 +113,7 @@ Webinar "AI CAN, YOU KNOW?  Cách AI Agent giúp ích cho người làm Marketin
   </div>
 
   <!-- BÀI 2 -->
-  <div class="post">
+  <div class="post" data-post="Bài 2 — Diễn giả & Host (02/08)" data-img="images/post2.png" data-dl="bai2-dien-gia-host.png">
     <div class="post-head"><span class="date">CN · 02/08</span><h2>Bài 2 — Giới thiệu diễn giả &amp; host</h2></div>
     <div class="cols">
       <div>
@@ -123,7 +142,7 @@ Trong buổi này, host Học sẽ dẫn dắt chương trình: cùng trò chuy�
   </div>
 
   <!-- BÀI 3 -->
-  <div class="post">
+  <div class="post" data-post="Bài 3 — Hiểu nhầm về AI Agent (03/08)" data-img="images/post3.png" data-dl="bai3-hieu-nham.png">
     <div class="post-head"><span class="date">T2 · 03/08</span><h2>Bài 3 — Những hiểu nhầm của dân Marketing về AI Agent</h2></div>
     <div class="cols">
       <div>
@@ -153,7 +172,7 @@ Ngược lại. Cùng 8 tiếng, người tự tay làm báo cáo và người g
   </div>
 
   <!-- BÀI 4 -->
-  <div class="post">
+  <div class="post" data-post="Bài 4 — Đếm ngược còn 1 ngày (04/08)" data-img="images/post4.png" data-dl="bai4-dem-nguoc.png">
     <div class="post-head"><span class="date">T3 · 04/08</span><h2>Bài 4 — Đếm ngược: còn 1 ngày</h2></div>
     <div class="cols">
       <div>
@@ -185,5 +204,77 @@ Chỗ ngồi online có giới hạn để đảm bảo chất lượng Q&amp;A 
 
   <footer>Bản duyệt nội bộ Agent Boss · Landing draft: <a href="../" style="color:#FF6A1A">xem tại đây</a> · Tuấn (CS) tổng hợp bằng Claude Code</footer>
 </div>
+
+<script>
+// Kết quả duyệt gửi về "hòm thư" ntfy — Tuấn poll và báo lại trong Claude Code
+var TOPIC = 'https://ntfy.sh/abs-duyet-webinar1-x7k2m9q4';
+
+document.querySelectorAll('.post[data-post]').forEach(function(post){
+  var name = post.dataset.post, key = 'duyet:' + name;
+  var head = post.querySelector('.post-head');
+
+  var chip = document.createElement('span');
+  chip.className = 'status cho'; chip.textContent = '⏳ Chờ duyệt';
+  head.appendChild(chip);
+
+  var bar = document.createElement('div'); bar.className = 'actions';
+  bar.innerHTML = '<button class="abtn duyet">✅ Duyệt</button>' +
+    '<button class="abtn sua">✏️ Yêu cầu chỉnh sửa</button>' +
+    '<a class="abtn tai" href="' + post.dataset.img + '" download="' + post.dataset.dl + '">⬇️ Tải ảnh</a>';
+  post.appendChild(bar);
+
+  var box = document.createElement('div'); box.className = 'cmtbox';
+  box.innerHTML = '<textarea placeholder="Sếp ghi rõ cần sửa gì (nội dung / hình / lịch đăng)..."></textarea>' +
+    '<div class="cmtrow"><button class="abtn duyet gui">Gửi yêu cầu</button><button class="abtn tai huy">Hủy</button></div>';
+  post.appendChild(box);
+
+  var note = document.createElement('div'); note.className = 'sentnote';
+  post.appendChild(note);
+
+  var bDuyet = bar.querySelector('.duyet'), bSua = bar.querySelector('.sua');
+  var ta = box.querySelector('textarea'), bGui = box.querySelector('.gui'), bHuy = box.querySelector('.huy');
+
+  function setState(st, cmt){
+    if(st === 'ok'){ chip.className = 'status ok'; chip.textContent = '✅ Đã duyệt'; }
+    else if(st === 'sua'){ chip.className = 'status sua'; chip.textContent = '✏️ Chờ chỉnh sửa'; }
+    else { chip.className = 'status cho'; chip.textContent = '⏳ Chờ duyệt'; }
+    bDuyet.disabled = (st !== 'cho'); bSua.disabled = (st !== 'cho');
+    if(st === 'ok'){ note.style.display = 'block'; note.innerHTML = 'Đã gửi kết quả duyệt cho Tuấn. <button class="reset">đổi quyết định</button>'; }
+    else if(st === 'sua' && cmt){ note.style.display = 'block'; note.innerHTML = '<b>Yêu cầu đã gửi:</b> ' + cmt.replace(/</g,'&lt;') + ' <button class="reset">đổi quyết định</button>'; }
+    else { note.style.display = 'none'; note.innerHTML = ''; }
+    var rs = note.querySelector('.reset');
+    if(rs) rs.onclick = function(){ localStorage.removeItem(key); setState('cho'); };
+  }
+
+  function send(text, cb){
+    fetch(TOPIC, {method:'POST', body: text}).then(function(r){ cb(r.ok); }).catch(function(){ cb(false); });
+  }
+
+  var saved = {};
+  try{ saved = JSON.parse(localStorage.getItem(key) || '{}'); }catch(e){}
+  setState(saved.st || 'cho', saved.cmt);
+
+  bDuyet.onclick = function(){
+    bDuyet.disabled = true; bDuyet.textContent = 'Đang gửi...';
+    send('✅ DUYỆT — ' + name, function(ok){
+      bDuyet.textContent = '✅ Duyệt';
+      if(ok){ localStorage.setItem(key, JSON.stringify({st:'ok'})); setState('ok'); }
+      else { alert('Gửi không thành công, sếp bấm thử lại giúp em.'); bDuyet.disabled = false; }
+    });
+  };
+  bSua.onclick = function(){ box.classList.add('open'); ta.focus(); };
+  bHuy.onclick = function(){ box.classList.remove('open'); };
+  bGui.onclick = function(){
+    var c = ta.value.trim();
+    if(!c){ ta.focus(); return; }
+    bGui.disabled = true; bGui.textContent = 'Đang gửi...';
+    send('✏️ YÊU CẦU CHỈNH SỬA — ' + name + '\n' + c, function(ok){
+      bGui.disabled = false; bGui.textContent = 'Gửi yêu cầu';
+      if(ok){ localStorage.setItem(key, JSON.stringify({st:'sua', cmt:c})); box.classList.remove('open'); setState('sua', c); }
+      else { alert('Gửi không thành công, sếp bấm thử lại giúp em.'); }
+    });
+  };
+});
+</script>
 </body>
 </html>
