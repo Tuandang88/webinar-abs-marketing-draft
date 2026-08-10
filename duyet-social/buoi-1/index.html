@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Duyệt content webinar "AI CAN, YOU KNOW?" — 6 bài 01–05/08</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Roboto+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0B1A2B;--deep:#050D16;--card:#0F1F38;--orange:#FF6A1A;--gray:#9CA3AF;--light:#E5E7EB}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--navy);color:#fff;font-family:'Inter',sans-serif;line-height:1.6}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 20px 80px}
+  .tag{display:inline-block;padding:8px 18px;border-radius:999px;background:rgba(255,106,26,.12);border:1.5px solid rgba(255,106,26,.55);color:var(--orange);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+  h1{margin-top:16px;font-size:clamp(24px,4.5vw,34px);font-weight:800;letter-spacing:-.01em}
+  h1 .cam{color:var(--orange)}
+  .note{margin-top:10px;color:var(--gray);font-size:15px}
+  .note b{color:var(--light)}
+
+  table{width:100%;margin-top:26px;border-collapse:collapse;font-size:15px}
+  th,td{padding:12px 14px;text-align:left;border:1px solid rgba(255,255,255,.12)}
+  th{background:var(--card);color:var(--orange);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  td{color:var(--light)}
+  td .mono{font-family:'Roboto Mono',monospace;font-weight:700;color:#fff;white-space:nowrap}
+
+  .post{margin-top:52px;background:var(--card);border:1px solid rgba(255,255,255,.12);border-radius:18px;overflow:hidden}
+  .post-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .date{font-family:'Roboto Mono',monospace;font-weight:700;font-size:15px;color:var(--deep);background:var(--orange);padding:7px 16px;border-radius:999px;white-space:nowrap}
+  .post-head h2{font-size:19px;font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  @media(max-width:760px){.cols{grid-template-columns:1fr}}
+  .caption{padding:22px 24px;font-size:15.5px;color:var(--light);white-space:pre-wrap;border-right:1px solid rgba(255,255,255,.08)}
+  @media(max-width:760px){.caption{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}}
+  .img{padding:22px 24px;background:var(--deep);display:flex;align-items:flex-start;justify-content:center}
+  .img img{width:100%;max-width:520px;border-radius:12px;border:1px solid rgba(255,255,255,.14)}
+  .lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);font-weight:700;padding:16px 24px 0}
+  footer{margin-top:60px;color:var(--gray);font-size:13.5px;text-align:center}
+
+  .status{margin-left:auto;padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:700;white-space:nowrap}
+  .status.cho{background:rgba(156,163,175,.15);border:1.5px solid rgba(156,163,175,.5);color:#C4CBD4}
+  .status.ok{background:rgba(34,197,94,.15);border:1.5px solid rgba(34,197,94,.6);color:#4ADE80}
+  .status.sua{background:rgba(255,106,26,.15);border:1.5px solid rgba(255,106,26,.6);color:#FF8A4A}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding:18px 24px;border-top:1px solid rgba(255,255,255,.1);background:rgba(5,13,22,.5)}
+  .abtn{border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:12px 22px;border-radius:999px}
+  .abtn.duyet{background:#22C55E;color:#052e14}
+  .abtn.sua{background:transparent;color:#FF8A4A;border:1.5px solid rgba(255,106,26,.6)}
+  .abtn.tai{background:transparent;color:#E5E7EB;border:1.5px solid rgba(255,255,255,.3);text-decoration:none;display:inline-block}
+  .abtn:disabled{opacity:.45;cursor:not-allowed}
+  .cmtbox{display:none;padding:0 24px 20px;background:rgba(5,13,22,.5)}
+  .cmtbox.open{display:block}
+  .cmtbox textarea{width:100%;min-height:90px;background:var(--navy);border:1.5px solid rgba(255,255,255,.25);border-radius:12px;color:#fff;font-family:'Inter',sans-serif;font-size:15px;padding:12px 14px;resize:vertical}
+  .cmtbox textarea:focus{outline:none;border-color:var(--orange)}
+  .cmtrow{margin-top:10px;display:flex;gap:10px}
+  .sentnote{padding:10px 24px 18px;background:rgba(5,13,22,.5);color:var(--gray);font-size:14px;display:none}
+  .sentnote b{color:#FF8A4A}
+  .reset{margin-left:8px;background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="tag">Bản duyệt nội bộ · Social plan</span>
+  <h1>6 bài Facebook giới thiệu webinar<br><span class="cam">"AI CAN, YOU KNOW?"</span> — lên sóng 05/08</h1>
+  <p class="note">Kính gửi sếp Đạt duyệt <b>nội dung + hình + lịch đăng</b>. Mọi nút/link đăng ký sẽ gắn link form chính thức trước khi đăng (hiện để <b>[link đăng ký]</b>). Người tổng hợp: <b>Tuấn (CS)</b> · 31/07/2026.</p>
+  <p class="note" style="margin-top:14px"><b>Cập nhật 04/08:</b> bổ sung <b>bài 5 và bài 6</b> — cả hai đăng trong ngày diễn ra webinar (05/08) để kéo thêm đăng ký chặng cuối. Bài 1–4 giữ nguyên, không sửa gì.</p>
+  <p class="note" style="margin-top:8px">👉 Hai bài mới đã <b>xếp lên đầu trang</b> cho sếp duyệt trước — <b>không phải thứ tự đăng</b>. Lịch đăng thật xem ở bảng dưới: bài 1–4 đã lên rồi, bài 5 sáng mai và bài 6 chiều mai.</p>
+
+  <table>
+    <tr><th>Ngày đăng</th><th>Bài</th><th>Góc nội dung</th></tr>
+    <tr><td class="mono"><span class="mono">T7 · 01/08</span></td><td>Bài 1 — Giới thiệu webinar</td><td>Marketer luôn đi đầu trong ứng dụng cái mới — và AI Agent chính là mảnh đất tiềm năng tiếp theo → giới thiệu 3 giá trị buổi 1 + thông tin sự kiện</td></tr>
+    <tr><td class="mono"><span class="mono">CN · 02/08</span></td><td>Bài 2 — Diễn giả &amp; Host</td><td>Giới thiệu anh Đạt (Agent Boss · SEONGON · Google Marketing) × anh Học (Trà Đá · Tâm Sự Con Sen 800K)</td></tr>
+    <tr><td class="mono"><span class="mono">T2 · 03/08</span></td><td>Bài 3 — Hiểu nhầm về AI Agent</td><td>Content giá trị: 3 hiểu nhầm phổ biến → teaser phần mở màn của buổi webinar</td></tr>
+    <tr><td class="mono"><span class="mono">T3 · 04/08</span></td><td>Bài 4 — Đếm ngược còn 1 ngày</td><td>Giục giữ chỗ + nhắc người đã đăng ký check email</td></tr>
+    <tr><td class="mono"><span class="mono">T4 · 05/08 sáng</span></td><td>Bài 5 — AI đang làm việc hay mới trả lời?</td><td>Đào sâu hiểu nhầm "AI = ChatGPT" của bài 3: vì sao dùng AI chăm chỉ mà công việc vẫn y nguyên + cách tự kiểm tra mình đang ở loại nào</td></tr>
+    <tr><td class="mono"><span class="mono">T4 · 05/08 chiều</span></td><td>Bài 6 — Last call còn vài tiếng</td><td>Chốt đăng ký sát giờ lên sóng, nhắc lại 4 nội dung + quà học thử 5 bài</td></tr>
+  </table>
+
+  <!-- BÀI 5 -->
+  <div class="post" data-post="Bài 5 — AI đang làm việc hay mới trả lời (05/08 sáng)" data-img="../images/post5.png" data-dl="bai5-lam-viec-hay-tra-loi.png">
+    <div class="post-head"><span class="date">T4 · 05/08 sáng</span><h2>Bài 5 — AI của bạn đang làm việc, hay mới chỉ trả lời?</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption">AI CỦA BẠN ĐANG LÀM VIỆC, HAY MỚI CHỈ TRẢ LỜI?
+
+Câu hỏi nghe đơn giản. Nhưng phần lớn người làm marketing sẽ trả lời nhầm.
+
+Bạn mở ChatGPT mỗi ngày. Nhờ nó nghĩ tiêu đề, viết caption, tóm tắt tài liệu, sửa lại câu cho mượt. Bạn dùng chăm chỉ, dùng thành thạo — nên nếu được hỏi, hẳn bạn sẽ nói AI của mình đang làm việc.
+
+Nhưng cuối tuần nhìn lại, công việc vẫn y như cũ: vẫn tự gom số từ bốn kênh, vẫn tự ngồi viết từng bài, vẫn ngập trong những việc lặp đi lặp lại. Nếu AI thật sự đang làm việc cho bạn, tại sao khối lượng việc của bạn không hề giảm?
+
+Vì nó chưa làm việc. Nó mới đang trả lời.
+
+Không phải bạn dùng sai. Là bạn đang dùng rất tốt MỘT LOẠI AI, và tưởng đó là tất cả những gì AI làm được.
+
+Hãy hình dung thế này. AI Chat giống người chỉ đường: bạn hỏi đi lối nào, nó chỉ rất chuẩn, nhưng bạn vẫn phải tự đi. AI Agent giống chiếc xe có tài xế: bạn nói địa chỉ, rồi nó chở bạn tới.
+
+Cụ thể trong nghề của bạn. Muốn có một bài content bằng ChatGPT: bạn tự nghĩ góc, tự gõ yêu cầu, nó trả về bản nháp, bạn copy ra chỗ khác, tự sửa giọng, tự tìm ảnh, tự đăng. Nó giúp bạn viết nhanh hơn — nhưng người làm vẫn là bạn, từ đầu đến cuối.
+
+Với một Agent, bạn giao việc một lần: "đọc lịch nội dung tuần này, viết theo giọng ba bài cũ của tôi, xuất đủ bản cho Facebook và TikTok". Nó tự mở file, tự đọc, tự viết, tự trình bày, rồi nộp lại cho bạn duyệt. Bạn từ người ngồi làm chuyển thành người duyệt bài.
+
+Có một cách rất nhanh để tự kiểm tra mình đang ở loại nào: ĐẾM SỐ LẦN BẠN PHẢI QUAY LẠI GÕ TIẾP để xong một đầu việc. Nếu phải quay lại năm bảy lần, bạn vẫn đang dùng AI Chat. Còn nếu giao một lần rồi đi làm việc khác, đó mới là Agent.
+
+Và đây là chỗ đáng suy nghĩ: nếu suốt thời gian qua bạn mới dùng phần chỉ đường, thì phần chở đi — phần nặng nhất, tốn thời gian nhất trong công việc của bạn — vẫn chưa được đụng tới.
+
+Vậy những việc nào của bạn giao hẳn đi được, chứ không phải chỉ hỏi cho nhanh?
+
+Đó chính là thứ được trả lời trong webinar miễn phí "AI CAN, YOU KNOW? — Cách AI Agent giúp ích cho người làm Marketing mà bạn chưa biết", 20h00 tối nay. Anh Mai Xuân Đạt cùng host Phùng Thái Học sẽ bóc tách những hiểu nhầm khiến đa số marketer mới dùng 10% sức mạnh AI, và mở bản đồ những đầu việc marketing mà Agent gánh được — đúng nghề bạn, đúng công ty bạn.
+
+🎁 Nếu tối nay bạn bận, vẫn nên giữ chỗ: người đăng ký nhận quyền học thử miễn phí 5 bài đầu khóa Agent Boss Marketing, tự tay làm lại trên chính công việc của mình, có AI chấm bài và phản hồi. Không xem live thì học sau — chỗ ngồi vẫn là của bạn.
+
+📌 20h00 – 21h30 · Hôm nay, 05/08/2026 · Online · Miễn phí
+
+Giữ chỗ trước giờ lên sóng: [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="../images/post5.png" alt="Visual bài 5"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 6 -->
+  <div class="post" data-post="Bài 6 — Last call còn vài tiếng (05/08 chiều)" data-img="../images/post6.png" data-dl="bai6-last-call.png">
+    <div class="post-head"><span class="date">T4 · 05/08 chiều</span><h2>Bài 6 — Last call: còn vài tiếng nữa</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption">⏰ CÒN VÀI TIẾNG NỮA, WEBINAR "AI CAN, YOU KNOW" SẼ DIỄN RA!
+
+Webinar miễn phí "AI CAN, YOU KNOW? — Cách AI Agent giúp ích cho người làm Marketing mà bạn chưa biết" lên sóng 20h00 tối nay.
+
+90 phút, và bạn sẽ thấy tận mắt:
+
+🔥 Vì sao đa số người làm marketing mới dùng 10% sức mạnh AI — dừng ở chỗ hỏi đáp, chưa chạm tới chỗ giao việc
+
+🔥 Bản đồ những đầu việc marketing mà Agent gánh được — đúng nghề bạn, đúng công ty bạn
+
+🔥 Demo trực tiếp từ diễn giả — xem Agent làm việc marketing thật trên màn hình
+
+🔥 Q&amp;A: việc nào của BẠN giao được cho Agent ngay tuần này — host Phùng Thái Học điều phối
+
+🎁 Và quà cuối buổi cho người đăng ký: học thử miễn phí 5 bài đầu khóa Agent Boss Marketing.
+
+Chỗ ngồi online có giới hạn để giữ chất lượng phần Q&amp;A. Nếu bạn chưa giữ chỗ thì đây là lúc — vài tiếng nữa là đóng đăng ký.
+
+📌 20h00 – 21h30 · Tối nay, 05/08/2026 · Online · Miễn phí
+
+Đăng ký ngay: [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="../images/post6.png" alt="Visual bài 6"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 1 -->
+  <div class="post" data-post="Bài 1 — Giới thiệu webinar (01/08)" data-img="../images/post1.png" data-dl="bai1-gioi-thieu-webinar.png">
+    <div class="post-head"><span class="date">T7 · 01/08</span><h2>Bài 1 — Giới thiệu webinar</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption">Webinar : "AI CAN, YOU KNOW?  Cách AI Agent giúp ích cho người làm Marketing mà bạn chưa biết" | 20h00 ngày 05/08/2026
+
+Dân làm marketing xưa nay vẫn là những người chịu khó đổi mới nhất: thuật toán đổi thì học lại từ đầu, kênh mới nổi lên thì thử ngay, thị trường chuyển hướng thì cập nhật trước tiên. Với AI cũng vậy, dân marketing nằm trong nhóm dùng AI sớm nhất, chăm chỉ nhất.
+
+Nhưng thực tế sau một thời gian ứng dụng, nhiều người vẫn chung một cảm giác: "AI cũng hay, mà công việc của mình vẫn thế." Vẫn tự gom số từ 4 kênh mỗi tuần, vẫn tự viết từng bài, vẫn ngập trong những việc lặp đi lặp lại, chỉ khác là có thêm một cửa sổ chat để hỏi.
+
+Vấn đề không nằm ở sự chịu khó của bạn, mà là đa số mới dừng ở AI Chat  bạn hỏi, nó trả lời, việc vẫn là của bạn. Nhiều bạn vẫn lầm tưởng AI Agent chắc cũng như vậy thôi.
+
+Webinar "AI CAN, YOU KNOW?  Cách AI Agent giúp ích cho người làm Marketing mà bạn chưa biết" sẽ giúp bạn:
+
+🔥 Bóc tách những hiểu nhầm của dân Marketing về AI Agent, vì sao bạn mới dùng 10% sức mạnh AI?
+
+🔥 Bản đồ 10 việc marketing Agent làm được mà bạn chưa biết
+
+🔥 Demo trực tiếp từ diễn giả
+
+Đứng phần chia sẻ và demo là anh Mai Xuân Đạt - người sáng lập Agent Boss, Founder SEONGON, một trong những chuyên gia đi đầu về nghiên cứu và ứng dụng Google Marketing tại Việt Nam cùng với host Phùng Thái Học - Chủ quán Trà Đá, Founder Cộng đồng "Tâm Sự Con Sen" với gần 800.000 thành viên làm content trên cả nước.
+
+📌 THÔNG TIN SỰ KIỆN:
+- Chủ đề: AI CAN, YOU KNOW? — Cách AI Agent giúp ích cho người làm Marketing mà bạn chưa biết
+- Diễn giả: Mai Xuân Đạt — Người sáng lập Agent Boss
+- Host: Phùng Thái Học — Chủ quán Trà Đá, Founder Cộng đồng "Tâm Sự Con Sen"
+- Thời gian: 20h00 – 21h30, ngày 05/08/2026
+- Địa điểm: Online
+- Chi phí: Miễn phí
+
+Đăng ký giữ chỗ: [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="../images/post1.png" alt="Visual bài 1"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 2 -->
+  <div class="post" data-post="Bài 2 — Diễn giả & Host (02/08)" data-img="../images/post2.png" data-dl="bai2-dien-gia-host.png">
+    <div class="post-head"><span class="date">CN · 02/08</span><h2>Bài 2 — Giới thiệu diễn giả &amp; host</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption">GIỚI THIỆU DIỄN GIẢ &amp; HOST  Webinar "AI CAN, YOU KNOW?" | 20h00 ngày 05/08/2026
+
+Một chuyên gia đi đầu về Google Marketing đang xây đội ngũ AI Agent. Một người dẫn dắt cộng đồng người làm content lớn nhất Việt Nam. 20h00 ngày 05/08/2026, hai người cùng lên sóng để trả lời một câu hỏi: AI Agent giúp gì được cho người làm marketing?
+
+🎤 Diễn giả: MAI XUÂN ĐẠT - Người sáng lập Agent Boss
+
+Founder SEONGON, Founder John Academy, một trong những chuyên gia đi đầu về nghiên cứu và ứng dụng Google Marketing tại Việt Nam. Nhiều năm làm digital marketing, anh hiểu rõ từng việc lặp đang ngốn thời gian của người làm nghề: gom số, làm báo cáo, viết content, chạy chiến dịch. Trong buổi webinar sắp tới, anh sẽ lần lượt: bóc tách những hiểu nhầm của dân Marketing về AI Agent, mở "bản đồ" 10 việc marketing Agent làm được mà bạn chưa biết, và demo trực tiếp ứng dụng AI Agent cho Marketer.
+
+🎤 Host: PHÙNG THÁI HỌC - Chủ quán Trà Đá
+
+Chủ quán Trà Đá - blog Digital Marketing quen thuộc với dân trong nghề. Founder Cộng đồng "Tâm Sự Con Sen" với gần 800.000 thành viên, một trong những cộng đồng chuyên môn của người làm content lớn nhất hiện nay. Tác giả cuốn "Hơi thở con sen". Với hơn 10 năm làm Digital Marketing, đi qua đủ vị trí từ executive, planner đến leader, manager, host của chúng ta là người hiểu rõ nhất dân content, ads đang vướng ở đâu.
+
+Trong buổi này, host Học sẽ dẫn dắt chương trình: cùng trò chuyện ở phần "Những hiểu nhầm của dân Marketing về AI Agent", soi bản đồ 10 việc dưới góc nhìn của người làm content lâu năm, và điều phối phần Q&amp;A cuối buổi, để câu hỏi từ chính công việc của bạn được trả lời ngay trong 90 phút.
+
+📌 Thời gian: 20h00 – 21h30, Thứ 4 ngày 05/08/2026 · Online · Miễn phí
+
+Đăng ký giữ chỗ (miễn phí): [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="../images/post2.png" alt="Visual bài 2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 3 -->
+  <div class="post" data-post="Bài 3 — Hiểu nhầm về AI Agent (03/08)" data-img="../images/post3.png" data-dl="bai3-hieu-nham.png">
+    <div class="post-head"><span class="date">T2 · 03/08</span><h2>Bài 3 — Những hiểu nhầm của dân Marketing về AI Agent</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption">NHỮNG HIỂU NHẦM CỦA DÂN MARKETING VỀ AI AGENT
+
+"Sau một thời gian ăn ngủ cùng AI, tôi nói chuyện với rất nhiều người làm content, ads, digital. Và nhận ra: thứ cản họ không phải công nghệ mà là những hiểu nhầm về AI bây giờ
+
+❌ Hiểu nhầm 1: AI = ChatGPT
+ChatGPT là AI Chat - người tư vấn. Bạn hỏi, nó trả lời, bạn vẫn tự làm. AI Agent là nhân viên thực tập xuất sắc: bạn giao việc, nó tự làm nhiều bước: đọc file, phân tích, viết, xuất kết quả, rồi nộp lại cho bạn duyệt. Dừng ở ChatGPT nghĩa là bạn mới dùng 10% sức mạnh AI.
+
+❌ Hiểu nhầm 2: Muốn dùng AI Agent phải biết code
+Không. Giao việc cho Agent giống giao việc cho nhân viên mới: nói rõ việc gì, kết quả mong muốn ra sao. Kỹ năng cần có là kỹ năng giao việc - thứ người làm marketing giỏi sẵn, không phải kỹ năng lập trình.
+
+❌ Hiểu nhầm 3: AI làm thay thì mình mất giá trị
+Ngược lại. Cùng 8 tiếng, người tự tay làm báo cáo và người giao báo cáo cho Agent để dành thời gian cho chiến lược - sau 6 tháng, giá trị hai người không còn như nhau. Người biết giao việc cho AI mới là người được giữ lại."
+
+Đó chỉ là 3 hiểu nhầm trong rất nhiều những hiểu nhầm khác sẽ được anh Mai Xuân Đạt chia sẻ trong webinar "AI CAN, YOU KNOW?  Cách AI Agent giúp ích cho người làm Marketing mà bạn chưa biết" sẽ được tổ chức vào 20h00 ngày 05/08/2026
+
+Đăng ký webinar miễn phí: [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="../images/post3.png" alt="Visual bài 3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 4 -->
+  <div class="post" data-post="Bài 4 — Đếm ngược còn 1 ngày (04/08)" data-img="../images/post4.png" data-dl="bai4-dem-nguoc.png">
+    <div class="post-head"><span class="date">T3 · 04/08</span><h2>Bài 4 — Đếm ngược: còn 1 ngày</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption">⏰ ĐẾM NGƯỢC CÒN 1 NGÀY: "AI CAN, YOU KNOW?" lên sóng 20h00 tối mai!
+
+Webinar miễn phí "AI CAN, YOU KNOW?" - Cách AI Agent giúp ích cho người làm Marketing mà bạn chưa biết sẽ lên sóng vào 20h00 tối mai ngày 05/08/2026.
+
+Nếu bạn làm content, ads, digital và từng nghĩ "AI cũng hay, mà công việc của mình vẫn thế" thì 90 phút tối mai chính là dành cho bạn:
+
+🔥 Bóc tách những hiểu nhầm của dân Marketing về AI Agent, vì sao bạn mới dùng 10% sức mạnh AI
+
+🔥 Bản đồ 10 việc marketing Agent làm được mà bạn chưa biết, đúng nghề, đúng công ty bạn
+
+🔥 Q&amp;A cùng host Phùng Thái Học - Chủ quán Trà Đá và diễn giả Mai Xuân Đạt - người sáng lập Agent Boss, Founder SEONGON
+
+📌 20h00 – 21h30 · Thứ 4, 05/08/2026 · Online · Miễn phí
+
+Chỗ ngồi online có giới hạn để đảm bảo chất lượng Q&amp;A, nếu bạn chưa giữ chỗ, đây là lúc: [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="../images/post4.png" alt="Visual bài 4"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Bản LƯU TRỮ buổi 1 (webinar đã diễn ra 05/08) · <a href="../" style="color:#FF6A1A">xem bản duyệt buổi 2</a><br>Bản duyệt nội bộ Agent Boss · Landing draft: <a href="../../" style="color:#FF6A1A">xem tại đây</a> · Tuấn (CS) tổng hợp bằng Claude Code</footer>
+</div>
+
+<script>
+// Kết quả duyệt gửi về "hòm thư" ntfy — Tuấn poll và báo lại trong Claude Code
+var TOPIC = 'https://ntfy.sh/abs-duyet-webinar1-x7k2m9q4';
+
+document.querySelectorAll('.post[data-post]').forEach(function(post){
+  var name = post.dataset.post, key = 'duyet:' + name;
+  var head = post.querySelector('.post-head');
+
+  var chip = document.createElement('span');
+  chip.className = 'status cho'; chip.textContent = '⏳ Chờ duyệt';
+  head.appendChild(chip);
+
+  var bar = document.createElement('div'); bar.className = 'actions';
+  bar.innerHTML = '<button class="abtn duyet">✅ Duyệt</button>' +
+    '<button class="abtn sua">✏️ Yêu cầu chỉnh sửa</button>' +
+    '<a class="abtn tai" href="' + post.dataset.img + '" download="' + post.dataset.dl + '">⬇️ Tải ảnh</a>';
+  post.appendChild(bar);
+
+  var box = document.createElement('div'); box.className = 'cmtbox';
+  box.innerHTML = '<textarea placeholder="Sếp ghi rõ cần sửa gì (nội dung / hình / lịch đăng)..."></textarea>' +
+    '<div class="cmtrow"><button class="abtn duyet gui">Gửi yêu cầu</button><button class="abtn tai huy">Hủy</button></div>';
+  post.appendChild(box);
+
+  var note = document.createElement('div'); note.className = 'sentnote';
+  post.appendChild(note);
+
+  var bDuyet = bar.querySelector('.duyet'), bSua = bar.querySelector('.sua');
+  var ta = box.querySelector('textarea'), bGui = box.querySelector('.gui'), bHuy = box.querySelector('.huy');
+
+  function setState(st, cmt){
+    if(st === 'ok'){ chip.className = 'status ok'; chip.textContent = '✅ Đã duyệt'; }
+    else if(st === 'sua'){ chip.className = 'status sua'; chip.textContent = '✏️ Chờ chỉnh sửa'; }
+    else { chip.className = 'status cho'; chip.textContent = '⏳ Chờ duyệt'; }
+    bDuyet.disabled = (st !== 'cho'); bSua.disabled = (st !== 'cho');
+    if(st === 'ok'){ note.style.display = 'block'; note.innerHTML = 'Đã gửi kết quả duyệt cho Tuấn. <button class="reset">đổi quyết định</button>'; }
+    else if(st === 'sua' && cmt){ note.style.display = 'block'; note.innerHTML = '<b>Yêu cầu đã gửi:</b> ' + cmt.replace(/</g,'&lt;') + ' <button class="reset">đổi quyết định</button>'; }
+    else { note.style.display = 'none'; note.innerHTML = ''; }
+    var rs = note.querySelector('.reset');
+    if(rs) rs.onclick = function(){ localStorage.removeItem(key); setState('cho'); };
+  }
+
+  function send(text, cb){
+    fetch(TOPIC, {method:'POST', body: text}).then(function(r){ cb(r.ok); }).catch(function(){ cb(false); });
+  }
+
+  var saved = {};
+  try{ saved = JSON.parse(localStorage.getItem(key) || '{}'); }catch(e){}
+  setState(saved.st || 'cho', saved.cmt);
+
+  bDuyet.onclick = function(){
+    bDuyet.disabled = true; bDuyet.textContent = 'Đang gửi...';
+    send('✅ DUYỆT — ' + name, function(ok){
+      bDuyet.textContent = '✅ Duyệt';
+      if(ok){ localStorage.setItem(key, JSON.stringify({st:'ok'})); setState('ok'); }
+      else { alert('Gửi không thành công, sếp bấm thử lại giúp em.'); bDuyet.disabled = false; }
+    });
+  };
+  bSua.onclick = function(){ box.classList.add('open'); ta.focus(); };
+  bHuy.onclick = function(){ box.classList.remove('open'); };
+  bGui.onclick = function(){
+    var c = ta.value.trim();
+    if(!c){ ta.focus(); return; }
+    bGui.disabled = true; bGui.textContent = 'Đang gửi...';
+    send('✏️ YÊU CẦU CHỈNH SỬA — ' + name + '\n' + c, function(ok){
+      bGui.disabled = false; bGui.textContent = 'Gửi yêu cầu';
+      if(ok){ localStorage.setItem(key, JSON.stringify({st:'sua', cmt:c})); box.classList.remove('open'); setState('sua', c); }
+      else { alert('Gửi không thành công, sếp bấm thử lại giúp em.'); }
+    });
+  };
+});
+</script>
+</body>
+</html>
