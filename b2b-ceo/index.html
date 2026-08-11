@@ -33,7 +33,7 @@
   h2{font-size:clamp(28px,3.6vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.25}
   h3{font-size:clamp(20px,2.4vw,24px);font-weight:600;line-height:1.35}
   p{font-size:16px;font-weight:400;color:var(--ink-500)}
-  p.body-light{color:#D1D5DB}
+  p.body-light{color:#F3F4F6}
   .small{font-size:14px;font-weight:500;color:var(--ink-500)}
   strong{color:var(--white);font-weight:600}
   .cam{color:var(--boss-orange)}
@@ -55,8 +55,8 @@
         background:radial-gradient(circle,rgba(255,106,26,.14) 0%,transparent 62%);pointer-events:none;z-index:0}
   .tier3{margin-top:24px;font-size:16px;color:var(--ink-500);max-width:480px}
   .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
-  .meta span{font-family:var(--mono);font-size:13px;font-weight:500;padding:9px 16px;border:1px solid var(--ink-700);border-radius:999px;color:#D1D5DB;white-space:nowrap}
-  .btn{display:inline-block;margin-top:32px;padding:16px 40px;border-radius:999px;background:var(--boss-orange);color:#050D16;
+  .meta span{font-family:var(--mono);font-size:14px;font-weight:500;padding:8px 16px;border:1px solid var(--ink-700);border-radius:999px;color:#F3F4F6;white-space:nowrap}
+  .btn{display:inline-block;margin-top:32px;padding:16px 32px;border-radius:999px;background:var(--boss-orange);color:#0B1A2B;
        font-size:16px;font-weight:700;text-decoration:none;border:none;cursor:pointer;font-family:'Inter',sans-serif}
   .btn:hover{filter:brightness(1.07)}
   .undercta{margin-top:16px;font-size:14px;color:var(--ink-500)}
@@ -67,18 +67,18 @@
 
   /* ══ STAT — visual hoá số liệu ══ */
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
-  .stat{padding:24px 20px;background:var(--ink-900);border:1px solid var(--ink-700);border-radius:16px}
+  .stat{padding:24px 16px;background:var(--ink-900);border:1px solid var(--ink-700);border-radius:16px}
   .stat .n{font-family:var(--mono);font-size:clamp(30px,3.6vw,40px);font-weight:700;color:var(--white);line-height:1.1;font-variant-numeric:tabular-nums}
   .stat .n.hi{color:var(--boss-orange)}
-  .stat .l{margin-top:8px;font-size:14px;font-weight:500;color:#D1D5DB;line-height:1.45}
-  .stat .s{margin-top:8px;font-family:var(--mono);font-size:11px;color:var(--ink-500);line-height:1.4}
+  .stat .l{margin-top:8px;font-size:14px;font-weight:500;color:#F3F4F6;line-height:1.45}
+  .stat .s{margin-top:8px;font-family:var(--mono);font-size:12px;color:var(--ink-500);line-height:1.4}
 
   /* ══ CÂU CHUYỆN ══ */
   .story{max-width:720px}
-  .story p{margin-top:16px;font-size:17px;color:#D1D5DB;line-height:1.72}
+  .story p{margin-top:16px;font-size:16px;color:#F3F4F6;line-height:1.72}
   .story p.plain{color:var(--ink-500)}
   .quoteline{margin-top:32px;padding:24px;border-left:2px solid var(--boss-orange);background:var(--ink-900);border-radius:0 12px 12px 0}
-  .quoteline p{margin-top:0;font-size:17px}
+  .quoteline p{margin-top:0;font-size:16px}
   .quoteline p+p{margin-top:16px}
   .punch{margin-top:32px;font-size:20px;font-weight:600;color:var(--white);line-height:1.5;max-width:720px}
 
@@ -90,22 +90,22 @@
   .vs .on .k{color:var(--boss-orange)}
   .vs h4{margin-top:8px;font-size:20px;font-weight:600;line-height:1.35}
   .vs ul{margin-top:16px;list-style:none}
-  .vs li{position:relative;padding-left:20px;margin-top:8px;font-size:15px;color:var(--ink-500);line-height:1.55}
-  .vs li::before{content:"·";position:absolute;left:6px;color:var(--ink-700);font-weight:700}
-  .vs .on li{color:#D1D5DB}
+  .vs li{position:relative;padding-left:24px;margin-top:8px;font-size:14px;color:var(--ink-500);line-height:1.55}
+  .vs li::before{content:"·";position:absolute;left:8px;color:var(--ink-700);font-weight:700}
+  .vs .on li{color:#F3F4F6}
 
   /* ══ AGENDA — timeline có thời lượng ══ */
   .agenda{position:relative;margin-top:32px}
   .agenda::before{content:'';position:absolute;left:39px;top:16px;bottom:16px;width:1px;background:var(--ink-700)}
   .a-item{position:relative;display:flex;gap:24px;padding:16px 0;align-items:flex-start}
-  .a-time{position:relative;z-index:1;flex:0 0 80px;text-align:center;font-family:var(--mono);font-size:13px;font-weight:700;
-          color:var(--ink-500);background:var(--agent-dark);border:1px solid var(--ink-700);border-radius:999px;padding:7px 0}
+  .a-time{position:relative;z-index:1;flex:0 0 80px;text-align:center;font-family:var(--mono);font-size:14px;font-weight:700;
+          color:var(--ink-500);background:var(--agent-dark);border:1px solid var(--ink-700);border-radius:999px;padding:8px 0}
   .a-item.demo .a-time{color:var(--boss-orange);border-color:rgba(255,106,26,.5)}
   .a-body{padding-top:4px}
-  .a-body b{display:block;font-size:17px;font-weight:600;color:var(--white);line-height:1.4}
-  .a-body p{margin-top:6px;font-size:15px;color:var(--ink-500);line-height:1.6}
-  .a-tag{display:inline-block;margin-left:8px;padding:3px 10px;border-radius:999px;background:var(--boss-orange);color:#050D16;
-         font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.06em;vertical-align:middle}
+  .a-body b{display:block;font-size:16px;font-weight:600;color:var(--white);line-height:1.4}
+  .a-body p{margin-top:8px;font-size:14px;color:var(--ink-500);line-height:1.6}
+  .a-tag{display:inline-block;margin-left:8px;padding:4px 8px;border-radius:999px;background:var(--boss-orange);color:#0B1A2B;
+         font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;vertical-align:middle}
   .a-total{margin-top:24px;padding-top:16px;border-top:1px solid var(--ink-700);display:flex;justify-content:space-between;font-family:var(--mono);font-size:14px;color:var(--ink-500)}
   .a-total b{color:var(--white)}
 
@@ -113,32 +113,32 @@
   .spk{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:start;margin-top:32px}
   .spk img{width:200px;height:236px;object-fit:cover;object-position:center top;border-radius:16px;border:1px solid var(--ink-700)}
   .spk ul{margin-top:16px;list-style:none}
-  .spk li{position:relative;padding-left:20px;margin-top:8px;font-size:15.5px;color:#D1D5DB;line-height:1.6}
+  .spk li{position:relative;padding-left:24px;margin-top:8px;font-size:16px;color:#F3F4F6;line-height:1.6}
   .spk li::before{content:"—";position:absolute;left:0;color:var(--ink-700)}
 
   /* ══ AI NÊN DỰ ══ */
-  .who{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
-  .who div{padding:16px 20px;border-radius:12px;background:var(--ink-900);border:1px solid var(--ink-700);font-size:15.5px;color:#D1D5DB;line-height:1.55}
+  .who{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+  .who div{padding:16px 16px;border-radius:12px;background:var(--ink-900);border:1px solid var(--ink-700);font-size:16px;color:#F3F4F6;line-height:1.55}
   .who .no{grid-column:1/-1;border-style:dashed;background:transparent;color:var(--ink-500)}
 
   /* ══ FORM ══ */
   .formbox{margin-top:32px;padding:32px;border-radius:16px;background:var(--ink-900);border:1px solid var(--ink-700)}
   .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .field{margin-bottom:16px}
-  label{display:block;font-size:14px;font-weight:500;color:#D1D5DB;margin-bottom:8px}
+  label{display:block;font-size:14px;font-weight:500;color:#F3F4F6;margin-bottom:8px}
   label i{color:var(--boss-orange);font-style:normal}
-  input,select{width:100%;padding:13px 16px;border-radius:10px;background:var(--agent-dark);border:1px solid var(--ink-700);
+  input,select{width:100%;padding:16px 16px;border-radius:10px;background:var(--agent-dark);border:1px solid var(--ink-700);
     color:var(--white);font-family:'Inter',sans-serif;font-size:16px}
   input:focus,select:focus{outline:none;border-color:var(--boss-orange)}
   .btn.full{display:block;width:100%;text-align:center;margin-top:8px}
 
   /* ══ FAQ ══ */
   details{margin-top:8px;border:1px solid var(--ink-700);border-radius:12px;background:var(--ink-900);overflow:hidden}
-  summary{padding:18px 20px;font-size:16px;font-weight:600;cursor:pointer;list-style:none;display:flex;gap:16px;align-items:center}
+  summary{padding:16px 16px;font-size:16px;font-weight:600;cursor:pointer;list-style:none;display:flex;gap:16px;align-items:center}
   summary::-webkit-details-marker{display:none}
-  summary::before{content:"▸";color:var(--boss-orange);font-size:13px;transition:transform .15s;flex:none}
+  summary::before{content:"▸";color:var(--boss-orange);font-size:14px;transition:transform .15s;flex:none}
   details[open] summary::before{transform:rotate(90deg)}
-  details p{padding:0 20px 20px 48px;font-size:15.5px;color:var(--ink-500)}
+  details p{padding:0 24px 24px 48px;font-size:16px;color:var(--ink-500)}
 
   footer{padding:32px 0 48px;border-top:1px solid var(--ink-700);font-size:14px;color:var(--ink-500);text-align:center}
   .sticky-cta{display:none}
@@ -157,19 +157,19 @@
     .agenda::before{left:32px}
     .a-item{gap:16px}
     .formbox{padding:24px}
-    body{padding-bottom:72px}
-    .sticky-cta{display:block;position:fixed;bottom:0;left:0;right:0;z-index:20;padding:12px 16px;
+    body{padding-bottom:64px}
+    .sticky-cta{display:block;position:fixed;bottom:0;left:0;right:0;z-index:20;padding:16px 16px;
       background:rgba(11,26,43,.97);border-top:1px solid var(--ink-700)}
-    .sticky-cta .btn{margin-top:0;width:100%;padding:14px}
+    .sticky-cta .btn{margin-top:0;width:100%;padding:16px}
   }
   @media (max-width:520px){
     .stats{grid-template-columns:1fr}
-    h1{font-size:30px;letter-spacing:-.02em}
+    h1{font-size:28px;letter-spacing:-.02em}
     h2{font-size:24px}
-    .wrap{padding:0 20px}
-    .meta span{font-size:12px;padding:8px 13px}
+    .wrap{padding:0 24px}
+    .meta span{font-size:12px;padding:8px 16px}
     .story p,.punch{font-size:16px}
-    .punch{font-size:18px}
+    .punch{font-size:16px}
   }
 </style>
 </head>
@@ -209,7 +209,7 @@
       <!-- Lớp 2: hệ thống hub-and-spoke · node cam · đường trắng mờ · CEO trung tâm lớn 1.8× -->
       <svg class="sysbox" viewBox="0 0 440 400" role="img" aria-label="Sơ đồ CEO điều phối đội ngũ AI Agent">
         <defs>
-          <radialGradient id="halo"><stop offset="0%" stop-color="#FF6A1A" stop-opacity=".5"/><stop offset="100%" stop-color="#FF6A1A" stop-opacity="0"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0%" stop-color="#FF6A1A" stop-opacity=".18"/><stop offset="100%" stop-color="#FF6A1A" stop-opacity="0"/></radialGradient>
         </defs>
         <!-- đường kết nối: trắng mờ, hướng về tâm -->
         <g stroke="#FFFFFF" stroke-opacity=".22" stroke-width="1">
@@ -222,10 +222,10 @@
         </g>
         <!-- node agent -->
         <g>
-          <circle cx="220" cy="70"  r="7" fill="#FF6A1A"/>
-          <circle cx="352" cy="128" r="7" fill="#FF6A1A"/>
-          <circle cx="352" cy="272" r="7" fill="#FF6A1A"/>
-          <circle cx="220" cy="330" r="7" fill="#FF6A1A"/>
+          <circle cx="220" cy="70"  r="13" fill="#FF6A1A"/>
+          <circle cx="352" cy="128" r="13" fill="#FF6A1A"/>
+          <circle cx="352" cy="272" r="13" fill="#FF6A1A"/>
+          <circle cx="220" cy="330" r="13" fill="#FF6A1A"/>
           <circle cx="88"  cy="272" r="7" fill="#FF6A1A"/>
           <circle cx="88"  cy="128" r="7" fill="#FF6A1A"/>
         </g>
@@ -239,9 +239,9 @@
           <text x="88"  y="110">Báo cáo</text>
         </g>
         <!-- trung tâm: CEO — to hơn, có hào quang -->
-        <circle cx="220" cy="200" r="70" fill="url(#halo)"/>
-        <circle cx="220" cy="200" r="34" fill="#0B1A2B" stroke="#FF6A1A" stroke-width="1.5"/>
-        <text x="220" y="205" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="14" font-weight="700" text-anchor="middle">CEO</text>
+        <circle cx="220" cy="200" r="76" fill="url(#halo)"/>
+        <circle cx="220" cy="200" r="24" fill="#0B1A2B" stroke="#FF6A1A" stroke-width="1.5"/>
+        <text x="220" y="204" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle">CEO</text>
       </svg>
       <p class="syscap">Bạn giao việc · Agent thực thi · Bạn duyệt kết quả</p>
     </div>
@@ -442,7 +442,7 @@
         <button class="btn full" type="submit">Giữ chỗ ngay</button>
       </form>
       <div id="done" style="display:none;text-align:center;padding:16px 0">
-        <p style="font-size:18px;font-weight:600;color:var(--white)">Đã ghi nhận đăng ký</p>
+        <p style="font-size:16px;font-weight:600;color:var(--white)">Đã ghi nhận đăng ký</p>
         <p style="margin-top:8px">Link tham dự sẽ được gửi tới email của bạn. Hẹn gặp lại ngày 20/08.</p>
       </div>
       <p class="small" style="margin-top:16px;text-align:center">Chúng tôi chỉ dùng thông tin này để gửi link tham dự và thông tin về buổi webinar.</p>
