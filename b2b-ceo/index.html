@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AI Agent: Cuộc đua mà đứng yên nghĩa là đang đi lùi — Webinar cho CEO · 20/08/2026</title>
+<meta name="description" content="Webinar miễn phí dành cho CEO và chủ doanh nghiệp. 90 phút nhìn thẳng vào khoảng cách đang hình thành giữa các doanh nghiệp — và cách để đội ngũ của bạn bắt kịp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1A2B; --deep:#050D16; --card:#0F1F38; --card2:#132845;
+    --orange:#FF6A1A; --orange-soft:rgba(255,106,26,.12);
+    --gray:#9CA3AF; --light:#E5E7EB; --line:rgba(255,255,255,.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:#fff;font-family:'Inter',sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  section:first-of-type{border-top:none}
+  h2{font-size:clamp(26px,4.2vw,38px);font-weight:800;letter-spacing:-.02em;line-height:1.22}
+  h3{font-size:clamp(19px,2.6vw,23px);font-weight:700;margin-top:38px}
+  p{margin-top:16px;font-size:17px;color:var(--light)}
+  p.lead{font-size:19px}
+  strong{color:#fff;font-weight:700}
+  .cam{color:var(--orange)}
+  .muted{color:var(--gray)}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;padding:56px 0 68px;border-top:none}
+  .hero::before{content:"";position:absolute;left:50%;top:-340px;transform:translateX(-50%);width:1100px;height:820px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,106,26,.16) 0%,transparent 62%);pointer-events:none}
+  .hero .wrap{position:relative}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:38px}
+  .brand{font-family:'Roboto Mono',monospace;font-weight:700;font-size:17px;letter-spacing:.06em}
+  .brand span{color:var(--orange)}
+  .badge{display:inline-block;padding:9px 20px;border-radius:999px;background:var(--orange-soft);
+    border:1.5px solid rgba(255,106,26,.55);color:var(--orange);font-weight:700;font-size:12.5px;letter-spacing:.11em;text-transform:uppercase}
+  h1{margin-top:22px;font-size:clamp(32px,6.4vw,58px);font-weight:800;line-height:1.1;letter-spacing:-.028em}
+  .sub{margin-top:22px;font-size:clamp(17px,2.3vw,20px);color:var(--light);max-width:660px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+  .meta span{font-family:'Roboto Mono',monospace;font-size:15px;font-weight:600;padding:11px 18px;
+    border:1.5px solid rgba(255,255,255,.28);border-radius:999px;white-space:nowrap}
+  .meta span.hi{background:var(--orange);color:var(--deep);border-color:var(--orange)}
+  .speakerline{display:flex;align-items:center;gap:14px;margin-top:30px}
+  .speakerline img{width:58px;height:58px;border-radius:50%;object-fit:cover;object-position:center top;border:2.5px solid var(--orange)}
+  .speakerline .n{font-size:17px;font-weight:700}
+  .speakerline .r{font-size:14.5px;color:var(--gray);margin-top:2px}
+  .cta{display:inline-block;margin-top:34px;padding:19px 46px;border-radius:999px;background:var(--orange);color:var(--deep);
+    font-size:19px;font-weight:800;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease;box-shadow:0 10px 40px rgba(255,106,26,.28)}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 14px 48px rgba(255,106,26,.38)}
+  .cta.big{display:block;text-align:center;max-width:460px;margin-left:auto;margin-right:auto}
+  .undercta{margin-top:14px;font-size:14.5px;color:var(--gray)}
+
+  /* PROBLEM */
+  .story p{max-width:760px}
+  .turn{margin-top:34px;padding:22px 26px;border-left:3px solid var(--orange);background:rgba(255,106,26,.07);border-radius:0 14px 14px 0}
+  .turn p{margin-top:0;font-size:18.5px}
+  .turn p+p{margin-top:14px}
+
+  /* AGITATE */
+  .escal{margin-top:28px;padding:26px 28px;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+  .escal .t{font-family:'Roboto Mono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .escal .big{margin-top:12px;font-size:clamp(20px,2.8vw,25px);font-weight:700;line-height:1.42;color:#fff}
+  .escal .src{margin-top:14px;font-size:13.5px;color:var(--gray);font-family:'Roboto Mono',monospace}
+  .escal .src a{color:var(--gray)}
+  .after{margin-top:18px;font-size:17.5px;color:var(--light);max-width:760px}
+  .kicker{margin-top:52px;padding:30px 32px;border-radius:20px;border:1.5px solid rgba(255,106,26,.5);
+    background:linear-gradient(180deg,rgba(255,106,26,.14) 0%,rgba(15,31,56,.9) 70%)}
+  .kicker p{margin-top:0;font-size:20px}
+  .kicker p+p{margin-top:16px}
+  .kicker .q{font-size:clamp(21px,3vw,27px);font-weight:800;line-height:1.35;color:#fff}
+
+  /* AGENDA */
+  .agenda{margin-top:34px;display:grid;gap:14px}
+  .item{display:flex;gap:20px;padding:24px 26px;border:1px solid var(--line);border-radius:16px;background:var(--card);align-items:flex-start}
+  .item.hi{border-color:rgba(255,106,26,.55);background:linear-gradient(180deg,rgba(255,106,26,.12) 0%,var(--card) 60%)}
+  .item .num{flex:none;font-family:'Roboto Mono',monospace;font-size:19px;font-weight:700;color:var(--orange);padding-top:2px}
+  .item h4{font-size:19px;font-weight:700;line-height:1.35}
+  .item p{margin-top:9px;font-size:16px;color:var(--gray)}
+  .tagdemo{display:inline-block;margin-left:10px;vertical-align:middle;padding:4px 12px;border-radius:999px;background:var(--orange);color:var(--deep);font-size:11.5px;font-weight:800;letter-spacing:.08em}
+
+  /* SPEAKER */
+  .spk{display:flex;gap:32px;align-items:flex-start;margin-top:30px;flex-wrap:wrap}
+  .spk img{width:210px;height:250px;object-fit:cover;object-position:center top;border-radius:20px;border:1px solid var(--line);flex:none}
+  .spk .info{flex:1;min-width:280px}
+  .spk ul{margin-top:18px;list-style:none}
+  .spk li{position:relative;padding-left:26px;margin-top:12px;font-size:16.5px;color:var(--light)}
+  .spk li::before{content:"—";position:absolute;left:0;color:var(--orange);font-weight:700}
+
+  /* FOR WHOM */
+  .who{margin-top:30px;display:grid;gap:12px}
+  .who div{padding:18px 22px;border-radius:14px;background:var(--card);border:1px solid var(--line);font-size:16.5px;color:var(--light)}
+  .who div b{color:#fff}
+  .who .no{background:transparent;border-style:dashed;color:var(--gray)}
+
+  /* FORM */
+  .formwrap{margin-top:30px;padding:32px;border-radius:22px;background:var(--card);border:1px solid var(--line)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr}}
+  label{display:block;font-size:14px;font-weight:600;color:var(--light);margin-bottom:7px}
+  label i{color:var(--orange);font-style:normal}
+  input,select{width:100%;padding:14px 16px;border-radius:12px;background:var(--navy);border:1.5px solid rgba(255,255,255,.22);
+    color:#fff;font-family:'Inter',sans-serif;font-size:16px}
+  input:focus,select:focus{outline:none;border-color:var(--orange)}
+  .field{margin-bottom:18px}
+  .note{margin-top:16px;font-size:13.5px;color:var(--gray);text-align:center}
+
+  /* FAQ */
+  details{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+  summary{padding:20px 24px;font-size:17px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--orange);font-size:24px;font-weight:700;flex:none}
+  details[open] summary::after{content:"–"}
+  details p{margin:0;padding:0 24px 22px;font-size:16.5px;color:var(--gray)}
+
+  footer{padding:44px 0 60px;text-align:center;color:var(--gray);font-size:14px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <span class="brand">AGENT<span>BOSS</span></span>
+      <span class="badge">Webinar miễn phí · Dành riêng cho CEO</span>
+    </div>
+
+    <h1>AI Agent: cuộc đua mà <span class="cam">đứng yên nghĩa là đang đi lùi</span></h1>
+
+    <p class="sub">90 phút nhìn thẳng vào khoảng cách đang hình thành giữa các doanh nghiệp — và cách để đội ngũ của bạn bắt kịp.</p>
+
+    <div class="meta">
+      <span class="hi">Thứ 5 · 20/08/2026</span>
+      <span>[giờ]</span>
+      <span>Online</span>
+      <span>Miễn phí</span>
+    </div>
+
+    <div class="speakerline">
+      <img src="../images/mai-xuan-dat.jpg" alt="Mai Xuân Đạt">
+      <div>
+        <div class="n">Mai Xuân Đạt</div>
+        <div class="r">Người sáng lập Agent Boss · Founder SEONGON · Founder John Academy</div>
+      </div>
+    </div>
+
+    <a class="cta" href="#dangky">Giữ chỗ miễn phí →</a>
+    <p class="undercta">Số lượng có giới hạn để đảm bảo chất lượng phần hỏi đáp.</p>
+  </div>
+</section>
+
+<!-- ══════════ P — VẤN ĐỀ ══════════ -->
+<section class="story">
+  <div class="wrap">
+    <h2>Sáu tháng trước, bạn bảo cả công ty <span class="cam">"nghiên cứu AI đi"</span></h2>
+
+    <p class="lead">Rồi chuyện gì đã xảy ra?</p>
+
+    <p>Bạn nhân sự dùng ChatGPT viết mô tả tuyển dụng. Bạn marketing nhờ nó nghĩ tiêu đề. Kế toán thỉnh thoảng hỏi công thức Excel. Có bạn còn hào hứng khoe trong buổi họp: "cái này em làm bằng AI, mười phút xong."</p>
+
+    <p>Nghe thì đúng là công ty đang chuyển mình.</p>
+
+    <p>Nhưng cuối quý, bạn nhìn vào mấy con số quen thuộc: quỹ lương không giảm, việc tồn không giảm, tốc độ ra thị trường không nhanh hơn. Mọi thứ y như trước khi có AI. Chỉ khác là bây giờ trong công ty có thêm vài người dùng ChatGPT.</p>
+
+    <p>Và bạn có một cảm giác quen — quen đến khó chịu.</p>
+
+    <div class="turn">
+      <p><strong>Vì đây không phải lần đầu.</strong></p>
+      <p>Trước AI là phần mềm quản trị công việc: mua về, cả công ty hào hứng được hai tuần, tháng thứ ba chỉ còn hai người mở. Trước nữa là CRM, mua xong dữ liệu vẫn nằm trong file Excel của từng bạn sale. Trước nữa là một quy trình mới, ai cũng gật đầu trong phòng họp rồi ra khỏi cửa là quên.</p>
+    </div>
+
+    <p>Điểm chung của tất cả những lần đó không phải công cụ dở.</p>
+
+    <p><strong>Là không có ai chịu trách nhiệm biến nó thành cách cả công ty làm việc.</strong> Nó được thả xuống cho từng người "tự nghiên cứu" — và mỗi người tự nghiên cứu theo cách tiện nhất cho riêng mình. Kết quả là công ty có mười cách làm khác nhau, không cách nào thành quy trình, không cách nào bàn giao được cho người kế tiếp.</p>
+
+    <p>AI đang đi đúng vào vết xe đó.</p>
+
+    <p class="lead"><strong>Chỉ khác một điều: lần này, cái giá của việc đi sai đường không phải là vài chục triệu tiền phần mềm.</strong></p>
+  </div>
+</section>
+
+<!-- ══════════ A — KHOÉT SÂU ══════════ -->
+<section>
+  <div class="wrap">
+    <h2>Lần này, thứ bạn bỏ lỡ không phải một phần mềm.<br><span class="cam">Là khoảng cách năng lực.</span></h2>
+
+    <p>Hãy hình dung một chiếc thang cuốn đang chạy xuống. Bạn đứng yên trên đó, không làm gì sai cả: vẫn ra số, vẫn giữ được đội ngũ, vẫn về đích đúng hạn mỗi tháng. Nhưng vị trí của bạn thì cứ thấp dần.</p>
+
+    <p><strong>Vì những người khác đang bước lên.</strong></p>
+
+    <h3>Cuộc đua này đang chạy nhanh cỡ nào</h3>
+
+    <div class="escal">
+      <div class="t">Tốc độ lan vào doanh nghiệp</div>
+      <div class="big">Đến cuối năm 2026, <span class="cam">40% ứng dụng doanh nghiệp</span> sẽ có AI Agent làm việc bên trong. Năm 2025, con số này còn <span class="cam">chưa tới 5%</span>.</div>
+      <div class="src">Nguồn: Gartner, thông cáo báo chí 26/08/2025</div>
+    </div>
+    <p class="after">Từ dưới 5% lên 40% trong khoảng một năm — <strong>gấp tám lần</strong>. Không có làn sóng công nghệ nào trong hai mươi năm qua đi vào doanh nghiệp với tốc độ như vậy. Internet mất một thập kỷ. Điện toán đám mây mất gần chừng ấy.</p>
+
+    <div class="escal">
+      <div class="t">Quy mô thị trường</div>
+      <div class="big">Các hãng nghiên cứu thị trường đều dự báo quy mô thị trường AI Agent tăng trưởng <span class="cam">trên 40% mỗi năm</span>, từ khoảng 10 tỷ USD hiện nay lên hàng trăm tỷ USD trong thập kỷ tới.</div>
+      <div class="src">Nguồn: Grand View Research · Precedence Research · MarketsandMarkets (2026)</div>
+    </div>
+
+    <h3>Và nó đang làm được gì cho những doanh nghiệp đi trước</h3>
+
+    <div class="escal">
+      <div class="t">Kết quả đã công bố</div>
+      <div class="big">Klarna — công ty thanh toán 150 triệu người dùng — báo cáo: AI Agent của họ đang đảm nhận khối lượng công việc tương đương <span class="cam">853 nhân viên toàn thời gian</span>, giúp tiết kiệm <span class="cam">60 triệu USD</span>. Đầu năm 2025 con số này mới là 700 người.</div>
+      <div class="src">Nguồn: Klarna, báo cáo kết quả kinh doanh Q3/2025</div>
+    </div>
+    <p class="after">Hãy đọc lại con số đó theo cách của người trả lương.</p>
+    <p class="after"><strong>Sáu mươi triệu đô đó không đến từ việc sa thải.</strong> Nó đến từ việc Klarna tiếp tục tăng trưởng mà <strong>không phải tuyển thêm 853 người</strong> — công ty lớn lên, khối lượng việc lớn lên, còn quỹ lương thì không.</p>
+    <p class="after">Và để ý con số 700 → 853 chỉ trong ba quý: doanh nghiệp đi trước không đứng lại. Càng chạy, phần việc họ giao được cho AI Agent càng nhiều.</p>
+
+    <div class="escal">
+      <div class="t">Chất lượng phục vụ khách hàng</div>
+      <div class="big">AI Agent xử lý trọn <span class="cam">hai phần ba</span> số cuộc trò chuyện với khách hàng mà không cần chuyển sang người thật. Thời gian phản hồi cải thiện <span class="cam">82%</span>, số lượt khách phải hỏi lại giảm <span class="cam">25%</span>.</div>
+      <div class="src">Nguồn: Klarna, thông cáo 27/02/2024 và báo cáo Q3/2025</div>
+    </div>
+    <p class="after">Khách được trả lời nhanh hơn, đúng hơn — mà không cần thêm một ghế ngồi nào trong phòng chăm sóc khách hàng.</p>
+
+    <div class="kicker">
+      <p>Câu hỏi không phải "đối thủ của tôi có mua công cụ gì mà tôi chưa mua". Công cụ thì ai cũng mua được, giá như nhau, mở tài khoản trong năm phút.</p>
+      <p class="q">Câu hỏi là: khi họ tăng trưởng gấp đôi mà không phải tuyển thêm gấp rưỡi người, còn bạn thì vẫn phải — bạn lấy gì bù vào khoảng cách đó?</p>
+      <p>Và họ sẽ không thông báo cho bạn. Không ai đi khoe mình vừa cắt được bao nhiêu giờ vận hành. Bạn chỉ nhận ra khi thấy đối thủ ra thị trường nhanh hơn, chăm khách kỹ hơn, mà quân số thì không đổi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ S — NỘI DUNG ══════════ -->
+<section>
+  <div class="wrap">
+    <h2>90 phút để nhìn rõ mình đang đứng ở đâu <span class="cam">và đi tiếp thế nào</span></h2>
+
+    <p class="lead">Buổi này không dạy bạn dùng phần mềm. Nó trả lời đúng câu hỏi của người đứng đầu: <strong>doanh nghiệp tôi giao được việc gì cho AI Agent, và bắt đầu thế nào để cả đội cùng chạy chứ không phải vài người tự mò.</strong></p>
+
+    <div class="agenda">
+      <div class="item">
+        <div class="num">01</div>
+        <div>
+          <h4>Cuộc đua đang diễn ra ở đâu — và vì sao đứng yên là đang lùi</h4>
+          <p>Khoảng cách giữa doanh nghiệp "có người dùng AI" và doanh nghiệp "vận hành cùng AI Agent" đang giãn ra thế nào. Ba lý do khiến nỗ lực lẻ tẻ không bao giờ tạo ra thay đổi thật.</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="num">02</div>
+        <div>
+          <h4>Công cụ AI, trợ lý AI, AI Agent — khác nhau ở đâu</h4>
+          <p>Phân biệt bằng ví dụ công việc thật, không bằng định nghĩa kỹ thuật. Sau phần này bạn biết đội mình đang đứng ở vạch nào.</p>
+        </div>
+      </div>
+      <div class="item hi">
+        <div class="num">03</div>
+        <div>
+          <h4>AI Agent làm một việc thật của doanh nghiệp, từ đầu đến cuối <span class="tagdemo">DEMO TRỰC TIẾP</span></h4>
+          <p>Phần dài nhất của buổi. Xem Agent nhận việc, tự làm nhiều bước rồi nộp lại kết quả — đúng kiểu một nhân sự làm việc, không phải một cửa sổ chat trả lời.</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="num">04</div>
+        <div>
+          <h4>Bản đồ: việc nào trong doanh nghiệp giao được cho AI Agent</h4>
+          <p>Theo từng phòng ban — kinh doanh, marketing, nhân sự, vận hành, chăm sóc khách hàng. Việc nào giao được, việc nào phải giữ cho con người.</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="num">05</div>
+        <div>
+          <h4>Vì sao có doanh nghiệp bứt lên, có doanh nghiệp mua công cụ về rồi bỏ đó</h4>
+          <p>Khác biệt không nằm ở phần mềm. Nó nằm ở chỗ ai chọn việc để giao, ai quyết dữ liệu nào được dùng, ai đặt ranh giới kiểm soát — những việc chỉ người đứng đầu làm được.</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="num">06</div>
+        <div>
+          <h4>Hỏi đáp trực tiếp cùng anh Mai Xuân Đạt</h4>
+          <p>Mang bài toán của doanh nghiệp bạn tới.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DIỄN GIẢ ══════════ -->
+<section>
+  <div class="wrap">
+    <h2>Người dẫn buổi này</h2>
+    <div class="spk">
+      <img src="../images/mai-xuan-dat.jpg" alt="Mai Xuân Đạt">
+      <div class="info">
+        <h3 style="margin-top:0">MAI XUÂN ĐẠT</h3>
+        <p class="muted" style="margin-top:6px">Người sáng lập Agent Boss</p>
+        <ul>
+          <li>Founder <strong>SEONGON</strong> — Agency AI Search Growth, hơn 100 nhân sự</li>
+          <li>Founder <strong>John Academy</strong> — đào tạo hơn 3.000 CEO, cố vấn hơn 300 doanh nghiệp về Quản trị Mục tiêu &amp; OKRs</li>
+          <li>Tác giả các đầu sách quản trị, hơn 30.000 bản phát hành</li>
+          <li><strong>Đang trực tiếp vận hành doanh nghiệp bằng đội ngũ AI Agent</strong> — nội dung buổi này lấy từ chính việc anh làm mỗi ngày, không phải lý thuyết đọc được ở đâu đó</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ AI NÊN DỰ ══════════ -->
+<section>
+  <div class="wrap">
+    <h2>Buổi này dành cho bạn nếu…</h2>
+    <div class="who">
+      <div>✅ Bạn là <b>CEO / chủ doanh nghiệp</b> quy mô 15–50 nhân sự</div>
+      <div>✅ Đội ngũ đã dùng AI lẻ tẻ nhưng <b>công ty chưa thay đổi được gì</b></div>
+      <div>✅ Bạn nghi ngờ mình đang chậm hơn thị trường, nhưng chưa biết <b>chậm bao nhiêu và bắt đầu từ đâu</b></div>
+      <div>✅ Bạn muốn <b>nhìn thấy bằng chứng</b> trước khi quyết đầu tư</div>
+      <div>✅ Bạn <b>không cần biết code</b> — buổi này nói bằng ngôn ngữ vận hành</div>
+      <div class="no">✕ Không phù hợp nếu bạn tìm khóa học kỹ năng cá nhân, hoặc muốn nghe lý thuyết tổng quan về AI. Ở đây chỉ có việc thật của doanh nghiệp.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FORM ══════════ -->
+<section id="dangky">
+  <div class="wrap">
+    <h2>Giữ chỗ miễn phí</h2>
+    <p class="lead">Điền một phút. Link tham dự gửi qua email ngay sau khi đăng ký.</p>
+
+    <div class="formwrap">
+      <!-- TODO (Toàn): nối form vào hệ thống thu lead + email xác nhận tự động. Hiện là bản demo, nút chưa gửi đi đâu. -->
+      <form onsubmit="event.preventDefault();document.getElementById('done').style.display='block';this.style.display='none';">
+        <div class="grid2">
+          <div class="field">
+            <label>Họ và tên <i>*</i></label>
+            <input type="text" required placeholder="Nguyễn Văn A">
+          </div>
+          <div class="field">
+            <label>Chức vụ <i>*</i></label>
+            <select required>
+              <option value="">— Chọn —</option>
+              <option>CEO / Chủ doanh nghiệp</option>
+              <option>Giám đốc điều hành</option>
+              <option>Trưởng bộ phận</option>
+              <option>Khác</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="field">
+            <label>Tên doanh nghiệp <i>*</i></label>
+            <input type="text" required placeholder="Công ty ABC">
+          </div>
+          <div class="field">
+            <label>Quy mô nhân sự <i>*</i></label>
+            <select required>
+              <option value="">— Chọn —</option>
+              <option>Dưới 15 người</option>
+              <option>15 – 30 người</option>
+              <option>31 – 50 người</option>
+              <option>Trên 50 người</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="field">
+            <label>Email <i>*</i></label>
+            <input type="email" required placeholder="ban@congty.com">
+          </div>
+          <div class="field">
+            <label>Số điện thoại <i>*</i></label>
+            <input type="tel" required placeholder="09xx xxx xxx">
+          </div>
+        </div>
+        <button class="cta big" type="submit" style="border:none;cursor:pointer;font-family:'Inter',sans-serif">Giữ chỗ ngay →</button>
+      </form>
+      <div id="done" style="display:none;text-align:center;padding:20px 0">
+        <p style="font-size:20px;font-weight:700;color:#4ADE80">✓ Đã ghi nhận đăng ký</p>
+        <p class="muted">Link tham dự sẽ được gửi tới email của bạn. Hẹn gặp lại tối 20/08.</p>
+      </div>
+      <p class="note">Chúng tôi chỉ dùng thông tin này để gửi link tham dự và thông tin về buổi webinar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section>
+  <div class="wrap">
+    <h2>Câu hỏi thường gặp</h2>
+
+    <details>
+      <summary>Tôi không rành công nghệ, có theo được không?</summary>
+      <p>Được. Buổi này nói bằng ngôn ngữ vận hành doanh nghiệp — việc gì giao được, giao thế nào, kiểm tra ra sao. Không có dòng code nào.</p>
+    </details>
+    <details>
+      <summary>Công ty tôi mới 20 người, có sớm quá không?</summary>
+      <p>Ngược lại. Doanh nghiệp 15–50 người là quy mô đổi nhanh nhất: quyết định không phải qua nhiều tầng, thay đổi thấy được ngay trong vài tuần. Công ty càng lớn càng khó quay đầu.</p>
+    </details>
+    <details>
+      <summary>Buổi này có bán hàng không?</summary>
+      <p>Có giới thiệu chương trình triển khai của Agent Boss ở cuối buổi. Còn 90 phút chính là nội dung và demo — bạn không mua gì vẫn mang về được cách nhìn và bản đồ đầu việc cho doanh nghiệp mình.</p>
+    </details>
+    <details>
+      <summary>Tôi bận, có gửi bản ghi không?</summary>
+      <p>Không gửi bản ghi. Buổi này có phần hỏi đáp trực tiếp và demo theo tình huống người tham dự đưa ra, nên giá trị nằm ở việc bạn có mặt.</p>
+    </details>
+    <details>
+      <summary>Tôi muốn cho đội ngũ cùng dự thì sao?</summary>
+      <p>Được, nhưng buổi này thiết kế cho người ra quyết định. Nếu chỉ một người dự thì nên là bạn — vì phần lớn nội dung nói về những việc chỉ người đứng đầu làm được.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p style="margin:0">© 2026 Agent Boss · Webinar dành cho CEO &amp; chủ doanh nghiệp</p>
+    <p class="muted" style="margin-top:8px;font-size:13px">Bản nháp nội bộ — chưa gắn hệ thống đăng ký</p>
+  </div>
+</footer>
+
+</body>
+</html>
