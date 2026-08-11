@@ -29,11 +29,11 @@
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
   /* ══ THANG CHỮ — đúng guideline mục 4 ══ */
-  h1{font-size:clamp(40px,5vw,56px);font-weight:700;letter-spacing:-.03em;line-height:1.14}
-  h2{font-size:clamp(28px,3.6vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.25}
+  h1{font-size:clamp(32px,4.4vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.16;text-wrap:balance}
+  h2{font-size:clamp(28px,3.6vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.25;text-wrap:balance;max-width:20ch}
   h3{font-size:clamp(20px,2.4vw,24px);font-weight:600;line-height:1.35}
   p{font-size:16px;font-weight:400;color:var(--ink-500)}
-  p.body-light{color:#F3F4F6}
+  p.body-light{color:#F3F4F6;max-width:62ch;text-wrap:pretty}
   .small{font-size:14px;font-weight:500;color:var(--ink-500)}
   strong{color:var(--white);font-weight:600}
   .cam{color:var(--boss-orange)}
@@ -45,7 +45,11 @@
   /* ══ HEADER ══ */
   header{padding:24px 0;position:relative;z-index:3}
   header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  header img{height:34px;width:auto;display:block}
+  .logo-lockup{display:flex;align-items:center;gap:16px}
+  .logo-lockup img{height:48px;width:auto;display:block}
+  .wordmark{font-weight:700;letter-spacing:.04em;font-size:20px;line-height:1.1}
+  .wordmark .b{color:var(--boss-orange)}
+  .wordmark small{display:block;font-weight:500;font-size:12px;letter-spacing:.16em;color:var(--ink-500);margin-top:4px}
   .eyebrow{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-500)}
 
   /* ══ HERO: trái = chữ · phải = hệ thống (guideline mục 5) ══ */
@@ -53,7 +57,7 @@
   .hero>div{position:relative;z-index:2;min-width:0}
   .glow{position:absolute;right:-6%;top:44%;transform:translateY(-50%);width:640px;height:640px;max-width:100%;border-radius:50%;
         background:radial-gradient(circle,rgba(255,106,26,.14) 0%,transparent 62%);pointer-events:none;z-index:0}
-  .tier3{margin-top:24px;font-size:16px;color:var(--ink-500);max-width:480px}
+  .tier3{margin-top:24px;font-size:16px;color:var(--ink-500);max-width:46ch;text-wrap:pretty}
   .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
   .meta span{font-family:var(--mono);font-size:14px;font-weight:500;padding:8px 16px;border:1px solid var(--ink-700);border-radius:999px;color:#F3F4F6;white-space:nowrap}
   .btn{display:inline-block;margin-top:32px;padding:16px 32px;border-radius:999px;background:var(--boss-orange);color:#0B1A2B;
@@ -61,8 +65,19 @@
   .btn:hover{filter:brightness(1.07)}
   .undercta{margin-top:16px;font-size:14px;color:var(--ink-500)}
 
-  /* ══ SƠ ĐỒ HUB-AND-SPOKE ══ */
-  .sysbox{width:100%;max-width:440px;margin-left:auto}
+  /* ══ KHUNG DEMO — Lớp 3, sắc nét nhất (guideline mục 6 & 7) ══ */
+  .demo{position:relative;border:1px solid var(--ink-700);border-radius:16px;background:var(--ink-900);overflow:hidden}
+  .demo-bar{display:flex;align-items:center;gap:8px;padding:16px;border-bottom:1px solid var(--ink-700)}
+  .demo-bar i{width:8px;height:8px;border-radius:50%;background:var(--ink-700);display:block}
+  .demo-bar span{margin-left:8px;font-family:var(--mono);font-size:12px;color:var(--ink-500)}
+  .demo-body{padding:16px;display:grid;gap:16px}
+  .msg{padding:16px;border-radius:16px;background:var(--agent-dark);border:1px solid var(--ink-700);font-size:16px;color:var(--white);line-height:1.5}
+  .msg b{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--boss-orange);margin-bottom:8px}
+  .log{display:grid;gap:8px}
+  .log div{display:flex;gap:8px;align-items:flex-start;font-size:14px;color:#F3F4F6;line-height:1.5}
+  .log i{flex:none;color:var(--boss-orange);font-style:normal;font-weight:700}
+  .log .done{margin-top:8px;padding-top:16px;border-top:1px solid var(--ink-700);color:var(--white);font-weight:600}
+  .log .done b{color:var(--boss-orange)}
   .syscap{margin-top:16px;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ink-500);text-transform:uppercase}
 
   /* ══ STAT — visual hoá số liệu ══ */
@@ -74,17 +89,18 @@
   .stat .s{margin-top:8px;font-family:var(--mono);font-size:12px;color:var(--ink-500);line-height:1.4}
 
   /* ══ CÂU CHUYỆN ══ */
-  .story{max-width:720px}
-  .story p{margin-top:16px;font-size:16px;color:#F3F4F6;line-height:1.72}
+  .story{max-width:62ch}
+  .story p{margin-top:16px;font-size:16px;color:#F3F4F6;line-height:1.72;text-wrap:pretty}
   .story p.plain{color:var(--ink-500)}
   .quoteline{margin-top:32px;padding:24px;border-left:2px solid var(--boss-orange);background:var(--ink-900);border-radius:0 12px 12px 0}
   .quoteline p{margin-top:0;font-size:16px}
   .quoteline p+p{margin-top:16px}
-  .punch{margin-top:32px;font-size:20px;font-weight:600;color:var(--white);line-height:1.5;max-width:720px}
+  .punch{margin-top:32px;font-size:20px;font-weight:600;color:var(--white);line-height:1.5;max-width:56ch;text-wrap:pretty}
 
   /* ══ SO SÁNH 2 CỘT ══ */
   .vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
-  .vs>div{padding:24px;border-radius:16px;border:1px solid var(--ink-700);background:var(--ink-900)}
+  .vs>div{padding:24px;border-radius:16px;border:1px solid var(--ink-700);background:var(--ink-900);display:flex;flex-direction:column}
+  .vs>div ul{margin-top:auto;padding-top:16px}
   .vs .on{border-color:rgba(255,106,26,.45)}
   .vs .k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-500)}
   .vs .on .k{color:var(--boss-orange)}
@@ -177,7 +193,10 @@
 
 <header>
   <div class="wrap">
-    <img src="assets/logo-agentboss.png" alt="Agent Boss">
+    <div class="logo-lockup">
+      <img src="assets/logo-mark-only-on-dark-v2.png" alt="">
+      <span class="wordmark">AGENT<span class="b">BOSS</span><small>Human · Agents Team</small></span>
+    </div>
     <span class="eyebrow">Webinar miễn phí · dành riêng cho CEO</span>
   </div>
 </header>
@@ -190,7 +209,7 @@
 
     <div>
       <!-- Tiêu đề 3 tầng: Tầng 2 trắng + Tầng 1 cam (từ khoá) + Tầng 3 xám -->
-      <h1>AI Agent: cuộc đua mà <br><span class="cam">đứng yên</span> nghĩa là đang <span class="cam">đi lùi</span></h1>
+      <h1>AI Agent: cuộc đua mà<br><span class="cam">đứng yên nghĩa là đang đi lùi</span></h1>
 
       <p class="tier3">90 phút nhìn thẳng vào khoảng cách đang hình thành giữa các doanh nghiệp — và cách để đội ngũ của bạn bắt kịp.</p>
 
@@ -206,43 +225,20 @@
     </div>
 
     <div>
-      <!-- Lớp 2: hệ thống hub-and-spoke · node cam · đường trắng mờ · CEO trung tâm lớn 1.8× -->
-      <svg class="sysbox" viewBox="0 0 440 400" role="img" aria-label="Sơ đồ CEO điều phối đội ngũ AI Agent">
-        <defs>
-          <radialGradient id="halo"><stop offset="0%" stop-color="#FF6A1A" stop-opacity=".18"/><stop offset="100%" stop-color="#FF6A1A" stop-opacity="0"/></radialGradient>
-        </defs>
-        <!-- đường kết nối: trắng mờ, hướng về tâm -->
-        <g stroke="#FFFFFF" stroke-opacity=".22" stroke-width="1">
-          <line x1="220" y1="200" x2="220" y2="70"/>
-          <line x1="220" y1="200" x2="352" y2="128"/>
-          <line x1="220" y1="200" x2="352" y2="272"/>
-          <line x1="220" y1="200" x2="220" y2="330"/>
-          <line x1="220" y1="200" x2="88"  y2="272"/>
-          <line x1="220" y1="200" x2="88"  y2="128"/>
-        </g>
-        <!-- node agent -->
-        <g>
-          <circle cx="220" cy="70"  r="13" fill="#FF6A1A"/>
-          <circle cx="352" cy="128" r="13" fill="#FF6A1A"/>
-          <circle cx="352" cy="272" r="13" fill="#FF6A1A"/>
-          <circle cx="220" cy="330" r="13" fill="#FF6A1A"/>
-          <circle cx="88"  cy="272" r="7" fill="#FF6A1A"/>
-          <circle cx="88"  cy="128" r="7" fill="#FF6A1A"/>
-        </g>
-        <!-- nhãn node -->
-        <g fill="#9CA3AF" font-family="Roboto Mono, monospace" font-size="12" text-anchor="middle">
-          <text x="220" y="52">Kinh doanh</text>
-          <text x="352" y="110">Marketing</text>
-          <text x="352" y="298">Nhân sự</text>
-          <text x="220" y="352">Vận hành</text>
-          <text x="88"  y="298">CSKH</text>
-          <text x="88"  y="110">Báo cáo</text>
-        </g>
-        <!-- trung tâm: CEO — to hơn, có hào quang -->
-        <circle cx="220" cy="200" r="76" fill="url(#halo)"/>
-        <circle cx="220" cy="200" r="24" fill="#0B1A2B" stroke="#FF6A1A" stroke-width="1.5"/>
-        <text x="220" y="204" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle">CEO</text>
-      </svg>
+      <!-- Lớp 3: khung làm việc thật — CEO giao việc, Agent thực thi -->
+      <div class="demo" role="img" aria-label="Minh hoạ: CEO giao một việc tồn đọng, AI Agent tự xử lý từng bước và báo kết quả">
+        <div class="demo-bar"><i></i><i></i><i></i><span>Agent · Phòng kinh doanh</span></div>
+        <div class="demo-body">
+          <div class="msg"><b>BẠN GIAO VIỆC</b>Tuần này còn 120 khách hỏi hàng chưa ai gọi lại. Xử lý giúp tôi.</div>
+          <div class="log">
+            <div><i>✓</i><span>Đọc 120 khách từ file chăm sóc khách hàng</span></div>
+            <div><i>✓</i><span>Phân loại theo mức độ quan tâm — <strong>34 khách nóng</strong></span></div>
+            <div><i>✓</i><span>Soạn tin nhắn riêng cho từng khách theo đúng thứ họ đã hỏi</span></div>
+            <div><i>✓</i><span>Xếp lịch gọi lại, chia cho 4 nhân viên kinh doanh</span></div>
+            <div class="done">Xong trong <b>6 phút</b>. Việc này đội bạn thường mất 2 ngày.</div>
+          </div>
+        </div>
+      </div>
       <p class="syscap">Bạn giao việc · Agent thực thi · Bạn duyệt kết quả</p>
     </div>
   </div>
@@ -272,6 +268,17 @@
       <div>
         <p class="k">Đang diễn ra trong công ty bạn</p>
         <h4>Vài cá nhân tự thử vài việc</h4>
+        <svg viewBox="0 0 300 190" style="width:100%;height:auto;margin-top:16px" role="img" aria-label="Các cá nhân dùng AI rời rạc, không kết nối với nhau">
+          <g fill="#374151">
+            <circle cx="62" cy="48" r="7"/><circle cx="158" cy="34" r="7"/><circle cx="238" cy="62" r="7"/>
+            <circle cx="96" cy="120" r="7"/><circle cx="196" cy="134" r="7"/><circle cx="128" cy="166" r="7"/>
+          </g>
+          <g stroke="#374151" stroke-opacity=".5" stroke-width="1" stroke-dasharray="3 5" fill="none">
+            <circle cx="62" cy="48" r="17"/><circle cx="158" cy="34" r="17"/><circle cx="238" cy="62" r="17"/>
+            <circle cx="96" cy="120" r="17"/><circle cx="196" cy="134" r="17"/><circle cx="128" cy="166" r="17"/>
+          </g>
+          <text x="150" y="98" fill="#374151" font-family="Roboto Mono, monospace" font-size="10" text-anchor="middle">không ai nối với ai</text>
+        </svg>
         <ul>
           <li>Mỗi người một cách làm riêng</li>
           <li>Không việc nào được giao hẳn</li>
@@ -282,6 +289,18 @@
       <div class="on">
         <p class="k">Doanh nghiệp vận hành cùng AI Agent</p>
         <h4>Cả đội cùng một hệ thống</h4>
+        <svg viewBox="0 0 300 190" style="width:100%;height:auto;margin-top:16px" role="img" aria-label="CEO điều phối các Agent theo từng mảng việc">
+          <defs><radialGradient id="halo"><stop offset="0%" stop-color="#FF6A1A" stop-opacity=".18"/><stop offset="100%" stop-color="#FF6A1A" stop-opacity="0"/></radialGradient></defs>
+          <g stroke="#FFFFFF" stroke-opacity=".22" stroke-width="1">
+            <line x1="150" y1="95" x2="150" y2="34"/><line x1="150" y1="95" x2="246" y2="64"/>
+            <line x1="150" y1="95" x2="246" y2="126"/><line x1="150" y1="95" x2="150" y2="156"/>
+            <line x1="150" y1="95" x2="54" y2="126"/><line x1="150" y1="95" x2="54" y2="64"/>
+          </g>
+          <g fill="#FF6A1A"><circle cx="150" cy="34" r="7"/><circle cx="246" cy="64" r="7"/><circle cx="246" cy="126" r="7"/><circle cx="150" cy="156" r="7"/><circle cx="54" cy="126" r="7"/><circle cx="54" cy="64" r="7"/></g>
+          <circle cx="150" cy="95" r="42" fill="url(#halo)"/>
+          <circle cx="150" cy="95" r="13" fill="#0B1A2B" stroke="#FF6A1A" stroke-width="1.5"/>
+          <text x="150" y="99" fill="#FFFFFF" font-family="Roboto Mono, monospace" font-size="9" font-weight="700" text-anchor="middle">CEO</text>
+        </svg>
         <ul>
           <li>Đầu việc được giao hẳn cho Agent</li>
           <li>Có người chịu trách nhiệm, có tiêu chuẩn</li>
