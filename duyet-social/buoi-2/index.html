@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Duyệt content webinar BUỔI 2 — "Hệ thống sản xuất content tự động" (12/08)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Roboto+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0B1A2B;--deep:#050D16;--card:#0F1F38;--orange:#FF6A1A;--gray:#9CA3AF;--light:#E5E7EB}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--navy);color:#fff;font-family:'Inter',sans-serif;line-height:1.6}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 20px 80px}
+  .tag{display:inline-block;padding:8px 18px;border-radius:999px;background:rgba(255,106,26,.12);border:1.5px solid rgba(255,106,26,.55);color:var(--orange);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+  h1{margin-top:16px;font-size:clamp(24px,4.5vw,34px);font-weight:800;letter-spacing:-.01em}
+  h1 .cam{color:var(--orange)}
+  .note{margin-top:10px;color:var(--gray);font-size:15px}
+  .note b{color:var(--light)}
+
+  table{width:100%;margin-top:26px;border-collapse:collapse;font-size:15px}
+  th,td{padding:12px 14px;text-align:left;border:1px solid rgba(255,255,255,.12)}
+  th{background:var(--card);color:var(--orange);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  td{color:var(--light)}
+  td .mono{font-family:'Roboto Mono',monospace;font-weight:700;color:#fff;white-space:nowrap}
+
+  .flowbox{margin-top:26px;padding:20px 22px;border-radius:16px;background:var(--card);border:1px solid rgba(255,255,255,.12)}
+  .flowbox .lb{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .flowbox p{margin-top:10px;font-family:'Roboto Mono',monospace;font-size:15px;color:var(--light)}
+  .flowbox i{font-style:normal;color:var(--orange);font-weight:700}
+
+  .post{margin-top:52px;background:var(--card);border:1px solid rgba(255,255,255,.12);border-radius:18px;overflow:hidden}
+  .post-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .date{font-family:'Roboto Mono',monospace;font-weight:700;font-size:15px;color:var(--deep);background:var(--orange);padding:7px 16px;border-radius:999px;white-space:nowrap}
+  .post-head h2{font-size:19px;font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  @media(max-width:760px){.cols{grid-template-columns:1fr}}
+  .caption{padding:22px 24px;font-size:15.5px;color:var(--light);white-space:pre-wrap;border-right:1px solid rgba(255,255,255,.08)}
+  @media(max-width:760px){.caption{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}}
+  .img{padding:22px 24px;background:var(--deep);display:flex;align-items:flex-start;justify-content:center}
+  .img img{width:100%;max-width:520px;border-radius:12px;border:1px solid rgba(255,255,255,.14)}
+  .lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);font-weight:700;padding:16px 24px 0}
+  footer{margin-top:60px;color:var(--gray);font-size:13.5px;text-align:center}
+  footer a{color:var(--orange)}
+
+  .status{margin-left:auto;padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:700;white-space:nowrap}
+  .status.cho{background:rgba(156,163,175,.15);border:1.5px solid rgba(156,163,175,.5);color:#C4CBD4}
+  .status.ok{background:rgba(34,197,94,.15);border:1.5px solid rgba(34,197,94,.6);color:#4ADE80}
+  .status.sua{background:rgba(255,106,26,.15);border:1.5px solid rgba(255,106,26,.6);color:#FF8A4A}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding:18px 24px;border-top:1px solid rgba(255,255,255,.1);background:rgba(5,13,22,.5)}
+  .abtn{border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:12px 22px;border-radius:999px}
+  .abtn.duyet{background:#22C55E;color:#052e14}
+  .abtn.sua{background:transparent;color:#FF8A4A;border:1.5px solid rgba(255,106,26,.6)}
+  .abtn.tai{background:transparent;color:#E5E7EB;border:1.5px solid rgba(255,255,255,.3);text-decoration:none;display:inline-block}
+  .abtn:disabled{opacity:.45;cursor:not-allowed}
+  .cmtbox{display:none;padding:0 24px 20px;background:rgba(5,13,22,.5)}
+  .cmtbox.open{display:block}
+  .cmtbox textarea{width:100%;min-height:90px;background:var(--navy);border:1.5px solid rgba(255,255,255,.25);border-radius:12px;color:#fff;font-family:'Inter',sans-serif;font-size:15px;padding:12px 14px;resize:vertical}
+  .cmtbox textarea:focus{outline:none;border-color:var(--orange)}
+  .cmtrow{margin-top:10px;display:flex;gap:10px}
+  .sentnote{padding:10px 24px 18px;background:rgba(5,13,22,.5);color:var(--gray);font-size:14px;display:none}
+  .sentnote b{color:#FF8A4A}
+  .reset{margin-left:8px;background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="tag">Bản duyệt nội bộ · Social plan buổi 2</span>
+  <h1>4 bài Facebook giới thiệu webinar BUỔI 2<br><span class="cam">"Xây dựng hệ thống sản xuất content tự động ngay cả khi bạn đang ngủ"</span> — lên sóng 12/08</h1>
+  <p class="note">Kính gửi sếp Đạt duyệt <b>nội dung + hình + lịch đăng</b>. Mọi link đăng ký sẽ gắn form chính thức trước khi đăng (hiện để <b>[link đăng ký]</b>). Người tổng hợp: <b>Tuấn (CS)</b> · 10/08/2026.</p>
+  <p class="note" style="margin-top:14px">Các bài xếp <b>đúng thứ tự đăng</b>. Ảnh đánh số khớp số bài: bài N dùng ảnh N.</p>
+
+  <div class="flowbox">
+    <p class="lb">Nội dung buổi 2 — hệ thống 5 khâu</p>
+    <p><b>Não trung tâm</b> <i>→</i> Research <i>→</i> Sản xuất content <i>→</i> Sản xuất visual (ảnh + video) <i>→</i> Đăng bài tự động</p>
+  </div>
+
+  <table>
+    <tr><th>Ngày đăng</th><th>Bài</th><th>Góc nội dung</th></tr>
+    <tr><td class="mono"><span class="mono">CN · 10/08</span></td><td>Bài 1 — Giới thiệu webinar</td><td>Nỗi mệt "tuần nào cũng bắt đầu lại từ đầu" → giới thiệu hệ thống 5 khâu + thông tin sự kiện</td></tr>
+    <tr><td class="mono"><span class="mono">T2 · 11/08 sáng</span></td><td>Bài 2 — "Bí mật" dây chuyền content</td><td>Content giá trị: vì sao giao cả 5 việc cho 1 con AI thì luôn hỏng — phải chia thành dây chuyền, và não trung tâm là khâu ai cũng bỏ qua</td></tr>
+    <tr><td class="mono"><span class="mono">T2 · 11/08 tối</span></td><td>Bài 3 — Bài AI đúng thương hiệu doanh nghiệp</td><td>Đào sâu khâu não trung tâm: vì sao AI viết đúng brief mà vẫn sai thương hiệu + cách tự kiểm tra (xoá tên thương hiệu đi xem đối thủ đăng được không)</td></tr>
+    <tr><td class="mono"><span class="mono">T4 · 12/08 sáng</span></td><td>Bài 4 — Last call</td><td>Chốt đăng ký trong ngày lên sóng, nhắc lại 5 khâu + voucher ưu đãi chỉ có trong buổi</td></tr>
+  </table>
+
+  <!-- BÀI 1 -->
+  <div class="post" data-post="Buổi 2 · Bài 1 — Giới thiệu webinar (10/08)" data-img="../images/buoi2-post1.png" data-dl="buoi2-bai1-gioi-thieu.png">
+    <div class="post-head"><span class="date">CN · 10/08</span><h2>Bài 1 — Giới thiệu webinar buổi 2</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption">Webinar: "Xây dựng hệ thống sản xuất content tự động ngay cả khi bạn đang ngủ" | 20h00 Thứ 4, ngày 12/08/2026
+
+Có một kiểu mệt rất riêng của người làm content: không phải mệt vì một content khó, mà mệt vì bài nào cũng phải bắt đầu lại từ đầu. Tuần nào cũng mở lịch đăng ra, tuần nào cũng ngồi nghĩ chủ đề, viết brief, gửi designer, chờ, sửa, đăng. Xong tuần này lại tới tuần sau, y hệt.
+
+Buổi đầu tiên của chuỗi cho thấy AI Agent có năng lực vô song khi bạn ra lệnh. Nhưng ra lệnh thì vẫn là bạn phải ngồi đó. Buổi 2 nói về bước tiếp theo, cũng là bước đổi hẳn cách làm việc: hệ thống tự chạy theo lịch, không cần bạn ngồi đó. Giống nồi cơm hẹn giờ: tối cắm, 6h sáng cơm đã chín, không ai phải thức canh.
+
+Trong 90 phút, bạn sẽ xem tận mắt một hệ thống content hoàn chỉnh được dựng lên, gồm 5 khâu nối vào nhau như một dây chuyền:
+
+🔥 Não trung tâm: nơi lưu toàn bộ hiểu biết về thương hiệu, sản phẩm, khách hàng và giọng văn của bạn. Bốn khâu còn lại đều lấy từ đây, nên content ra bao nhiêu bài cũng nhất quán
+
+🔥 Research: Agent tự đi tìm tư liệu trước khi viết: thị trường, đối thủ, chủ đề đang được quan tâm
+
+🔥 Sản xuất content: viết bài đúng giọng thương hiệu của bạn, không còn "mùi AI"
+
+🔥 Sản xuất visual: tự làm ảnh và video đăng kèm, không phải chờ designer
+
+🔥 Đăng bài tự động: đến giờ tự đăng lên kênh, bạn không cần ngồi canh để bấm nút
+
+Năm khâu đó ghép lại thành một dây chuyền chạy theo lịch. Và cuối buổi là lộ trình để chính bạn tự dựng nó: bắt đầu từ đâu, cần gì.
+
+Đứng phần chia sẻ và demo là anh Mai Xuân Đạt - người sáng lập Agent Boss, Founder SEONGON, một trong những chuyên gia đi đầu về nghiên cứu và ứng dụng Google Marketing tại Việt Nam.
+
+Đây là buổi mà nhiều người sẽ nhìn thấy đích đến của nghề mình trong vài năm tới: phần việc lặp thì để hệ thống chạy, còn giờ làm việc của bạn dành cho chiến lược và sáng tạo, phần mà không máy nào làm thay được.
+
+📌 THÔNG TIN SỰ KIỆN:
+- Chủ đề: Xây dựng hệ thống sản xuất content tự động ngay cả khi bạn đang ngủ
+- Thuộc chuỗi 4 webinar "Nhân Viên Marketing Thời AI: Làm Chủ Agent, X10 Hiệu Suất"
+- Diễn giả: Mai Xuân Đạt — Người sáng lập Agent Boss
+- Thời gian: 20h00 – 21h30, Thứ 4 ngày 12/08/2026
+- Địa điểm: Online
+- Chi phí: Miễn phí
+
+🎁 Đăng ký giữ chỗ: [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="../images/buoi2-post1.png" alt="Visual bài 1"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 2 -->
+  <div class="post" data-post="Buổi 2 · Bài 2 — Bí mật dây chuyền content (11/08 sáng)" data-img="../images/buoi2-post2.png" data-dl="buoi2-bai2-bi-mat-day-chuyen.png">
+    <div class="post-head"><span class="date">T2 · 11/08 sáng</span><h2>Bài 2 — "Bí mật" dây chuyền sản xuất content</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption">"BÍ MẬT" DÂY CHUYỀN SẢN XUẤT CONTENT MÀ CHƯA AI TỪNG NÓI CHO BẠN
+
+Có những trang mà tuần nào bạn cũng thấy bài mới. Bài nào cũng có ảnh, thỉnh thoảng có cả video, giọng điệu trước sau như một. Bạn từng tự hỏi họ lấy đâu ra người để làm được nhiều như vậy chưa?
+
+Phần lớn trường hợp, câu trả lời không phải là họ đông người hơn bạn. Mà là họ không giao tất cả cho một chỗ.
+
+Còn đa số chúng ta thì đang làm theo cách này: mở một cửa sổ chat, gõ một câu thật dài "lên cho tôi kế hoạch content tháng này, viết bài, kèm ý tưởng hình ảnh" rồi chờ.
+
+Cái nhận về thường là một mớ đọc thì xuôi tai mà dùng thì không xong. Kế hoạch chung chung. Bài viết đúng chủ đề nhưng sai giọng. Ý tưởng hình ảnh thì mô tả kiểu ai cũng dùng được. Sửa hết cũng mất từng ấy thời gian. Và kết luận quen thuộc lại xuất hiện: "AI chưa tới."
+
+Nhưng thử nhìn lại xem bạn vừa yêu cầu điều gì.
+
+Bạn vừa bắt một người làm cùng lúc năm việc khác nhau: nghiên cứu, viết, làm hình, sắp lịch, đăng bài. Trong một quán ăn, không ai để một người vừa đi chợ, vừa nấu, vừa bày món, vừa bưng ra, vừa thu tiền. Quán vắng thì gắng được, đông khách là vỡ trận. Xưởng nào cũng chia thành dây chuyền, mỗi khâu một người, mỗi người một việc rõ ràng và có một bản thiết kế chung để mọi khâu làm ra thứ khớp nhau.
+
+Một hệ thống content chạy được cũng đúng như vậy. Nó không phải một con AI vạn năng, mà là năm khâu nối vào nhau:
+
+🔥 Não trung tâm: nơi lưu toàn bộ hiểu biết về doanh nghiệp: sản phẩm, khách hàng, giọng văn, điều được nói và điều tuyệt đối không nói. Đây là bản thiết kế chung, bốn khâu dưới đều lấy từ đây
+
+🔥 Research: tự đi tìm tư liệu trước khi viết: thị trường, đối thủ, chủ đề đang được quan tâm
+
+🔥 Sản xuất content: viết bài đúng thương hiệu, không còn "mùi AI"
+
+🔥 Sản xuất visual: làm ảnh và video đăng kèm, không phải chờ designer
+
+🔥 Đăng bài tự động: đến giờ tự đưa lên kênh, bạn không cần ngồi canh
+
+Khâu quan trọng nhất là khâu đầu tiên, và cũng là khâu hầu như ai cũng bỏ qua. Thiếu não trung tâm, bốn khâu còn lại mỗi khâu hiểu doanh nghiệp một kiểu: bài viết một giọng, ảnh một phong cách, video một thông điệp, ghép lại thành một trang mà khách đọc xong không nhớ nổi bạn là ai. Có não trung tâm rồi thì cả dây chuyền mới nói cùng một tiếng nói.
+
+Nên "bí mật" ở đây không nằm ở chỗ ai có AI xịn hơn ai. Nó nằm ở chỗ chia việc: mỗi khâu một nhiệm vụ rõ ràng, và tất cả cùng lấy thông tin từ một nơi.
+
+Và khi năm khâu đã nối liền, thứ bạn có không còn là "công cụ viết nhanh hơn", mà là một dây chuyền chạy theo lịch: đến giờ nó tự làm, tự nộp, tự đăng. Bạn ngủ, nó vẫn sản xuất.
+
+Trong 90 phút tối 12/08, diễn giả Mai Xuân Đạt sẽ dựng nguyên dây chuyền này trên màn hình, từ khâu đầu tới khâu cuối, trong webinar miễn phí "Xây dựng hệ thống sản xuất content tự động ngay cả khi bạn đang ngủ".
+
+📌 20h00 – 21h30 · Thứ 4, 12/08/2026 · Online · Miễn phí
+
+Giữ chỗ miễn phí: [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="../images/buoi2-post2.png" alt="Visual bài 2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 3 -->
+  <div class="post" data-post="Buổi 2 · Bài 3 — Bài AI đúng thương hiệu doanh nghiệp (11/08 tối)" data-img="../images/buoi2-post3.png" data-dl="buoi2-bai3-dung-thuong-hieu.png">
+    <div class="post-head"><span class="date">T2 · 11/08 tối</span><h2>Bài 3 — Làm thế nào để bài viết của AI đúng thương hiệu doanh nghiệp?</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption">LÀM THẾ NÀO ĐỂ BÀI VIẾT CỦA AI ĐÚNG THƯƠNG HIỆU DOANH NGHIỆP?
+
+Bài AI viết không sai chỗ nào. Chỉ là không giống giọng văn chúng ta hay viết.
+
+Chuyện này chắc bạn gặp rồi. Bạn đưa brief cho AI. Nó trả về một bài trơn tru: bố cục gọn, câu chữ mượt, có mở có kết, đủ từ khoá. Đọc qua thấy không sai chỗ nào cả. Nhưng đọc kỹ thì thấy: cách xưng hô không giống cách công ty vẫn nói với khách, một tính năng sản phẩm bị nói quá lên, một câu cam kết mà sếp đọc xong chắc chắn gạch. Thế là bạn ngồi sửa. Sửa xong nhìn đồng hồ: bốn mươi phút, đúng bằng thời gian tự viết từ đầu.
+
+Lặp lại vài lần như vậy, phần lớn người làm content đi tới cùng một kết luận: "AI viết nhanh thật, nhưng cuối cùng mình vẫn phải viết lại."
+
+Chỉ là kết luận đó nhắm sai chỗ. Vấn đề không nằm ở chuyện AI viết dở, mà ở chỗ nó đang viết trong tình trạng không biết gì về doanh nghiệp bạn.
+
+Hãy nghĩ về một bạn nhân viên content mới vào. Bạn ấy giỏi chữ nghĩa, chính tả không sai, cấu trúc bài chuẩn. Nhưng bài đầu tiên bạn ấy nộp thì gần như chắc chắn "đúng mà không phải" vì bạn ấy chưa đọc bài cũ của công ty, chưa biết khách hàng của mình gọi nhau bằng gì, chưa biết chỗ nào công ty tuyệt đối không nói. Không ai vì bài đầu đó mà kết luận bạn ấy viết dở. Người ta đưa cho bạn ấy bộ tài liệu thương hiệu, vài bài mẫu, rồi nói: "Viết theo kiểu này."
+
+Nhưng nhân viên mới còn có một thứ mà AI không có: thời gian để ngấm. Ngồi họp vài buổi, nghe sếp góp ý vài lần, đọc bài cũ vài chục bài sau một tháng bạn ấy tự biết đâu là giọng công ty. AI thì không như vậy. Mỗi lần bạn mở một cửa sổ chat mới là nó lại quay về con số 0, không nhớ gì về những lần trước. Giống như thuê một người viết rất giỏi, nhưng cứ hết ca là mất trí nhớ — hôm sau vào làm lại phải dặn từ đầu.
+
+Nên muốn bài viết ra đúng thương hiệu, thứ cần làm không phải là viết một câu lệnh dài hơn, mà là cho AI một nơi để ghi nhớ doanh nghiệp bạn: sản phẩm là gì, khách hàng là ai, xưng hô thế nào, được nói gì và tuyệt đối không nói gì. Trong hệ thống mà webinar sắp dựng, nơi đó gọi là não trung tâm — và mọi khâu phía sau đều lấy thông tin từ đấy.
+
+Có một cách rất nhanh để tự kiểm tra: lấy bài AI vừa viết, xoá hết tên thương hiệu và tên sản phẩm đi. Nếu đối thủ của bạn đăng nguyên bài đó lên trang của họ mà không ai thấy có gì lạ, thì bài đó chưa mang thương hiệu của bạn. Nó mới chỉ đúng chủ đề.
+
+Và đây mới là chỗ đáng nói. Chừng nào mỗi bài còn phải sửa tay bốn mươi phút, bạn sẽ không bao giờ dám giao số lượng lớn, vì hai mươi bài nghĩa là hơn mười ba tiếng ngồi sửa, còn mệt hơn tự làm. Nhưng khi doanh nghiệp đã được "nạp" vào một lần và nằm đó ổn định, bài ra đúng thương hiệu ngay từ đầu, thì con số hai mươi bài không còn đáng sợ nữa. Bạn chuyển từ người ngồi viết sang người duyệt bài.
+
+Nói cách khác: cho AI hiểu doanh nghiệp không phải mẹo nhỏ để bài đỡ nhạt. Đó là điều kiện để mọi thứ phía sau sản xuất hàng loạt, chạy theo lịch, tự động có thể xảy ra.
+
+Vậy nạp cả một doanh nghiệp vào não trung tâm thì làm thế nào, và sau đó đi tiếp tới đâu?
+
+Đó là nội dung mà diễn giả Mai Xuân Đạt sẽ chia sẻ trong buổi webinar miễn phí: Xây dựng hệ thống sản xuất content tự động ngay cả khi bạn đang ngủ vào 20h00 – 21h30 · Thứ 4, 12/08/2026 · Hình thức Online · Miễn phí
+
+Giữ chỗ miễn phí: [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="../images/buoi2-post3.png" alt="Visual bài 3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BÀI 4 -->
+  <div class="post" data-post="Buổi 2 · Bài 4 — Last call (12/08 sáng)" data-img="../images/buoi2-post4.png" data-dl="buoi2-bai4-last-call.png">
+    <div class="post-head"><span class="date">T4 · 12/08 sáng</span><h2>Bài 4 — Last call: tối nay lên sóng</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption">⏰ TỐI NAY: BẠN NGỦ, HỆ THỐNG VẪN SẢN XUẤT CONTENT
+
+Buổi 2 của chuỗi webinar miễn phí "Nhân Viên Marketing Thời AI" lên sóng 20h00 tối nay: Xây dựng hệ thống sản xuất content tự động ngay cả khi bạn đang ngủ.
+
+Nếu bạn đang làm content và tuần nào cũng bắt đầu lại từ đầu — mở lịch đăng, nghĩ góc, viết bài, chờ ảnh, canh giờ đăng thì 90 phút tối nay là dành cho bạn. Một dây chuyền 5 khâu được dựng ngay trên màn hình:
+
+🔥 Não trung tâm: nơi giữ mọi hiểu biết về thương hiệu, sản phẩm, khách hàng và giọng văn của bạn
+
+🔥 Research: Agent tự tìm tư liệu trước khi viết
+
+🔥 Sản xuất content: viết đúng giọng, không còn "mùi AI"
+
+🔥 Sản xuất visual: tự làm ảnh và video đăng kèm, không chờ designer
+
+🔥 Đăng bài tự động: đến giờ tự lên kênh, không cần bạn bấm nút
+
+🔥 Q&amp;A cùng diễn giả Mai Xuân Đạt người sáng lập Agent Boss, Founder SEONGON: lộ trình để chính bạn tự dựng dây chuyền này, bắt đầu từ khâu nào
+
+🎁 Và phần quà chỉ có trong buổi webinar: voucher ưu đãi "sập sàn" khoá Agent Boss Marketing. (Kết thúc buổi webinar ban tổ chức sẽ đóng voucher)
+
+📌 20h00 – 21h30 · Tối nay, Thứ 4 ngày 12/08/2026 · Online · Miễn phí
+
+Đăng ký ngay: [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="../images/buoi2-post4.png" alt="Visual bài 4"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Bản LƯU TRỮ buổi 2 (webinar đã diễn ra 12/08) · <a href="../" style="color:#FF6A1A">xem bản duyệt buổi 3</a><br>Bản duyệt nội bộ Agent Boss · <a href="../buoi-1/">Xem lại bản duyệt buổi 1</a> · <a href="../../">Landing draft</a><br>Tuấn (CS) tổng hợp bằng Claude Code · 10/08/2026</footer>
+</div>
+
+<script>
+// Kết quả duyệt gửi về "hòm thư" ntfy riêng của buổi 2 — Tuấn poll và báo lại trong Claude Code
+var TOPIC = 'https://ntfy.sh/abs-duyet-webinar2-k9r4t7wm';
+
+document.querySelectorAll('.post[data-post]').forEach(function(post){
+  var name = post.dataset.post, key = 'duyet:' + name;
+  var head = post.querySelector('.post-head');
+
+  var chip = document.createElement('span');
+  chip.className = 'status cho'; chip.textContent = '⏳ Chờ duyệt';
+  head.appendChild(chip);
+
+  var bar = document.createElement('div'); bar.className = 'actions';
+  bar.innerHTML = '<button class="abtn duyet">✅ Duyệt</button>' +
+    '<button class="abtn sua">✏️ Yêu cầu chỉnh sửa</button>' +
+    '<a class="abtn tai" href="' + post.dataset.img + '" download="' + post.dataset.dl + '">⬇️ Tải ảnh</a>';
+  post.appendChild(bar);
+
+  var box = document.createElement('div'); box.className = 'cmtbox';
+  box.innerHTML = '<textarea placeholder="Sếp ghi rõ cần sửa gì (nội dung / hình / lịch đăng)..."></textarea>' +
+    '<div class="cmtrow"><button class="abtn duyet gui">Gửi yêu cầu</button><button class="abtn tai huy">Hủy</button></div>';
+  post.appendChild(box);
+
+  var note = document.createElement('div'); note.className = 'sentnote';
+  post.appendChild(note);
+
+  var bDuyet = bar.querySelector('.duyet'), bSua = bar.querySelector('.sua');
+  var ta = box.querySelector('textarea'), bGui = box.querySelector('.gui'), bHuy = box.querySelector('.huy');
+
+  function setState(st, cmt){
+    if(st === 'ok'){ chip.className = 'status ok'; chip.textContent = '✅ Đã duyệt'; }
+    else if(st === 'sua'){ chip.className = 'status sua'; chip.textContent = '✏️ Chờ chỉnh sửa'; }
+    else { chip.className = 'status cho'; chip.textContent = '⏳ Chờ duyệt'; }
+    bDuyet.disabled = (st !== 'cho'); bSua.disabled = (st !== 'cho');
+    if(st === 'ok'){ note.style.display = 'block'; note.innerHTML = 'Đã gửi kết quả duyệt cho Tuấn. <button class="reset">đổi quyết định</button>'; }
+    else if(st === 'sua' && cmt){ note.style.display = 'block'; note.innerHTML = '<b>Yêu cầu đã gửi:</b> ' + cmt.replace(/</g,'&lt;') + ' <button class="reset">đổi quyết định</button>'; }
+    else { note.style.display = 'none'; note.innerHTML = ''; }
+    var rs = note.querySelector('.reset');
+    if(rs) rs.onclick = function(){ localStorage.removeItem(key); setState('cho'); };
+  }
+
+  function send(text, cb){
+    fetch(TOPIC, {method:'POST', body: text}).then(function(r){ cb(r.ok); }).catch(function(){ cb(false); });
+  }
+
+  var saved = {};
+  try{ saved = JSON.parse(localStorage.getItem(key) || '{}'); }catch(e){}
+  setState(saved.st || 'cho', saved.cmt);
+
+  bDuyet.onclick = function(){
+    bDuyet.disabled = true; bDuyet.textContent = 'Đang gửi...';
+    send('✅ DUYỆT — ' + name, function(ok){
+      bDuyet.textContent = '✅ Duyệt';
+      if(ok){ localStorage.setItem(key, JSON.stringify({st:'ok'})); setState('ok'); }
+      else { alert('Gửi không thành công, sếp bấm thử lại giúp em.'); bDuyet.disabled = false; }
+    });
+  };
+  bSua.onclick = function(){ box.classList.add('open'); ta.focus(); };
+  bHuy.onclick = function(){ box.classList.remove('open'); };
+  bGui.onclick = function(){
+    var c = ta.value.trim();
+    if(!c){ ta.focus(); return; }
+    bGui.disabled = true; bGui.textContent = 'Đang gửi...';
+    send('✏️ YÊU CẦU CHỈNH SỬA — ' + name + '\n' + c, function(ok){
+      bGui.disabled = false; bGui.textContent = 'Gửi yêu cầu';
+      if(ok){ localStorage.setItem(key, JSON.stringify({st:'sua', cmt:c})); box.classList.remove('open'); setState('sua', c); }
+      else { alert('Gửi không thành công, sếp bấm thử lại giúp em.'); }
+    });
+  };
+});
+</script>
+</body>
+</html>
