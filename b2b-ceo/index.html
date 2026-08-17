@@ -7,474 +7,592 @@
 <title>AI Agent: Cuộc chơi mới mà CEO không thể đứng ngoài — Webinar cho CEO</title>
 <meta name="description" content="Webinar dành cho CEO / Founder / C-level. AI Agent giúp tái định nghĩa năng suất doanh nghiệp, mở rộng tăng trưởng và tạo ra lợi thế mà doanh nghiệp chưa bao giờ có.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  /* ══ TOKENS — theo brand-guideline-rut-gon.md v2.0 ══ */
+  /* ==== Agent Boss design tokens — theo template canonical (landing Marketing v10) ==== */
   :root{
-    --agent-dark:#0B1A2B;   /* nền 80% */
-    --white:#FFFFFF;        /* chữ 15% */
-    --boss-orange:#FF6A1A;  /* nhấn ≤5% */
-    --ink-900:#111827;      /* card tối hơn nền */
-    --ink-700:#374151;      /* viền đậm */
-    --ink-500:#9CA3AF;      /* chữ phụ — Tầng 3 */
+    --agent-dark:#0B1A2B;
+    --white:#FFFFFF;
+    --boss-orange:#FF6A1A;
+    --ink-900:#111827;
+    --ink-700:#374151;
+    --ink-500:#9CA3AF;
+    --ink-100:#F3F4F6;
+    --font:'Inter',Arial,sans-serif;
     --mono:'Roboto Mono',monospace;
-    /* spacing: chỉ dùng 4/8/16/24/32/48/64/96/128 */
   }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;overflow-x:hidden}
-  .hero-outer{overflow:hidden}
-  body{background:var(--agent-dark);color:var(--white);font-family:'Inter',Arial,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  h1 br{display:none}
-  @media(min-width:861px){h1 br{display:inline}}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--agent-dark);color:var(--white);
+    font-family:var(--font);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  /* KHỔ NGANG THỐNG NHẤT: mọi khối đều nằm trong wrap 1060px */
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  a{color:inherit}
+  .t-orange{color:var(--boss-orange)}
 
-  /* ══ THANG CHỮ — đúng guideline mục 4 ══ */
-  h1{font-size:clamp(32px,4.4vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.16;text-wrap:balance}
-  h2{font-size:clamp(28px,3.6vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.25;text-wrap:balance;max-width:24ch}
-  h3{font-size:clamp(20px,2.4vw,24px);font-weight:600;line-height:1.35}
-  p{font-size:16px;font-weight:400;color:var(--ink-500)}
-  p.body-light{color:#F3F4F6;max-width:62ch;text-wrap:pretty}
-  .small{font-size:14px;font-weight:500;color:var(--ink-500)}
-  strong{color:var(--white);font-weight:600}
-  .cam{color:var(--boss-orange)}
-  section{padding:96px 0;border-top:1px solid var(--ink-700)}
-  .sec-label{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--boss-orange)}
-  h2+p,h3+p,.sec-label+h2{margin-top:16px}
-  p+p{margin-top:16px}
+  .draft{
+    background:var(--ink-900);border-bottom:1px solid var(--ink-700);
+    text-align:center;font-size:12px;color:var(--ink-500);
+    padding:6px 16px;letter-spacing:.08em;text-transform:uppercase;
+  }
 
-  /* ══ HEADER ══ */
-  header{padding:24px 0;position:relative;z-index:3}
-  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  .logo-lockup{display:flex;align-items:center;gap:16px}
-  .logo-lockup img{height:48px;width:auto;display:block}
-  .wordmark{font-weight:700;letter-spacing:.04em;font-size:20px;line-height:1.1}
+  /* ==== Header ==== */
+  header.site{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:12px}
+  .logo-lockup{display:flex;align-items:center;gap:11px}
+  .logo-lockup img{height:38px;width:auto;display:block}
+  .wordmark{font-weight:800;letter-spacing:.04em;font-size:17px;line-height:1.1}
   .wordmark .b{color:var(--boss-orange)}
-  .wordmark small{display:block;font-weight:500;font-size:12px;letter-spacing:.16em;color:var(--ink-500);margin-top:4px}
-  .eyebrow{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-500)}
-
-  /* ══ HERO: trái = chữ · phải = hệ thống (guideline mục 5) ══ */
-  .hero{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;padding:48px 0 96px;border-top:none}
-  .hero>div{position:relative;z-index:2;min-width:0}
-  .glow{position:absolute;right:-6%;top:44%;transform:translateY(-50%);width:640px;height:640px;max-width:100%;border-radius:50%;
-        background:radial-gradient(circle,rgba(255,106,26,.14) 0%,transparent 62%);pointer-events:none;z-index:0}
-  .tier3{margin-top:24px;font-size:16px;color:#F3F4F6;max-width:50ch;text-wrap:pretty}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
-  .meta span{font-family:var(--mono);font-size:14px;font-weight:500;padding:8px 16px;border:1px solid var(--ink-700);border-radius:999px;color:#F3F4F6;white-space:nowrap}
-  .btn{display:inline-block;margin-top:32px;padding:16px 32px;border-radius:999px;background:var(--boss-orange);color:#0B1A2B;
-       font-size:16px;font-weight:700;text-decoration:none;border:none;cursor:pointer;font-family:'Inter',sans-serif}
+  .wordmark small{display:block;font-weight:500;font-size:10px;letter-spacing:.18em;color:var(--ink-500)}
+  .btn{
+    display:inline-block;background:var(--boss-orange);color:var(--white);
+    font-weight:700;text-decoration:none;border:none;cursor:pointer;
+    padding:14px 28px;border-radius:10px;font-size:16px;font-family:var(--font);
+    text-align:center;
+  }
   .btn:hover{filter:brightness(1.07)}
-  .undercta{margin-top:16px;font-size:14px;color:var(--ink-500)}
+  .btn:focus-visible{outline:3px solid var(--white);outline-offset:2px}
+  .btn.small{padding:11px 18px;font-size:14px;white-space:nowrap}
 
-  /* ══ KHUNG DEMO — Lớp 3, sắc nét nhất (guideline mục 6 & 7) ══ */
-  .demo{position:relative;border:1px solid var(--ink-700);border-radius:16px;background:var(--ink-900);overflow:hidden}
-  .demo-bar{display:flex;align-items:center;gap:8px;padding:16px;border-bottom:1px solid var(--ink-700)}
-  .demo-bar i{width:8px;height:8px;border-radius:50%;background:var(--ink-700);display:block}
-  .demo-bar span{margin-left:8px;font-family:var(--mono);font-size:12px;color:var(--ink-500)}
-  .demo-body{padding:16px;display:grid;gap:16px}
-  .msg{padding:16px;border-radius:16px;background:var(--agent-dark);border:1px solid var(--ink-700);font-size:16px;color:var(--white);line-height:1.5}
-  .msg b{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--boss-orange);margin-bottom:8px}
-  .log{display:grid;gap:8px}
-  .log div{display:flex;gap:8px;align-items:flex-start;font-size:14px;color:#F3F4F6;line-height:1.5}
-  .log i{flex:none;color:var(--boss-orange);font-style:normal;font-weight:700}
-  .log .done{margin-top:8px;padding-top:16px;border-top:1px solid var(--ink-700);color:var(--white);font-weight:600}
-  .log .done b{color:var(--boss-orange)}
-  .syscap{margin-top:16px;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ink-500);text-transform:uppercase}
+  /* ==== Hero ==== */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;padding:40px 0 56px}
+  .pill{
+    display:inline-block;background:var(--ink-900);border:1px solid var(--ink-700);
+    border-radius:999px;padding:7px 16px;font-size:12.5px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--ink-500);margin:0 0 20px;
+  }
+  .pill b{color:var(--boss-orange);font-weight:600}
+  /* Quy tắc cứng: các dòng headline CÙNG size, 1 dòng đổi màu cam trọn vẹn */
+  h1{
+    font-size:clamp(30px,4.4vw,46px);font-weight:700;letter-spacing:-0.03em;
+    line-height:1.15;margin:0 0 16px;text-wrap:balance;
+  }
+  .hero-sub{color:var(--ink-500);font-size:16.5px;max-width:46ch;margin:0 0 28px;text-wrap:pretty}
+  .hero-sub b{color:var(--ink-100);font-weight:600}
+  .hero-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .hero-meta{font-size:14px;color:var(--ink-500);font-variant-numeric:tabular-nums}
 
-  /* ══ CÂU CHUYỆN ══ */
-  .story{max-width:62ch}
-  .story p{margin-top:16px;font-size:16px;color:#F3F4F6;line-height:1.72;text-wrap:pretty}
-  .story p.plain{color:var(--ink-500)}
-  .quoteline{margin-top:32px;padding:24px;border-left:2px solid var(--boss-orange);background:var(--ink-900);border-radius:0 12px 12px 0}
-  .quoteline p{margin-top:0;font-size:16px;color:#F3F4F6}
-  .quoteline p+p{margin-top:16px}
-  .punch{margin-top:32px;font-size:20px;font-weight:600;color:var(--white);line-height:1.5;max-width:56ch;text-wrap:pretty}
+  /* ==== Hero visual: CEO giao MỤC TIÊU — Agent lập kế hoạch, phối hợp công cụ, trả kết quả ==== */
+  .demo-shell{position:relative}
+  .demo-glow{
+    position:absolute;inset:-8%;border-radius:24px;
+    background:radial-gradient(circle,rgba(255,106,26,.14) 0%,rgba(255,106,26,0) 70%);
+    filter:blur(34px);pointer-events:none;
+  }
+  .demo-win{
+    position:relative;background:var(--ink-900);border:1px solid var(--ink-700);
+    border-radius:16px;overflow:hidden;
+  }
+  .demo-bar{
+    display:flex;align-items:center;gap:8px;padding:11px 16px;
+    background:var(--agent-dark);border-bottom:1px solid var(--ink-700);
+  }
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--ink-700)}
+  .demo-title{margin-left:6px;font-size:12.5px;color:var(--ink-500);font-weight:600}
+  .demo-body{padding:18px;display:grid;gap:12px}
+  .msg-you{
+    justify-self:end;max-width:85%;
+    background:var(--ink-700);border-radius:14px 14px 4px 14px;
+    padding:10px 14px;font-size:14px;line-height:1.45;
+  }
+  .msg-tag{display:block;font-size:10.5px;letter-spacing:.12em;color:var(--ink-500);font-weight:700;margin-bottom:2px}
+  .agent-log{
+    justify-self:start;max-width:92%;width:100%;
+    background:var(--agent-dark);border:1px solid var(--ink-700);
+    border-radius:14px 14px 14px 4px;padding:12px 14px;
+    display:grid;gap:8px;
+  }
+  .step{
+    font-family:var(--mono);font-size:12.5px;color:var(--ink-100);
+    display:flex;gap:9px;align-items:baseline;
+    opacity:0;animation:fadeUp .45s forwards;
+  }
+  .step .ck{color:var(--boss-orange);font-weight:700}
+  .step small{color:var(--ink-500)}
+  .step:nth-child(2){animation-delay:.5s}
+  .step:nth-child(3){animation-delay:1s}
+  .step:nth-child(4){animation-delay:1.5s}
+  .step.done{
+    font-family:var(--font);font-size:13px;font-weight:700;color:var(--white);
+    border-top:1px solid var(--ink-700);padding-top:10px;margin-top:2px;
+    animation-delay:2s;
+  }
+  .step.done b{color:var(--boss-orange)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .step{animation:none;opacity:1;transform:none}
+  }
+  .demo-cap{margin:12px 0 0;text-align:center;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--ink-500);text-transform:uppercase}
 
-  /* ══ DANH SÁCH BẬN RỘN ══ */
-  .busy{margin-top:32px;list-style:none;max-width:62ch}
-  .busy li{position:relative;padding-left:24px;margin-top:8px;font-size:16px;color:#F3F4F6;line-height:1.6}
-  .busy li::before{content:"—";position:absolute;left:0;color:var(--ink-700)}
+  /* ==== Stats strip ==== */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink-700);
+    border:1px solid var(--ink-700);border-radius:14px;overflow:hidden;margin-bottom:8px;
+  }
+  .stat{background:var(--ink-900);padding:22px 14px;text-align:center}
+  .stat b{
+    display:block;font-size:34px;font-weight:700;letter-spacing:-0.02em;
+    font-variant-numeric:tabular-nums;color:var(--boss-orange);line-height:1.15;
+  }
+  .stat span{font-size:13px;color:var(--ink-100);font-weight:500}
 
-  /* ══ 5 BÀI TOÁN — card grid ══ */
-  .probe{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
-  .probe>div{padding:24px;border-radius:16px;background:var(--ink-900);border:1px solid var(--ink-700)}
-  .probe .k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--boss-orange)}
-  .probe h4{margin-top:8px;font-size:20px;font-weight:600;line-height:1.35;color:var(--white)}
-  .probe p{margin-top:8px;font-size:16px;color:#F3F4F6;line-height:1.6}
-  .probe .wide{grid-column:1/-1;border-color:rgba(255,106,26,.45)}
+  /* ==== Sections ==== */
+  section{padding:56px 0 8px}
+  .sec-eyebrow{
+    font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--boss-orange);margin:0 0 8px;
+  }
+  h2{
+    font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-0.02em;
+    line-height:1.2;margin:0 0 20px;text-wrap:balance;
+  }
+  .prose p{margin:0 0 14px;color:var(--ink-100);text-wrap:pretty}
+  .prose p b{color:var(--white)}
+  .prose-full p{font-size:17.5px;line-height:1.7}
+  .note{font-size:13.5px;color:var(--ink-500);font-style:italic;margin-top:16px}
 
-  /* ══ 4 CÂU HỎI — timeline số ══ */
-  .agenda{position:relative;margin-top:32px}
-  .agenda::before{content:'';position:absolute;left:39px;top:16px;bottom:16px;width:1px;background:var(--ink-700)}
-  .a-item{position:relative;display:flex;gap:24px;padding:16px 0;align-items:flex-start}
-  .a-time{position:relative;z-index:1;flex:0 0 80px;text-align:center;font-family:var(--mono);font-size:14px;font-weight:700;
-          color:var(--boss-orange);background:var(--agent-dark);border:1px solid rgba(255,106,26,.5);border-radius:999px;padding:8px 0}
+  /* ==== 3 nấc tiến hoá của AI trong doanh nghiệp ==== */
+  .evo{display:grid;grid-template-columns:1fr auto 1fr auto 1.15fr;gap:10px;align-items:stretch;margin-top:6px}
+  .evo .card{display:flex;flex-direction:column}
+  .evo-arrow{align-self:center;color:var(--ink-500);font-size:20px;font-weight:700}
+  .card{background:var(--ink-900);border:1px solid var(--ink-700);border-radius:14px;padding:20px}
+  .card .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-500);margin:0 0 6px}
+  .card h3{margin:0 0 6px;font-size:16.5px;font-weight:600}
+  .card p{margin:0;font-size:14px;color:var(--ink-500)}
+  .card.hot{border-color:rgba(255,106,26,.55)}
+  .card.hot .k{color:var(--boss-orange)}
+  .card.hot p{color:var(--ink-100)}
+
+  .quoteline{
+    margin:22px 0 0;padding:18px 22px;border-left:3px solid var(--boss-orange);
+    background:var(--ink-900);border-radius:0 12px 12px 0;
+  }
+  .quoteline p{margin:0;font-size:16.5px;color:var(--ink-100);text-wrap:pretty}
+  .quoteline p+p{margin-top:10px}
+  .quoteline b{color:var(--white)}
+
+  /* ==== 6 bài toán cấp thiết — chip grid ==== */
+  .busy{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+  .busy div{
+    background:var(--ink-900);border:1px solid var(--ink-700);border-radius:12px;
+    padding:13px 16px;font-size:14px;color:var(--ink-100);display:flex;gap:10px;align-items:center;
+  }
+  .busy i{font-style:normal;color:var(--ink-500)}
+
+  /* ==== 5 bài toán sống còn — card + icon ==== */
+  .benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:6px}
+  .benefit{
+    background:var(--ink-900);border:1px solid var(--ink-700);border-radius:14px;
+    padding:20px;display:flex;gap:16px;align-items:flex-start;
+  }
+  .benefit.wide{grid-column:1/-1;border-color:rgba(255,106,26,.5)}
+  .b-icon{
+    flex:0 0 44px;width:44px;height:44px;border-radius:12px;
+    background:var(--agent-dark);border:1px solid var(--ink-700);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .b-icon svg{width:22px;height:22px;stroke:var(--ink-100);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .b-icon .accent{stroke:var(--boss-orange)}
+  .benefit h3{margin:0 0 4px;font-size:15.5px;font-weight:700}
+  .benefit p{margin:0;font-size:13.5px;color:var(--ink-500);text-wrap:pretty}
+  .benefit p b{color:var(--ink-100)}
+
+  .punch{
+    margin:34px auto 0;text-align:center;max-width:56ch;
+    font-size:clamp(19px,2.4vw,24px);font-weight:700;line-height:1.45;text-wrap:balance;
+  }
+
+  /* ==== 4 câu hỏi — timeline ==== */
+  .agenda{position:relative;margin-top:6px}
+  .agenda::before{content:'';position:absolute;left:37px;top:18px;bottom:18px;width:2px;background:var(--ink-700)}
+  .a-item{position:relative;display:flex;gap:20px;padding:11px 0;align-items:flex-start}
+  .a-time{
+    position:relative;z-index:1;flex:0 0 76px;text-align:center;font-family:var(--mono);
+    font-size:12.5px;font-weight:700;color:var(--boss-orange);background:var(--agent-dark);
+    border:1px solid rgba(255,106,26,.5);border-radius:999px;padding:6px 0;
+  }
   .a-body{padding-top:4px}
-  .a-body b{display:block;font-size:16px;font-weight:600;color:var(--white);line-height:1.4}
-  .a-body p{margin-top:8px;font-size:14px;color:var(--ink-500);line-height:1.6;max-width:62ch}
+  .a-body b{font-size:16px;color:var(--white);line-height:1.4}
+  .a-body p{margin:3px 0 0;font-size:14.5px;color:var(--ink-500);line-height:1.6;text-wrap:pretty}
+  .a-body p b{font-size:inherit;color:var(--ink-100)}
 
-  /* ══ CEO CẦN QUYẾT — chip ══ */
-  .decide{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
-  .decide span{font-family:var(--mono);font-size:14px;font-weight:700;padding:8px 24px;border:1px solid rgba(255,106,26,.5);border-radius:999px;color:var(--white)}
+  /* ==== 5 quyết định CEO ==== */
+  .decide{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:20px}
+  .decide div{
+    background:var(--ink-900);border:1px solid rgba(255,106,26,.45);border-radius:12px;
+    padding:14px 10px;text-align:center;font-family:var(--mono);font-size:13.5px;font-weight:700;
+  }
 
-  /* ══ DIỄN GIẢ ══ */
-  .spk{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:start;margin-top:32px}
-  .spk img{width:200px;height:236px;object-fit:cover;object-position:center top;border-radius:16px;border:1px solid var(--ink-700)}
-  .spk ul{margin-top:16px;list-style:none}
-  .spk li{position:relative;padding-left:24px;margin-top:8px;font-size:16px;color:#F3F4F6;line-height:1.6}
-  .spk li::before{content:"—";position:absolute;left:0;color:var(--ink-700)}
+  /* ==== Diễn giả ==== */
+  .sp{display:flex;gap:18px;align-items:center;background:var(--ink-900);border:1px solid var(--ink-700);border-radius:14px;padding:18px;margin-top:6px}
+  .sp img{width:150px;height:150px;border-radius:14px;object-fit:cover;object-position:top;flex:none;border:2px solid var(--boss-orange)}
+  .sp-role{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--boss-orange)}
+  .sp h4{margin:2px 0 7px;font-size:18.5px;font-weight:700;color:var(--white)}
+  .sp p{margin:0;font-size:13.5px;color:var(--ink-500);line-height:1.6}
+  .sp p b{color:var(--ink-100)}
 
-  /* ══ AI NÊN DỰ ══ */
-  .who{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px;max-width:720px}
-  .who div{padding:24px;border-radius:12px;background:var(--ink-900);border:1px solid var(--ink-700);font-size:16px;color:#F3F4F6;line-height:1.6}
-  .who .no{border-style:dashed;background:transparent;color:var(--ink-500)}
+  /* ==== Dành cho ai ==== */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
 
-  /* ══ SAU WEBINAR — checklist ══ */
-  .gain{margin-top:32px;list-style:none;max-width:62ch}
-  .gain li{position:relative;padding-left:32px;margin-top:16px;font-size:16px;color:#F3F4F6;line-height:1.65}
-  .gain li::before{content:"✓";position:absolute;left:0;color:var(--boss-orange);font-weight:700}
+  /* ==== Sau webinar — checklist 2 cột ==== */
+  .gain{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px;padding:0;list-style:none}
+  .gain li{
+    background:var(--ink-900);border:1px solid var(--ink-700);border-radius:12px;
+    padding:15px 17px 15px 44px;position:relative;font-size:14px;color:var(--ink-100);line-height:1.55;text-wrap:pretty;
+  }
+  .gain li::before{content:"✓";position:absolute;left:17px;top:14px;color:var(--boss-orange);font-weight:700}
+  .gain li.wide{grid-column:1/-1}
 
-  /* ══ FORM ══ */
-  .formbox{margin-top:32px;padding:32px;border-radius:16px;background:var(--ink-900);border:1px solid var(--ink-700)}
-  .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .field{margin-bottom:16px}
-  label{display:block;font-size:14px;font-weight:500;color:#F3F4F6;margin-bottom:8px}
-  label i{color:var(--boss-orange);font-style:normal}
-  input,select{width:100%;padding:16px 16px;border-radius:10px;background:var(--agent-dark);border:1px solid var(--ink-700);
-    color:var(--white);font-family:'Inter',sans-serif;font-size:16px}
-  input:focus,select:focus{outline:none;border-color:var(--boss-orange)}
-  .btn.full{display:block;width:100%;text-align:center;margin-top:8px}
+  /* ==== CTA / form ==== */
+  .cta-box{
+    background:var(--ink-900);border:1px solid rgba(255,106,26,.4);border-radius:20px;
+    padding:36px;display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:start;
+  }
+  .evt{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+  .evt li{display:flex;gap:10px;align-items:baseline;font-size:14.5px;color:var(--ink-100)}
+  .evt li b{color:var(--white)}
+  .evt li i{font-style:normal;color:var(--boss-orange);font-weight:700}
+  form{display:grid;gap:12px}
+  label{font-size:12.5px;font-weight:600;color:var(--ink-500);display:grid;gap:5px}
+  input,select{
+    background:var(--agent-dark);border:1px solid var(--ink-700);border-radius:8px;
+    color:var(--white);padding:12px 14px;font-size:15px;font-family:var(--font);width:100%;box-sizing:border-box;
+  }
+  input:focus-visible,select:focus-visible{outline:2px solid var(--boss-orange);outline-offset:1px;border-color:var(--boss-orange)}
+  form .btn{width:100%}
+  .form-note{font-size:12px;color:var(--ink-500);margin-top:2px;text-align:center}
 
-  footer{padding:32px 0 48px;border-top:1px solid var(--ink-700);font-size:14px;color:var(--ink-500);text-align:center}
+  /* ==== Khối chốt ==== */
+  .closing{text-align:center;padding-bottom:24px}
+  .closing .lead{font-size:15px;color:var(--ink-500);margin:0 0 4px}
+  .closing .q{font-size:17px;font-weight:600;color:var(--ink-100);margin:0 0 18px}
+
+  footer{
+    border-top:1px solid var(--ink-700);padding:24px 0 36px;margin-top:56px;
+    font-size:12.5px;color:var(--ink-500);
+  }
+  footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
   .sticky-cta{display:none}
 
-  /* ══ MOBILE ══ */
   @media (max-width:860px){
-    section{padding:64px 0}
-    .hero{grid-template-columns:1fr;gap:48px;padding:24px 0 64px}
-    .glow{right:-30%;top:22%;width:420px;height:420px}
-    .probe,.g2{grid-template-columns:1fr}
-    .spk{grid-template-columns:1fr}
-    .spk img{width:150px;height:178px}
-    .a-time{flex:0 0 66px;font-size:12px}
-    .agenda::before{left:32px}
-    .a-item{gap:16px}
-    .formbox{padding:24px}
-    body{padding-bottom:64px}
-    .sticky-cta{display:block;position:fixed;bottom:0;left:0;right:0;z-index:20;padding:16px 16px;
-      background:rgba(11,26,43,.97);border-top:1px solid var(--ink-700)}
-    .sticky-cta .btn{margin-top:0;width:100%;padding:16px}
+    .hero{grid-template-columns:1fr;gap:36px;padding-top:24px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .evo{grid-template-columns:1fr}
+    .evo-arrow{transform:rotate(90deg);justify-self:center}
+    .busy{grid-template-columns:1fr 1fr}
+    .benefits,.gain{grid-template-columns:1fr}
+    .cards3{grid-template-columns:1fr}
+    .decide{grid-template-columns:repeat(2,1fr)}
+    .decide div:last-child{grid-column:1/-1}
+    .cta-box{grid-template-columns:1fr;padding:24px}
+    .cta-box .form-col{order:-1}
+    .a-time{flex-basis:62px;font-size:11.5px}
+    .agenda::before{left:30px}
+    .sp{flex-direction:row}
+    .sp img{width:104px;height:104px}
+    .wordmark small{display:none}
+    body{padding-bottom:66px}
+    .sticky-cta{
+      display:block;position:fixed;bottom:0;left:0;right:0;z-index:10;
+      padding:10px 16px;background:rgba(11,26,43,.96);border-top:1px solid var(--ink-700);
+    }
+    .sticky-cta .btn{width:100%;box-sizing:border-box;padding:13px}
   }
   @media (max-width:520px){
-    h1{font-size:28px;letter-spacing:-.02em}
-    h2{font-size:24px}
-    .wrap{padding:0 24px}
-    .meta span{font-size:12px;padding:8px 16px}
-    .story p,.punch{font-size:16px}
+    .busy{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(2,1fr)}
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
+<div class="draft">Bản nháp nội bộ · chờ duyệt, chưa phải trang chính thức</div>
+
+<div class="wrap">
+
+  <!-- ===== HEADER ===== -->
+  <header class="site">
     <div class="logo-lockup">
       <img src="assets/logo-mark-only-on-dark-v2.png" alt="">
-      <span class="wordmark">AGENT<span class="b">BOSS</span><small>Human · Agents Team</small></span>
-    </div>
-    <span class="eyebrow">Webinar · dành cho CEO / Founder / C-level</span>
-  </div>
-</header>
-
-<!-- ══════════ HERO ══════════ -->
-<section class="hero-outer" style="border:none;padding:0">
-<div class="wrap">
-  <div class="hero">
-    <span class="glow" aria-hidden="true"></span>
-
-    <div>
-      <h1>AI Agent: <span class="cam">Cuộc chơi mới mà CEO không thể đứng ngoài</span></h1>
-
-      <p class="tier3"><strong>AI Agent giúp tái định nghĩa năng suất doanh nghiệp, mở rộng tăng trưởng và tạo ra lợi thế mà doanh nghiệp chưa bao giờ có.</strong></p>
-
-      <div class="meta">
-        <span>Ngày &amp; giờ: sắp công bố</span>
-        <span>Online Webinar</span>
-        <span>CEO / Founder / C-level</span>
+      <div class="wordmark">AGENT <span class="b">BOSS</span>
+        <small>HUMAN · AGENTS TEAM</small>
       </div>
+    </div>
+    <a class="btn small" href="#dang-ky">Đăng ký tham dự</a>
+  </header>
 
-      <a class="btn" href="#dangky">Đăng ký tham dự webinar</a>
-      <p class="undercta">Số lượng tham dự có giới hạn.</p>
+  <!-- ===== HERO ===== -->
+  <div class="hero">
+    <div>
+      <span class="pill">Webinar · dành cho <b>CEO / Founder / C-level</b></span>
+      <h1>AI Agent: Cuộc chơi mới<br>
+          <span class="t-orange">mà CEO không thể đứng ngoài</span></h1>
+      <p class="hero-sub"><b>Tái định nghĩa năng suất doanh nghiệp, mở rộng tăng trưởng</b> và tạo ra lợi thế mà doanh nghiệp chưa bao giờ có.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#dang-ky">Đăng ký tham dự webinar</a>
+        <span class="hero-meta">Ngày &amp; giờ: sắp công bố · Online</span>
+      </div>
     </div>
 
-    <div>
-      <!-- Lớp 3: khung làm việc thật — CEO giao mục tiêu, Agent thực thi chuỗi việc -->
-      <div class="demo" role="img" aria-label="Minh hoạ: CEO giao mục tiêu, AI Agent tự lập kế hoạch, phối hợp công cụ và trả kết quả">
-        <div class="demo-bar"><i></i><i></i><i></i><span>AI Agent · nhận mục tiêu, trả kết quả</span></div>
+    <!-- Minh họa: CEO giao MỤC TIÊU — Agent tự lập kế hoạch, phối hợp công cụ, trả kết quả -->
+    <div class="demo-shell" role="img" aria-label="Minh họa: CEO giao một mục tiêu, AI Agent tự lập kế hoạch, phối hợp nhiều nguồn dữ liệu và nộp lại kết quả hoàn chỉnh">
+      <div class="demo-glow"></div>
+      <div class="demo-win" aria-hidden="true">
+        <div class="demo-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="demo-title">AI Agent của doanh nghiệp bạn</span>
+        </div>
         <div class="demo-body">
-          <div class="msg"><b>BẠN GIAO MỤC TIÊU</b>Tuần này còn 120 khách hỏi hàng chưa ai gọi lại. Xử lý giúp tôi.</div>
-          <div class="log">
-            <div><i>✓</i><span>Tự lập kế hoạch xử lý</span></div>
-            <div><i>✓</i><span>Đọc 120 khách từ file chăm sóc khách hàng</span></div>
-            <div><i>✓</i><span>Phân loại theo mức độ quan tâm — <strong>34 khách nóng</strong></span></div>
-            <div><i>✓</i><span>Soạn tin nhắn riêng cho từng khách theo đúng thứ họ đã hỏi</span></div>
-            <div><i>✓</i><span>Xếp lịch gọi lại, chia cho 4 nhân viên kinh doanh</span></div>
-            <div class="done">Xong trong <b>6 phút</b>. Việc này đội bạn thường mất 2 ngày.</div>
+          <div class="msg-you">
+            <span class="msg-tag">CEO</span>
+            8h sáng mai tôi cần bức tranh kinh doanh tuần này, kèm những việc phải xử lý ngay.
+          </div>
+          <div class="agent-log">
+            <div class="step"><span class="ck">✓</span>Nhận mục tiêu — tự lập kế hoạch <small>· 4 bước, 3 nguồn dữ liệu</small></div>
+            <div class="step"><span class="ck">✓</span>Đọc số bán hàng, đối chiếu chi phí <small>· CRM + kế toán</small></div>
+            <div class="step"><span class="ck">✓</span>Phát hiện 2 điểm bất thường cần CEO quyết</div>
+            <div class="step"><span class="ck">✓</span>Soạn báo cáo 1 trang + đầu việc cho từng phòng ban</div>
+            <div class="step done">⏱ Nộp lúc <b>7h45 sáng</b> — không cần ai ngồi tổng hợp.</div>
           </div>
         </div>
       </div>
-      <p class="syscap">Nhận mục tiêu · Tự lập kế hoạch · Phối hợp công cụ · Trả kết quả</p>
+      <p class="demo-cap">Nhận mục tiêu · Tự lập kế hoạch · Phối hợp công cụ · Trả kết quả</p>
     </div>
   </div>
-</div>
-</section>
 
-<!-- ══════════ GIAI ĐOẠN MỚI ══════════ -->
-<section>
-  <div class="wrap">
-    <p class="sec-label">Giai đoạn mới</p>
-    <h2>AI Agent đang mở ra một giai đoạn mới <span class="cam">của AI trong doanh nghiệp</span></h2>
+  <!-- ===== STATS ===== -->
+  <div class="stats">
+    <div class="stat"><b>4</b><span>câu hỏi chiến lược được trả lời</span></div>
+    <div class="stat"><b>5</b><span>bài toán sống còn được soi thẳng</span></div>
+    <div class="stat"><b>0</b><span>kiến thức kỹ thuật cần có</span></div>
+    <div class="stat"><b>1</b><span>quyết định CEO cần đưa ra sau buổi này</span></div>
+  </div>
 
-    <div class="story">
-      <p>Không còn dừng ở việc nhân sự dùng ChatGPT để viết nhanh hơn, tìm thông tin nhanh hơn hay tự động hóa một vài tác vụ đơn lẻ. <strong>AI Agent có khả năng nhận mục tiêu, tự lập kế hoạch, phối hợp nhiều công cụ và thực hiện một chuỗi công việc để tạo ra kết quả.</strong></p>
+  <!-- ===== GIAI ĐOẠN MỚI ===== -->
+  <section>
+    <p class="sec-eyebrow">Giai đoạn mới</p>
+    <h2>AI Agent đang mở ra một giai đoạn mới <span class="t-orange">của AI trong doanh nghiệp</span></h2>
+
+    <div class="evo">
+      <div class="card">
+        <p class="k">Trước đây</p>
+        <h3>Dùng ChatGPT lẻ tẻ</h3>
+        <p>Nhân sự viết nhanh hơn, tìm thông tin nhanh hơn. Mỗi người một kiểu.</p>
+      </div>
+      <span class="evo-arrow">→</span>
+      <div class="card">
+        <p class="k">Hiện tại</p>
+        <h3>Tự động hoá tác vụ đơn lẻ</h3>
+        <p>Vài quy trình chạy tự động, nhưng vẫn rời rạc, chưa đổi được cách vận hành.</p>
+      </div>
+      <span class="evo-arrow">→</span>
+      <div class="card hot">
+        <p class="k">Giai đoạn mới</p>
+        <h3>AI Agent</h3>
+        <p><b>Nhận mục tiêu → tự lập kế hoạch → phối hợp nhiều công cụ → thực hiện chuỗi công việc để tạo ra kết quả.</b></p>
+      </div>
     </div>
 
-    <div class="quoteline" style="max-width:62ch">
-      <p><strong>Điều đó đặt ra một câu hỏi lớn hơn cho CEO:</strong></p>
+    <div class="quoteline">
+      <p><b>Điều đó đặt ra một câu hỏi lớn hơn cho CEO:</b></p>
       <p>Nếu AI có thể bắt đầu đảm nhận một phần công việc vốn cần con người, doanh nghiệp sẽ vận hành, tăng trưởng và cạnh tranh như thế nào trong vài năm tới?</p>
     </div>
+  </section>
 
-    <a class="btn" href="#dangky">Đăng ký tham dự webinar</a>
-  </div>
-</section>
-
-<!-- ══════════ CÓ THỰC SỰ CẦN THIẾT? ══════════ -->
-<section>
-  <div class="wrap">
-    <p class="sec-label">Câu hỏi của người bận rộn</p>
-    <h2>AI Agent có thực sự <span class="cam">"cần thiết"</span> với bạn?</h2>
-
-    <div class="story">
+  <!-- ===== CÓ THỰC SỰ CẦN THIẾT? ===== -->
+  <section>
+    <p class="sec-eyebrow">Câu hỏi của người bận rộn</p>
+    <h2>AI Agent có thực sự <span class="t-orange">"cần thiết"</span> với bạn?</h2>
+    <div class="prose">
       <p>Trong một doanh nghiệp, luôn có những bài toán cấp thiết hơn:</p>
     </div>
 
-    <ul class="busy">
-      <li>Doanh thu quý này.</li>
-      <li>Chi phí đang tăng.</li>
-      <li>Đội ngũ chưa đạt năng suất kỳ vọng.</li>
-      <li>Khách hàng ngày càng khó tính.</li>
-      <li>Thị trường cạnh tranh hơn.</li>
-      <li>Hàng loạt dự án chuyển đổi vẫn còn dang dở.</li>
-    </ul>
-
-    <div class="story">
-      <p class="plain">Trong bối cảnh đó, AI Agent rất dễ bị xếp vào nhóm:</p>
+    <div class="busy">
+      <div><i>01</i>Doanh thu quý này</div>
+      <div><i>02</i>Chi phí đang tăng</div>
+      <div><i>03</i>Đội ngũ chưa đạt năng suất kỳ vọng</div>
+      <div><i>04</i>Khách hàng ngày càng khó tính</div>
+      <div><i>05</i>Thị trường cạnh tranh hơn</div>
+      <div><i>06</i>Dự án chuyển đổi còn dang dở</div>
     </div>
 
-    <div class="quoteline" style="max-width:62ch">
-      <p>"Một công nghệ mới đáng theo dõi, nhưng chưa cần làm ngay."</p>
+    <div class="quoteline">
+      <p>Trong bối cảnh đó, AI Agent rất dễ bị xếp vào nhóm: <b>"một công nghệ mới đáng theo dõi, nhưng chưa cần làm ngay."</b></p>
+      <p>Nhưng AI Agent không đơn thuần là một công cụ mới. <b>Nó có thể thay đổi chính những bài toán mà CEO đang phải giải quyết mỗi ngày.</b></p>
     </div>
+  </section>
 
-    <div class="story">
-      <p><strong>Nhưng AI Agent không đơn thuần là một công cụ mới.</strong></p>
-      <p>Nó có thể thay đổi chính những bài toán mà CEO đang phải giải quyết mỗi ngày.</p>
-    </div>
-
-    <div class="probe">
-      <div>
-        <p class="k">Năng suất</p>
-        <p>Nếu một nhân sự có thể điều phối nhiều AI Agent để thực hiện những phần việc trước đây cần cả một nhóm người, khái niệm <strong>"năng suất trên mỗi nhân sự"</strong> sẽ thay đổi ra sao?</p>
+  <!-- ===== 5 BÀI TOÁN SỐNG CÒN ===== -->
+  <section>
+    <p class="sec-eyebrow">5 bài toán sống còn</p>
+    <h2>AI Agent chạm thẳng vào <span class="t-orange">phương trình kinh doanh</span></h2>
+    <div class="benefits">
+      <div class="benefit">
+        <div class="b-icon"><svg viewBox="0 0 24 24"><path d="M4 14a8 8 0 0 1 16 0"/><path d="M4 14h2M18 14h2M12 6v2"/><path class="accent" d="M12 14l4-4"/><circle cx="12" cy="14" r="1.6" class="accent"/></svg></div>
+        <div><h3>Năng suất</h3><p>Nếu <b>một nhân sự điều phối nhiều AI Agent</b> làm phần việc trước đây cần cả một nhóm người — khái niệm "năng suất trên mỗi nhân sự" sẽ thay đổi ra sao?</p></div>
       </div>
-      <div>
-        <p class="k">Tăng trưởng</p>
-        <p>Nếu doanh nghiệp có thể mở rộng hoạt động bán hàng, marketing hay chăm sóc khách hàng mà <strong>không cần tăng tương ứng số lượng nhân sự</strong>, phương trình tăng trưởng sẽ thay đổi như thế nào?</p>
+      <div class="benefit">
+        <div class="b-icon"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8"/><path class="accent" d="M4 8l6-4 6 4 4-2"/><path class="accent" d="M20 4v3h-3"/></svg></div>
+        <div><h3>Tăng trưởng</h3><p>Nếu mở rộng bán hàng, marketing, chăm sóc khách hàng mà <b>không cần tăng tương ứng số nhân sự</b> — phương trình tăng trưởng sẽ thay đổi như thế nào?</p></div>
       </div>
-      <div>
-        <p class="k">Chi phí</p>
-        <p>Khi một phần công việc tri thức có thể được AI thực hiện liên tục với <strong>chi phí biên ngày càng thấp</strong>, cấu trúc chi phí nào sẽ còn tạo ra lợi thế?</p>
+      <div class="benefit">
+        <div class="b-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path class="accent" d="M12 8v8M9.5 10c0-1 1-1.8 2.5-1.8s2.5.7 2.5 1.7c0 2.4-5 1.7-5 4.1 0 1 1 1.8 2.5 1.8s2.5-.8 2.5-1.8"/></svg></div>
+        <div><h3>Chi phí</h3><p>Khi một phần công việc tri thức được AI thực hiện liên tục với <b>chi phí biên ngày càng thấp</b> — cấu trúc chi phí nào sẽ còn tạo ra lợi thế?</p></div>
       </div>
-      <div>
-        <p class="k">Trải nghiệm khách hàng</p>
-        <p>Nếu đối thủ có thể phục vụ từng khách hàng <strong>nhanh hơn, cá nhân hóa hơn và 24/7</strong>, kỳ vọng của thị trường sẽ thay đổi đến đâu?</p>
+      <div class="benefit">
+        <div class="b-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16v10H9l-5 4z"/><path class="accent" d="M12 9.2c.7-1.4 2.8-1.2 3.2.3.3 1.2-1.4 2.6-3.2 3.7-1.8-1.1-3.5-2.5-3.2-3.7.4-1.5 2.5-1.7 3.2-.3z"/></svg></div>
+        <div><h3>Trải nghiệm khách hàng</h3><p>Nếu đối thủ phục vụ từng khách hàng <b>nhanh hơn, cá nhân hoá hơn và 24/7</b> — kỳ vọng của thị trường sẽ thay đổi đến đâu?</p></div>
       </div>
-      <div class="wide">
-        <p class="k">Năng lực cạnh tranh</p>
-        <p>Điều gì xảy ra khi đối thủ của bạn xây dựng được một mô hình vận hành có AI Agent, <strong>còn doanh nghiệp của bạn vẫn vận hành theo cách cũ?</strong></p>
+      <div class="benefit wide">
+        <div class="b-icon"><svg viewBox="0 0 24 24"><path d="M6 21V4"/><path class="accent" d="M6 4c3-1.8 6 1.8 9 0v8c-3 1.8-6-1.8-9 0"/></svg></div>
+        <div><h3>Năng lực cạnh tranh</h3><p>Điều gì xảy ra khi đối thủ của bạn xây dựng được một mô hình vận hành có AI Agent — <b>còn doanh nghiệp của bạn vẫn vận hành theo cách cũ?</b></p></div>
       </div>
     </div>
 
-    <p class="punch">Đến lúc đó, câu hỏi không còn là:<br>"AI Agent có thực sự cần thiết không?"<br><br>Mà là: <span class="cam">"Chúng ta đã chậm bao xa?"</span></p>
-  </div>
-</section>
+    <p class="punch">Đến lúc đó, câu hỏi không còn là "AI Agent có thực sự cần thiết không?"<br>Mà là: <span class="t-orange">"Chúng ta đã chậm bao xa?"</span></p>
+  </section>
 
-<!-- ══════════ 4 CÂU HỎI CỦA WEBINAR ══════════ -->
-<section>
-  <div class="wrap">
-    <p class="sec-label">Nội dung webinar</p>
-    <h2>Đây không phải webinar về <span class="cam">"AI Agent là gì?"</span></h2>
-    <p class="body-light" style="margin-top:16px;max-width:720px">Đây là buổi thảo luận dành cho CEO muốn hiểu: <strong>AI Agent sẽ tạo ra lợi thế cạnh tranh gì, và doanh nghiệp cần làm gì ngay hôm nay?</strong> Chúng ta sẽ đi từ góc nhìn công nghệ sang góc nhìn kinh doanh để trả lời 4 câu hỏi quan trọng:</p>
+  <!-- ===== 4 CÂU HỎI CỦA WEBINAR ===== -->
+  <section>
+    <p class="sec-eyebrow">Nội dung webinar</p>
+    <h2>Đây không phải webinar về <span class="t-orange">"AI Agent là gì?"</span></h2>
+    <div class="prose">
+      <p>Đây là buổi thảo luận dành cho CEO muốn hiểu: <b>AI Agent sẽ tạo ra lợi thế cạnh tranh gì — và doanh nghiệp cần làm gì ngay hôm nay?</b> Chúng ta đi từ góc nhìn công nghệ sang góc nhìn kinh doanh để trả lời 4 câu hỏi:</p>
+    </div>
 
     <div class="agenda">
-      <div class="a-item">
-        <div class="a-time">01</div>
-        <div class="a-body"><b>AI Agent thực sự khác gì so với những gì doanh nghiệp đã biết về AI?</b>
-          <p>Tại sao AI Agent không chỉ là một phiên bản mới của ChatGPT, chatbot hay automation? Điểm khác biệt nào khiến AI bắt đầu có khả năng tham gia sâu hơn vào quy trình vận hành của doanh nghiệp?</p></div>
-      </div>
-      <div class="a-item">
-        <div class="a-time">02</div>
-        <div class="a-body"><b>AI Agent sẽ tác động vào những bài toán sống còn nào của doanh nghiệp?</b>
-          <p>Từ năng suất, chi phí, tốc độ vận hành đến bán hàng, trải nghiệm khách hàng và khả năng mở rộng. Đâu là những khu vực AI Agent có thể tạo ra tác động rõ rệt nhất?</p></div>
-      </div>
-      <div class="a-item">
-        <div class="a-time">03</div>
-        <div class="a-body"><b>Khi doanh nghiệp bắt đầu có một "lực lượng lao động số", mô hình vận hành sẽ thay đổi ra sao?</b>
-          <p>Vai trò của con người sẽ thay đổi như thế nào? Một tổ chức có AI Agent sẽ khác gì với một tổ chức chỉ sử dụng AI như công cụ hỗ trợ? Và CEO cần nhìn lại những giả định nào về cơ cấu tổ chức, quy trình và cách phân bổ nguồn lực?</p></div>
-      </div>
-      <div class="a-item">
-        <div class="a-time">04</div>
-        <div class="a-body"><b>CEO cần làm gì ngay hôm nay?</b>
-          <p>Không phải doanh nghiệp nào cũng cần triển khai AI Agent trên diện rộng ngay lập tức. Nhưng doanh nghiệp nào cũng cần biết: nên bắt đầu từ bài toán nào · năng lực nào cần chuẩn bị từ bây giờ · những thử nghiệm nào đáng làm trước · và làm thế nào để tránh rơi vào tình trạng "đến khi AI Agent trở thành tiêu chuẩn của ngành mới bắt đầu tìm hiểu".</p></div>
-      </div>
+      <div class="a-item"><span class="a-time">01</span><div class="a-body"><b>AI Agent thực sự khác gì so với những gì doanh nghiệp đã biết về AI?</b><p>Tại sao AI Agent không chỉ là phiên bản mới của ChatGPT, chatbot hay automation — và điểm khác biệt nào khiến AI bắt đầu <b>tham gia sâu vào quy trình vận hành</b>.</p></div></div>
+      <div class="a-item"><span class="a-time">02</span><div class="a-body"><b>AI Agent sẽ tác động vào những bài toán sống còn nào?</b><p>Từ năng suất, chi phí, tốc độ vận hành đến bán hàng, trải nghiệm khách hàng và khả năng mở rộng — <b>đâu là khu vực tác động rõ rệt nhất</b>.</p></div></div>
+      <div class="a-item"><span class="a-time">03</span><div class="a-body"><b>Khi doanh nghiệp có một "lực lượng lao động số", mô hình vận hành thay đổi ra sao?</b><p>Vai trò con người thay đổi thế nào, tổ chức có AI Agent khác gì tổ chức chỉ dùng AI hỗ trợ — và CEO cần <b>nhìn lại giả định nào</b> về cơ cấu, quy trình, phân bổ nguồn lực.</p></div></div>
+      <div class="a-item"><span class="a-time">04</span><div class="a-body"><b>CEO cần làm gì ngay hôm nay?</b><p>Nên bắt đầu từ bài toán nào · năng lực nào cần chuẩn bị từ bây giờ · thử nghiệm nào đáng làm trước — để không rơi vào cảnh <b>"đến khi AI Agent thành tiêu chuẩn của ngành mới bắt đầu tìm hiểu"</b>.</p></div></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════ THÍCH NGHI NHANH ĐẾN ĐÂU ══════════ -->
-<section>
-  <div class="wrap">
-    <p class="sec-label">Vấn đề không phải "có dùng hay không"</p>
-    <h2>Câu hỏi ngày càng trở thành: <span class="cam">doanh nghiệp sẽ thích nghi nhanh đến đâu?</span></h2>
-
-    <div class="story">
-      <p>Trong mỗi làn sóng công nghệ lớn, lợi thế hiếm khi thuộc về doanh nghiệp biết đến công nghệ đầu tiên. <strong>Lợi thế thuộc về doanh nghiệp hiểu sớm công nghệ sẽ thay đổi cuộc chơi ở đâu, sau đó chuẩn bị tổ chức đủ sớm để tận dụng nó.</strong></p>
-      <p>AI Agent cũng vậy. CEO không nhất thiết phải trở thành chuyên gia AI. Nhưng CEO cần hiểu đủ để đưa ra những quyết định đúng về:</p>
+  <!-- ===== THÍCH NGHI NHANH ĐẾN ĐÂU ===== -->
+  <section>
+    <p class="sec-eyebrow">Không phải chuyện "có dùng hay không"</p>
+    <h2>Câu hỏi thật sự: <span class="t-orange">doanh nghiệp sẽ thích nghi nhanh đến đâu?</span></h2>
+    <div class="prose prose-full">
+      <p>Trong mỗi làn sóng công nghệ lớn, lợi thế hiếm khi thuộc về doanh nghiệp biết đến công nghệ đầu tiên. <b>Lợi thế thuộc về doanh nghiệp hiểu sớm công nghệ sẽ thay đổi cuộc chơi ở đâu — rồi chuẩn bị tổ chức đủ sớm để tận dụng nó.</b></p>
+      <p>CEO không nhất thiết phải trở thành chuyên gia AI. Nhưng CEO cần hiểu đủ để đưa ra những quyết định đúng về:</p>
     </div>
-
     <div class="decide">
-      <span>Chiến lược</span>
-      <span>Nguồn lực</span>
-      <span>Con người</span>
-      <span>Công nghệ</span>
-      <span>Tốc độ chuyển đổi</span>
+      <div>Chiến lược</div>
+      <div>Nguồn lực</div>
+      <div>Con người</div>
+      <div>Công nghệ</div>
+      <div>Tốc độ chuyển đổi</div>
     </div>
+  </section>
 
-    <a class="btn" href="#dangky">Đăng ký tham dự webinar</a>
-  </div>
-</section>
-
-<!-- ══════════ DIỄN GIẢ ══════════ -->
-<section>
-  <div class="wrap">
-    <p class="sec-label">Diễn giả</p>
-    <h2>Mai Xuân Đạt</h2>
-    <div class="spk">
+  <!-- ===== DIỄN GIẢ ===== -->
+  <section>
+    <p class="sec-eyebrow">Diễn giả</p>
+    <h2>Người đang <span class="t-orange">vận hành doanh nghiệp bằng AI Agent</span> mỗi ngày</h2>
+    <div class="sp">
       <img src="../images/mai-xuan-dat.jpg" alt="Mai Xuân Đạt">
       <div>
-        <h3>Người sáng lập Agent Boss</h3>
-        <ul>
-          <li>Founder <strong>SEONGON</strong> — Agency AI Search Growth, hơn 100 nhân sự</li>
-          <li>Founder <strong>John Academy</strong> — đào tạo hơn 3.000 CEO, cố vấn hơn 300 doanh nghiệp về Quản trị Mục tiêu &amp; OKRs</li>
-          <li>Tác giả các đầu sách quản trị, hơn 30.000 bản phát hành</li>
-          <li><strong>Đang trực tiếp vận hành doanh nghiệp bằng đội ngũ AI Agent</strong> — nội dung buổi này lấy từ chính việc anh làm mỗi ngày</li>
+        <span class="sp-role">Diễn giả</span>
+        <h4>Mai Xuân Đạt</h4>
+        <p>Người sáng lập <b>Agent Boss</b> · Founder <b>SEONGON</b> — hơn 100 nhân sự · Sáng lập <b>John Academy</b> — đào tạo hơn 3.000 CEO, cố vấn hơn 300 doanh nghiệp về Quản trị Mục tiêu &amp; OKRs · Tác giả các đầu sách quản trị, hơn 30.000 bản phát hành · <b>Đang trực tiếp vận hành doanh nghiệp bằng đội ngũ AI Agent</b> — nội dung buổi này lấy từ chính việc anh làm mỗi ngày.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DÀNH CHO AI ===== -->
+  <section>
+    <p class="sec-eyebrow">Đối tượng</p>
+    <h2>Webinar này <span class="t-orange">dành cho ai?</span></h2>
+    <div class="cards3">
+      <div class="card">
+        <h3>CEO / Founder / Chủ doanh nghiệp</h3>
+        <p>Quan tâm đến AI nhưng chưa thấy rõ AI Agent sẽ ảnh hưởng trực tiếp tới doanh nghiệp của mình như thế nào.</p>
+      </div>
+      <div class="card">
+        <h3>Ban điều hành / C-level</h3>
+        <p>Đang tìm những đòn bẩy mới cho tăng trưởng, năng suất và hiệu quả vận hành.</p>
+      </div>
+      <div class="card">
+        <h3>Lãnh đạo doanh nghiệp</h3>
+        <p>Đứng trước câu hỏi: "AI rất quan trọng, nhưng giữa hàng trăm thứ cần ưu tiên, nên bắt đầu từ đâu?"</p>
+      </div>
+    </div>
+    <p class="note">Không cần kiến thức kỹ thuật. Webinar tập trung vào tác động kinh doanh và những quyết định lãnh đạo cần cân nhắc.</p>
+  </section>
+
+  <!-- ===== SAU WEBINAR ===== -->
+  <section>
+    <p class="sec-eyebrow">Kết quả bạn mang về</p>
+    <h2>Sau webinar, bạn có <span class="t-orange">góc nhìn rõ hơn về…</span></h2>
+    <ul class="gain">
+      <li>Vì sao AI Agent là chuyển dịch đáng theo dõi nghiêm túc — không phải một "trend AI" mới.</li>
+      <li>Những thay đổi AI Agent tạo ra với năng suất, chi phí, tăng trưởng, trải nghiệm khách hàng.</li>
+      <li>Khoảng cách cạnh tranh giữa doanh nghiệp ứng dụng sớm và doanh nghiệp phản ứng muộn.</li>
+      <li>Những bài toán phù hợp để doanh nghiệp bắt đầu thử nghiệm AI Agent.</li>
+      <li class="wide">Các câu hỏi chiến lược CEO cần đặt ra cho đội ngũ ngay từ hôm nay.</li>
+    </ul>
+  </section>
+
+  <!-- ===== CTA / FORM ===== -->
+  <section id="dang-ky">
+    <div class="cta-box">
+      <div>
+        <p class="sec-eyebrow">Đăng ký giữ chỗ</p>
+        <h2>AI Agent: Cuộc chơi mới <span class="t-orange">mà CEO không thể đứng ngoài</span></h2>
+        <ul class="evt">
+          <li><i>▸</i><span><b>Ngày tổ chức:</b> sắp công bố</span></li>
+          <li><i>▸</i><span><b>Thời gian:</b> sắp công bố</span></li>
+          <li><i>▸</i><span><b>Hình thức:</b> Online Webinar</span></li>
+          <li><i>▸</i><span><b>Đối tượng:</b> CEO / Founder / C-level</span></li>
+          <li><i>▸</i><span><b>Số lượng tham dự có giới hạn.</b> Link tham dự và thời gian chính thức gửi qua email ngay sau khi đăng ký.</span></li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ DÀNH CHO AI ══════════ -->
-<section>
-  <div class="wrap">
-    <p class="sec-label">Đối tượng</p>
-    <h2>Webinar này dành cho ai?</h2>
-    <div class="who">
-      <div><strong>CEO / Founder / Chủ doanh nghiệp</strong> — đang quan tâm đến AI nhưng chưa thấy rõ AI Agent sẽ ảnh hưởng trực tiếp tới doanh nghiệp của mình như thế nào.</div>
-      <div><strong>Ban điều hành / C-level</strong> — đang tìm kiếm những đòn bẩy mới cho tăng trưởng, năng suất và hiệu quả vận hành.</div>
-      <div><strong>Lãnh đạo doanh nghiệp</strong> đang đứng trước câu hỏi: "AI rất quan trọng, nhưng giữa hàng trăm thứ cần ưu tiên, chúng ta thực sự nên bắt đầu từ đâu?"</div>
-      <div class="no">Bạn không cần có kiến thức kỹ thuật về AI Agent để tham dự. Webinar tập trung vào tác động kinh doanh và những quyết định mà lãnh đạo doanh nghiệp cần cân nhắc.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ SAU WEBINAR ══════════ -->
-<section>
-  <div class="wrap">
-    <p class="sec-label">Kết quả bạn mang về</p>
-    <h2>Sau webinar, bạn sẽ có một góc nhìn rõ hơn về:</h2>
-    <ul class="gain">
-      <li>Vì sao AI Agent là một chuyển dịch đáng để CEO theo dõi nghiêm túc, thay vì chỉ là một "trend AI" mới.</li>
-      <li>Những thay đổi AI Agent có thể tạo ra đối với năng suất, chi phí, tăng trưởng và trải nghiệm khách hàng.</li>
-      <li>Khoảng cách cạnh tranh có thể hình thành giữa doanh nghiệp ứng dụng AI Agent sớm và doanh nghiệp phản ứng muộn.</li>
-      <li>Những bài toán phù hợp để doanh nghiệp bắt đầu thử nghiệm AI Agent.</li>
-      <li>Các câu hỏi chiến lược CEO cần đặt ra cho đội ngũ ngay từ hôm nay.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ══════════ FORM ══════════ -->
-<section id="dangky">
-  <div class="wrap">
-    <p class="sec-label">Đăng ký giữ chỗ</p>
-    <h2>AI Agent: Cuộc chơi mới mà CEO không thể đứng ngoài</h2>
-
-    <div class="meta">
-      <span>Ngày tổ chức: sắp công bố</span>
-      <span>Thời gian: sắp công bố</span>
-      <span>Hình thức: Online Webinar</span>
-      <span>CEO / Founder / C-level</span>
-    </div>
-    <p style="margin-top:16px"><strong>Số lượng tham dự có giới hạn.</strong> Link tham dự gửi qua email ngay sau khi đăng ký.</p>
-
-    <div class="formbox">
-      <!-- TODO (Toàn): nối form vào hệ thống thu lead + email xác nhận tự động -->
-      <form onsubmit="event.preventDefault();document.getElementById('done').style.display='block';this.style.display='none';">
-        <div class="g2">
-          <div class="field"><label>Họ và tên <i>*</i></label><input type="text" required placeholder="Nguyễn Văn A"></div>
-          <div class="field"><label>Chức vụ <i>*</i></label>
+      <div class="form-col">
+        <!-- TODO (Toàn): nối form vào hệ thống thu lead + email xác nhận tự động -->
+        <form aria-label="Form đăng ký (bản demo)" onsubmit="event.preventDefault();document.getElementById('done').style.display='block';this.style.display='none';">
+          <label>Họ và tên *<input type="text" required placeholder="Nguyễn Văn A"></label>
+          <label>Chức vụ *
             <select required><option value="">— Chọn —</option><option>CEO / Chủ doanh nghiệp</option><option>Giám đốc điều hành</option><option>Trưởng bộ phận</option><option>Khác</option></select>
-          </div>
-        </div>
-        <div class="g2">
-          <div class="field"><label>Tên doanh nghiệp <i>*</i></label><input type="text" required placeholder="Công ty ABC"></div>
-          <div class="field"><label>Quy mô nhân sự <i>*</i></label>
+          </label>
+          <label>Tên doanh nghiệp *<input type="text" required placeholder="Công ty ABC"></label>
+          <label>Quy mô nhân sự *
             <select required><option value="">— Chọn —</option><option>Dưới 15 người</option><option>15 – 30 người</option><option>31 – 50 người</option><option>Trên 50 người</option></select>
-          </div>
+          </label>
+          <label>Email *<input type="email" required placeholder="ban@congty.com"></label>
+          <label>Số điện thoại *<input type="tel" required placeholder="09xx xxx xxx"></label>
+          <button class="btn" type="submit">Đăng ký giữ chỗ</button>
+          <p class="form-note">Chúng tôi chỉ dùng thông tin này để gửi link tham dự và thông tin về buổi webinar.</p>
+        </form>
+        <div id="done" style="display:none;text-align:center;padding:16px 0">
+          <p style="font-size:16px;font-weight:600;color:var(--white);margin:0">Đã ghi nhận đăng ký</p>
+          <p style="margin:8px 0 0;font-size:14px;color:var(--ink-500)">Link tham dự và thời gian chính thức sẽ được gửi tới email của bạn.</p>
         </div>
-        <div class="g2">
-          <div class="field"><label>Email <i>*</i></label><input type="email" required placeholder="ban@congty.com"></div>
-          <div class="field"><label>Số điện thoại <i>*</i></label><input type="tel" required placeholder="09xx xxx xxx"></div>
-        </div>
-        <button class="btn full" type="submit">Đăng ký giữ chỗ</button>
-      </form>
-      <div id="done" style="display:none;text-align:center;padding:16px 0">
-        <p style="font-size:16px;font-weight:600;color:var(--white)">Đã ghi nhận đăng ký</p>
-        <p style="margin-top:8px">Link tham dự và thời gian chính thức sẽ được gửi tới email của bạn.</p>
       </div>
-      <p class="small" style="margin-top:16px;text-align:center">Chúng tôi chỉ dùng thông tin này để gửi link tham dự và thông tin về buổi webinar.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════ CHỐT ══════════ -->
-<section>
-  <div class="wrap">
-    <div class="story">
-      <p class="plain">Đừng bắt đầu với câu hỏi:</p>
-      <p><strong>"Doanh nghiệp tôi có cần AI Agent không?"</strong></p>
-      <p class="plain">Hãy bắt đầu với một câu hỏi khác:</p>
-    </div>
-    <p class="punch">"Nếu AI Agent thực sự thay đổi cách doanh nghiệp vận hành và cạnh tranh, chúng ta muốn là <span class="cam">người chuẩn bị trước</span> — hay người phản ứng sau?"</p>
-    <a class="btn" href="#dangky">Đăng ký tham dự webinar</a>
-  </div>
-</section>
+  <!-- ===== KHỐI CHỐT ===== -->
+  <section class="closing">
+    <p class="lead">Đừng bắt đầu với câu hỏi:</p>
+    <p class="q">"Doanh nghiệp tôi có cần AI Agent không?"</p>
+    <p class="lead">Hãy bắt đầu với một câu hỏi khác:</p>
+    <p class="punch" style="margin-top:10px">"Nếu AI Agent thực sự thay đổi cách doanh nghiệp vận hành và cạnh tranh, chúng ta muốn là <span class="t-orange">người chuẩn bị trước</span> — hay người phản ứng sau?"</p>
+    <a class="btn" href="#dang-ky" style="margin-top:26px">Đăng ký tham dự webinar</a>
+  </section>
+
+</div><!-- /wrap -->
 
 <footer>
   <div class="wrap">
-    <p>© 2026 Agent Boss · Webinar dành cho CEO / Founder / C-level</p>
-    <p class="small" style="margin-top:8px">Bản nháp nội bộ — chưa gắn hệ thống đăng ký</p>
+    <span>© 2026 Agent Boss · Webinar dành cho CEO / Founder / C-level</span>
+    <span>Bản nháp nội bộ — chưa gắn hệ thống đăng ký</span>
   </div>
 </footer>
 
-<div class="sticky-cta"><a class="btn" href="#dangky">Đăng ký tham dự webinar</a></div>
+<div class="sticky-cta"><a class="btn" href="#dang-ky">Đăng ký tham dự webinar</a></div>
 
 </body>
 </html>
