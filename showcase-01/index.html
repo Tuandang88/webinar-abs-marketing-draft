@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Boss Showcase #01 — Ứng dụng AI Agent cho Visual Production</title>
+<link rel="stylesheet" href="fonts/inter.css">
+<style>
+  /* ==== Agent Boss design tokens (canonical: E-cho-designer-quang/tokens.json) ==== */
+  :root{
+    --agent-dark:#0B1A2B;
+    --white:#FFFFFF;
+    --boss-orange:#FF6A1A;
+    --ink-900:#111827;
+    --ink-700:#374151;
+    --ink-500:#9CA3AF;
+    --ink-100:#F3F4F6;
+    --font:'Inter',Arial,sans-serif;
+    --mono:'Roboto Mono',monospace;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--agent-dark);color:var(--white);
+    font-family:var(--font);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  a{color:inherit}
+  .t-orange{color:var(--boss-orange)}
+
+  .draft{
+    background:var(--ink-900);border-bottom:1px solid var(--ink-700);
+    text-align:center;font-size:12px;color:var(--ink-500);
+    padding:6px 16px;letter-spacing:.08em;text-transform:uppercase;
+  }
+
+  /* ==== Header ==== */
+  header.site{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:12px}
+  .logo-lockup{display:flex;align-items:center;gap:11px}
+  .logo-lockup img{height:38px;width:auto;display:block}
+  .wordmark{font-weight:800;letter-spacing:.04em;font-size:17px;line-height:1.1}
+  .wordmark .b{color:var(--boss-orange)}
+  .wordmark small{display:block;font-weight:500;font-size:10px;letter-spacing:.18em;color:var(--ink-500)}
+  .btn{
+    display:inline-block;background:var(--boss-orange);color:var(--white);
+    font-weight:700;text-decoration:none;border:none;cursor:pointer;
+    padding:14px 28px;border-radius:10px;font-size:16px;font-family:var(--font);
+    text-align:center;
+  }
+  .btn:hover{filter:brightness(1.07)}
+  .btn:focus-visible{outline:3px solid var(--white);outline-offset:2px}
+  .btn.small{padding:11px 18px;font-size:14px;white-space:nowrap}
+
+  /* ==== Hero ==== */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;padding:40px 0 56px}
+  .pill{
+    display:inline-block;background:var(--ink-900);border:1px solid var(--ink-700);
+    border-radius:999px;padding:7px 16px;font-size:12.5px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--ink-500);margin:0 0 20px;
+  }
+  .pill b{color:var(--boss-orange);font-weight:600}
+  /* Quy tắc cứng #2: các dòng headline CÙNG size, 1 dòng đổi màu cam */
+  h1{
+    font-size:clamp(30px,4.4vw,48px);font-weight:700;letter-spacing:-0.03em;
+    line-height:1.15;margin:0 0 16px;text-wrap:balance;
+  }
+  .hero-sub{color:var(--ink-500);font-size:16.5px;max-width:46ch;margin:0 0 28px;text-wrap:pretty}
+  .hero-sub b{color:var(--ink-100);font-weight:600}
+  .hero-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .hero-meta{font-size:14px;color:var(--ink-500);font-variant-numeric:tabular-nums}
+
+  /* ==== Hero visual: khung chat giao việc cho Agent ==== */
+  .demo-shell{position:relative}
+  .demo-glow{ /* quy tắc #8: cam 8-18%, blur mạnh, sau khối, không phủ chữ */
+    position:absolute;inset:-8%;border-radius:24px;
+    background:radial-gradient(circle,rgba(255,106,26,.14) 0%,rgba(255,106,26,0) 70%);
+    filter:blur(34px);pointer-events:none;
+  }
+  .demo-win{
+    position:relative;background:var(--ink-900);border:1px solid var(--ink-700);
+    border-radius:16px;overflow:hidden;
+  }
+  .demo-bar{
+    display:flex;align-items:center;gap:8px;padding:11px 16px;
+    background:var(--agent-dark);border-bottom:1px solid var(--ink-700);
+  }
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--ink-700)}
+  .demo-title{margin-left:6px;font-size:12.5px;color:var(--ink-500);font-weight:600}
+  .demo-body{padding:18px;display:grid;gap:12px}
+  .msg-you{
+    justify-self:end;max-width:85%;
+    background:var(--ink-700);border-radius:14px 14px 4px 14px;
+    padding:10px 14px;font-size:14px;line-height:1.45;
+  }
+  .msg-tag{display:block;font-size:10.5px;letter-spacing:.12em;color:var(--ink-500);font-weight:700;margin-bottom:2px}
+  .agent-log{
+    justify-self:start;max-width:92%;width:100%;
+    background:var(--agent-dark);border:1px solid var(--ink-700);
+    border-radius:14px 14px 14px 4px;padding:12px 14px;
+    display:grid;gap:8px;
+  }
+  .step{
+    font-family:var(--mono);font-size:12.5px;color:var(--ink-100);
+    display:flex;gap:9px;align-items:baseline;
+    opacity:0;animation:fadeUp .45s forwards;
+  }
+  .step .ck{color:var(--boss-orange);font-weight:700}
+  .step small{color:var(--ink-500)}
+  .step:nth-child(2){animation-delay:.5s}
+  .step:nth-child(3){animation-delay:1s}
+  .step:nth-child(4){animation-delay:1.5s}
+  .step.done{
+    font-family:var(--font);font-size:13px;font-weight:700;color:var(--white);
+    border-top:1px solid var(--ink-700);padding-top:10px;margin-top:2px;
+    animation-delay:2s;
+  }
+  .step.done b{color:var(--boss-orange)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .step{animation:none;opacity:1;transform:none}
+  }
+
+  /* ==== Stats strip ==== */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink-700);
+    border:1px solid var(--ink-700);border-radius:14px;overflow:hidden;margin-bottom:8px;
+  }
+  .stat{background:var(--ink-900);padding:22px 14px;text-align:center}
+  .stat b{
+    display:block;font-size:34px;font-weight:700;letter-spacing:-0.02em;
+    font-variant-numeric:tabular-nums;color:var(--boss-orange); /* Tier 1: số liệu = cam */
+    line-height:1.15;
+  }
+  .stat span{font-size:13px;color:var(--ink-100);font-weight:500}
+
+  /* ==== Sections ==== */
+  section{padding:56px 0 8px}
+  .sec-eyebrow{
+    font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--boss-orange);margin:0 0 8px;
+  }
+  h2{
+    font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-0.02em;
+    line-height:1.2;margin:0 0 20px;text-wrap:balance;
+  }
+  .prose p{margin:0 0 14px;color:var(--ink-100);text-wrap:pretty}
+  .prose p b{color:var(--white)}
+  .prose-full p{font-size:17.5px;line-height:1.7}
+
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
+  .card{background:var(--ink-900);border:1px solid var(--ink-700);border-radius:14px;padding:20px}
+  .card h3{margin:0 0 6px;font-size:16.5px;font-weight:600}
+  .card p{margin:0;font-size:14px;color:var(--ink-500)}
+  .note{font-size:13.5px;color:var(--ink-500);font-style:italic;margin-top:16px}
+
+  /* ==== Benefits: 2x2 card + icon ==== */
+  .benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:6px}
+  .benefit{
+    background:var(--ink-900);border:1px solid var(--ink-700);border-radius:14px;
+    padding:20px;display:flex;gap:16px;align-items:flex-start;
+  }
+  .b-icon{
+    flex:0 0 44px;width:44px;height:44px;border-radius:12px;
+    background:var(--agent-dark);border:1px solid var(--ink-700);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .b-icon svg{width:22px;height:22px;stroke:var(--ink-100);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .b-icon .accent{stroke:var(--boss-orange)}
+  .benefit h3{margin:0 0 4px;font-size:15.5px;font-weight:700}
+  .benefit p{margin:0;font-size:13.5px;color:var(--ink-500)}
+
+  /* ==== Tabs 4 buổi ==== */
+  .tabs{display:flex;gap:10px;margin-bottom:16px;overflow-x:auto;padding-bottom:4px}
+  .tab{
+    flex:1;min-width:170px;background:var(--ink-900);border:1px solid var(--ink-700);
+    border-radius:12px;padding:13px 16px;cursor:pointer;text-align:left;
+    font-family:var(--font);color:var(--ink-500);
+  }
+  .tab b{display:block;font-size:12px;letter-spacing:.12em;font-weight:700;margin-bottom:3px;color:var(--ink-500)}
+  .tab span{font-size:14px;font-weight:600;color:var(--ink-100);line-height:1.3;display:block}
+  .tab:hover{border-color:var(--ink-500)}
+  .tab[aria-selected="true"]{border-color:var(--boss-orange);background:var(--ink-900)}
+  .tab[aria-selected="true"] b{color:var(--boss-orange)}
+  .tab[aria-selected="true"] span{color:var(--white)}
+  .tab:focus-visible{outline:2px solid var(--boss-orange);outline-offset:2px}
+  .panel{display:none}
+  .panel.active{display:block}
+
+  .session{
+    background:var(--ink-900);border:1px solid var(--ink-700);border-radius:16px;
+    padding:26px 28px;
+  }
+  .s-meta{font-size:14px;color:var(--ink-500);font-variant-numeric:tabular-nums}
+  .session h3{font-size:clamp(20px,2.6vw,25px);font-weight:700;letter-spacing:-0.01em;margin:8px 0 14px;line-height:1.3}
+  .sp-strip{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 4px}
+  .sp{display:flex;gap:18px;align-items:center;background:var(--agent-dark);border:1px solid var(--ink-700);border-radius:14px;padding:18px}
+  .sp img{width:150px;height:150px;border-radius:14px;object-fit:cover;object-position:top;flex:none;border:2px solid var(--boss-orange)}
+  .sp-role{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--boss-orange)}
+  .sp h4{margin:2px 0 7px;font-size:18.5px;font-weight:700;color:var(--white)}
+  .sp p{margin:0;font-size:13.5px;color:var(--ink-500);line-height:1.6}
+  .sp p b{color:var(--ink-100)}
+  .sp-tba{justify-content:center;border-style:dashed;color:var(--ink-500);font-size:14px;min-height:70px}
+  .agenda-label{margin:22px 0 6px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--boss-orange);text-transform:uppercase}
+  .agenda{position:relative}
+  .agenda::before{content:'';position:absolute;left:37px;top:18px;bottom:18px;width:2px;background:var(--ink-700)}
+  .a-item{position:relative;display:flex;gap:20px;padding:11px 0;align-items:flex-start}
+  .a-time{position:relative;z-index:1;flex:0 0 76px;text-align:center;font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--boss-orange);background:var(--agent-dark);border:1px solid rgba(255,106,26,.5);border-radius:999px;padding:6px 0;font-variant-numeric:tabular-nums}
+  .a-body{padding-top:4px}
+  .a-body b{font-size:16px;color:var(--white);line-height:1.4}
+  .a-body p{margin:3px 0 0;font-size:14.5px;color:var(--ink-500);line-height:1.6}
+  .a-body p b{font-size:inherit;color:var(--ink-100)}
+  .loi-ich{
+    margin:16px 0 0;padding:13px 17px;border-left:3px solid var(--boss-orange);
+    background:var(--agent-dark);border-radius:0 10px 10px 0;
+    font-size:15px;color:var(--ink-100);
+  }
+  .loi-ich b{color:var(--white)}
+
+  /* ==== FAQ (căn giữa cột) ==== */
+  .faq-sec{text-align:center}
+  .faq-list{max-width:760px;margin:0 auto;text-align:left}
+  details{
+    background:var(--ink-900);border:1px solid var(--ink-700);border-radius:12px;
+    margin-bottom:10px;
+  }
+  summary{
+    cursor:pointer;padding:15px 18px;font-weight:600;font-size:15px;list-style:none;
+    display:flex;align-items:center;gap:10px;
+  }
+  summary::before{content:"▸";color:var(--boss-orange);font-size:13px;transition:transform .15s}
+  details[open] summary::before{transform:rotate(90deg)}
+  summary:focus-visible{outline:2px solid var(--boss-orange);outline-offset:2px;border-radius:12px}
+  details p{margin:0;padding:0 18px 15px 40px;font-size:14.5px;color:var(--ink-500);text-wrap:pretty}
+
+  /* ==== CTA / form ==== */
+  .cta-box{
+    background:var(--ink-900);border:1px solid rgba(255,106,26,.4);border-radius:20px;
+    padding:36px;display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:start;
+  }
+  .cta-box .prose{max-width:none}
+  .gift-list{
+    margin:16px 0 0;padding:16px 20px;background:var(--agent-dark);
+    border:1px solid var(--ink-700);border-radius:12px;font-size:14px;color:var(--ink-100);
+  }
+  .gift-list ol{margin:8px 0 0;padding-left:20px;display:grid;gap:5px}
+  form{display:grid;gap:12px}
+  label{font-size:12.5px;font-weight:600;color:var(--ink-500);display:grid;gap:5px}
+  .hint{font-weight:400;font-size:11.5px;color:var(--ink-500)}
+  input,select{
+    background:var(--agent-dark);border:1px solid var(--ink-700);border-radius:8px;
+    color:var(--white);padding:12px 14px;font-size:15px;font-family:var(--font);width:100%;box-sizing:border-box;
+  }
+  input:focus-visible,select:focus-visible{outline:2px solid var(--boss-orange);outline-offset:1px;border-color:var(--boss-orange)}
+  form .btn{width:100%}
+  .form-note{font-size:12px;color:var(--ink-500);margin-top:2px;text-align:center}
+
+  footer{
+    border-top:1px solid var(--ink-700);padding:24px 0 36px;margin-top:56px;
+    font-size:12.5px;color:var(--ink-500);
+  }
+  footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+  /* ==== Sticky CTA mobile ==== */
+  .sticky-cta{display:none}
+
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;gap:36px;padding-top:24px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .cards3{grid-template-columns:1fr}
+    .sp-strip{grid-template-columns:1fr}
+    .sp img{width:104px;height:104px}
+    .benefits{grid-template-columns:1fr}
+    .cta-box{grid-template-columns:1fr;padding:24px}
+    .cta-box .form-col{order:-1}
+    .tabs{margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px}
+    .tab{min-width:150px;flex:0 0 auto}
+    .session{padding:20px}
+    .a-time{flex-basis:62px;font-size:11.5px}
+    .agenda::before{left:30px}
+    .wordmark small{display:none}
+    body{padding-bottom:66px}
+    .sticky-cta{
+      display:block;position:fixed;bottom:0;left:0;right:0;z-index:10;
+      padding:10px 16px;background:rgba(11,26,43,.96);border-top:1px solid var(--ink-700);
+    }
+    .sticky-cta .btn{width:100%;box-sizing:border-box;padding:13px}
+  }
+
+  /* ==== Showcase #01: khối case nhúng thành phẩm ==== */
+  .case{background:var(--ink-900);border:1px solid var(--ink-700);border-radius:16px;padding:26px 28px}
+  .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+  .case h3{font-size:clamp(20px,2.6vw,25px);font-weight:700;letter-spacing:-0.01em;margin:6px 0 12px;line-height:1.3}
+  .case .prose p{font-size:15.5px}
+  .who{display:flex;gap:12px;align-items:center;margin-bottom:6px}
+  .who img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--boss-orange)}
+  .who b{display:block;font-size:15px}
+  .who span{font-size:13px;color:var(--ink-500)}
+  .ticks{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:9px}
+  .ticks li{display:flex;gap:10px;font-size:15px;color:var(--ink-100);line-height:1.5}
+  .ticks li::before{content:"✓";color:var(--boss-orange);font-weight:700}
+  .prompt{margin-top:16px;background:var(--agent-dark);border:1px solid var(--ink-700);border-radius:12px;padding:14px 16px}
+  .prompt .lbl{font-size:10.5px;letter-spacing:.14em;font-weight:700;color:var(--ink-500)}
+  .prompt code{display:block;margin-top:6px;font-family:var(--mono);font-size:12.5px;color:var(--ink-100);line-height:1.6;white-space:normal}
+  .prompt .vi{margin:8px 0 0;font-size:13px;color:var(--ink-500)}
+  .hero-center{grid-template-columns:1fr;text-align:center;justify-items:center;padding:48px 0 56px}
+  .hero-center .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-center .hero-cta{justify-content:center}
+  .nowrap{white-space:nowrap}
+  .benefits-3{grid-template-columns:repeat(3,1fr)}
+  .reel-v{max-width:290px;margin:0 auto;width:100%}
+  .reel-h{max-width:760px;margin:26px auto 0}
+  .reel-h .reel-frame{aspect-ratio:16/9}
+  .reel{display:grid;gap:8px}
+  .reel-frame{position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--ink-700)}
+  .reel-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .reel-cap{font-size:13px;color:var(--ink-500);text-align:center}
+  .reel-cap b{color:var(--ink-100)}
+  .shot{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--ink-700)}
+  .shot img{display:block;width:100%;height:auto}
+  .shot-cap{margin-top:8px;font-size:13px;color:var(--ink-500);text-align:center}
+  .mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-700);border:1px solid var(--ink-700);border-radius:12px;overflow:hidden;margin-top:16px}
+  .mini-stats div{background:var(--agent-dark);padding:12px 8px;text-align:center}
+  .mini-stats b{display:block;font-size:24px;color:var(--boss-orange);line-height:1.2}
+  .mini-stats span{font-size:12px;color:var(--ink-100)}
+  .qa{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .qa .card h3{font-size:15.5px;color:var(--white)}
+  .qa .card h3::before{content:"“";color:var(--boss-orange);font-size:22px;margin-right:2px}
+  .cards2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .cards2 .card{padding:22px}
+  .sp3{grid-template-columns:repeat(3,1fr)}
+  .sp3 .sp{flex-direction:column;text-align:center;align-items:center}
+  .sp3 .sp img{width:132px;height:132px}
+  .draft-flag{font-size:12px;color:var(--ink-500);font-style:italic;margin:10px 0 0}
+  @media (max-width:860px){
+    .case{padding:20px}
+    .case-grid,.cards2,.qa,.sp3,.benefits-3{grid-template-columns:1fr}
+    .nowrap{white-space:normal}
+  }
+</style>
+</head>
+<body>
+
+<div class="draft">Bản nháp nội bộ v2 · 01/10/2026 · chờ duyệt, chưa phải trang chính thức</div>
+
+<div class="wrap">
+
+  <!-- ===== HEADER ===== -->
+  <header class="site">
+    <div class="logo-lockup">
+      <img src="images/logo.png" alt="Logo Agent Boss">
+      <div class="wordmark">AGENT <span class="b">BOSS</span>
+        <small>HỌC AI AGENT CHO NGƯỜI ĐI LÀM NON-TECH</small>
+      </div>
+    </div>
+    <a class="btn small" href="#dang-ky">Đăng ký giữ chỗ</a>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <div class="hero hero-center">
+    <div>
+      <span class="pill">Agent Boss <b>Showcase #01</b> · Case thật, việc thật</span>
+      <h1>Ứng dụng AI Agent cho Visual Production<br>
+          <span class="t-orange nowrap">Video, Ảnh &amp; Storytelling</span></h1>
+      <p class="hero-sub">Hai CEO chia sẻ cách họ dùng AI Agent làm <b>video quảng cáo, ảnh thương hiệu và câu chuyện bán hàng</b>, cho doanh nghiệp đang chạy thật.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#dang-ky">Đăng ký giữ chỗ</a>
+        <span class="hero-meta">20h00 · Chủ nhật 04/10/2026 · Online</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STATS ===== -->
+  <div class="stats">
+    <div class="stat"><b>2</b><span>CEO · 2 case đang chạy thật</span></div>
+    <div class="stat"><b>3</b><span>thành phẩm thật xem ngay trên trang</span></div>
+    <div class="stat"><b>20h00</b><span>Chủ nhật 04/10/2026</span></div>
+    <div class="stat"><b>Online</b><span>xem từ bất cứ đâu</span></div>
+  </div>
+
+  <!-- ===== GIỚI THIỆU ===== -->
+  <section>
+    <p class="sec-eyebrow">Agent Boss Showcase là gì</p>
+    <h2>Case thật, <span class="t-orange">việc thật</span></h2>
+    <div class="prose prose-full">
+      <p>Showcase là chuỗi buổi <b>chia sẻ lại kết quả của các sếp đã ứng dụng AI Agent vào trong doanh nghiệp</b>.</p>
+      <p>Buổi #01 chia sẻ về <b>video quảng cáo, ảnh thương hiệu và cách kể chuyện</b>. Đây là mảng mà trước đây chủ doanh nghiệp phải thuê ngoài, chờ đợi và duyệt đi duyệt lại.</p>
+    </div>
+  </section>
+
+  <!-- ===== CASE 01: SẾP PHONG ===== -->
+  <section id="case-phong">
+    <p class="sec-eyebrow">Case 01 · Ngành F&amp;B</p>
+    <h2>Mùa khai trương Ôbobun Grenette: <span class="t-orange">video do AI Agent làm</span></h2>
+    <div class="case">
+      <div class="case-grid">
+        <div>
+          <div class="who">
+            <img src="images/phan-viet-phong.jpg" alt="Phan Việt Phong">
+            <div><b>Phan Việt Phong</b><span>CEO Ôbobun · Grenoble, Pháp</span></div>
+          </div>
+          <div class="prose">
+            <p>Ôbobun là thương hiệu bún Việt tại Grenoble, Pháp. Đợt khai trương cửa hàng Ôbobun Grenette, sếp Phong dùng AI Agent làm trọn bộ video truyền thông:</p>
+          </div>
+          <ul class="ticks">
+            <li><span><b>Video teasing</b> đếm ngược ngày khai trương, đăng trước để khách tò mò</span></li>
+            <li><span><b>Video giới thiệu thương hiệu</b> 30 giây, chuẩn motion graphics, lồng tiếng Pháp</span></li>
+          </ul>
+        </div>
+        <div class="reel reel-v">
+          <div class="reel-frame"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1412799114369791%2F&amp;show_text=false&amp;width=320" title="Video teasing khai trương Ôbobun Grenette" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>
+          <p class="reel-cap"><b>Video teasing khai trương</b></p>
+        </div>
+      </div>
+      <div class="reel reel-h">
+        <div class="reel-frame"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F3277509345970914%2F&amp;show_text=false&amp;width=760" title="Video giới thiệu thương hiệu Ôbobun" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <p class="reel-cap"><b>Video giới thiệu thương hiệu 30 giây</b> · làm từ 1 câu lệnh</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CASE 02: SẾP KHÔI ===== -->
+  <section id="case-khoi">
+    <p class="sec-eyebrow">Case 02 · Thương hiệu cá nhân</p>
+    <h2>Một bộ nhân vật thương hiệu, <span class="t-orange">giữ đúng khuôn mặt thật</span></h2>
+    <div class="case">
+      <div class="case-grid">
+        <div>
+          <div class="who">
+            <img src="images/minh-khoi.jpg" alt="Minh Khôi">
+            <div><b>Minh Khôi</b><span>Founder DAS · Bí Mật Học Viện Số</span></div>
+          </div>
+          <div class="prose">
+            <p>Sếp Khôi dùng AI dựng trọn bộ nhận diện nhân vật cho thương hiệu cá nhân của <b>sếp Mai Xuân Đạt</b>. Đây là việc trước đây cần cả một nhóm thiết kế.</p>
+            <p>Phần khó nhất: AI hay "vẽ ra người khác". Sếp Khôi sẽ chỉ cách <b>giữ khuôn mặt thật qua mọi bức ảnh</b>, để người xem nhận ra ngay.</p>
+          </div>
+          <div class="mini-stats">
+            <div><b>3</b><span>phiên bản hình dạng</span></div>
+            <div><b>6</b><span>tư thế hoạt động</span></div>
+            <div><b>6</b><span>biểu cảm gương mặt</span></div>
+          </div>
+          <p class="draft-flag">[Chờ xác nhận: làm mất bao lâu, dùng công cụ gì]</p>
+        </div>
+        <div>
+          <a class="shot" href="images/khoi-bo-nhan-vat.png" target="_blank" rel="noopener"><img src="images/khoi-bo-nhan-vat.png" alt="Bộ nhân vật thương hiệu Supaman Mai Xuân Đạt do sếp Khôi làm bằng AI" loading="lazy"></a>
+          <p class="shot-cap">Bộ nhân vật "Supaman Mai Xuân Đạt" · bấm để xem ảnh lớn</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NHẬN ĐƯỢC GÌ ===== -->
+  <section>
+    <p class="sec-eyebrow">Sau 1 buổi tối</p>
+    <h2>Không phải xem cho biết, <span class="t-orange">mà mang về làm được</span></h2>
+    <div class="benefits benefits-3">
+      <div class="benefit">
+        <div class="b-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/><path class="accent" d="M7.5 12l2.5-2.5 2 2 4-4"/></svg></div>
+        <div><h3>Quy trình thật</h3><p>Từ ý tưởng tới thành phẩm, không cắt bớt bước nào.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="b-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path class="accent" d="M12 7v6M12 16.5v.5"/></svg></div>
+        <div><h3>Kinh nghiệm thực tế</h3><p>Những bài học rút ra trong quá trình ứng dụng AI Agent làm visual.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="b-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.4" class="accent"/><circle cx="4.5" cy="6" r="1.8"/><circle cx="19.5" cy="6" r="1.8"/><circle cx="4.5" cy="18" r="1.8"/><circle cx="19.5" cy="18" r="1.8"/><path d="M6 7l4.2 3.4M18 7l-4.2 3.4M6 17l4.2-3.4M18 17l-4.2-3.4"/></svg></div>
+        <div><h3>Áp vào ngành bạn</h3><p>Quán ăn, trung tâm đào tạo, dịch vụ, bán lẻ.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MÌNH CÓ LÀM ĐƯỢC KHÔNG ===== -->
+  <section>
+    <p class="sec-eyebrow">3 nỗi lo thường gặp</p>
+    <h2>Bạn <span class="t-orange">cũng làm được</span>. Đây là lý do.</h2>
+    <div class="qa">
+      <div class="card"><h3>Tôi không biết thiết kế, không biết dựng video.</h3><p>Hai khách mời cũng không phải dân làm phim. Việc của bạn là mô tả rõ mình muốn gì, AI Agent làm phần còn lại.</p></div>
+      <div class="card"><h3>Tôi không có thời gian học công cụ mới.</h3><p>Bạn xem quy trình 2 sếp đã chạy thật, rồi chọn đúng một việc để bắt đầu. Không cần học mọi thứ cùng lúc.</p></div>
+      <div class="card"><h3>Ngành tôi khác, chắc không áp dụng được.</h3><p>Video giới thiệu, ảnh thương hiệu, câu chuyện bán hàng là việc ngành nào cũng cần.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== ĐỐI TƯỢNG ===== -->
+  <section>
+    <p class="sec-eyebrow">Buổi này dành cho</p>
+    <h2>Dù bạn đã học hay <span class="t-orange">chưa từng dùng AI Agent</span></h2>
+    <div class="cards2">
+      <div class="card"><h3>Học viên Agent Boss Starter</h3><p>Xem các sếp cùng khoá đã đi xa tới đâu, và bước tiếp theo của bạn là gì.</p></div>
+      <div class="card"><h3>Chủ doanh nghiệp chưa dùng AI Agent</h3><p>Xem kết quả thật trước, rồi tự quyết có nên bắt đầu.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== DIỄN GIẢ + AGENDA ===== -->
+  <section>
+    <p class="sec-eyebrow">Người chia sẻ</p>
+    <h2>Người làm thật, <span class="t-orange">kể việc thật</span></h2>
+    <div class="session">
+      <span class="s-meta">20h00 · Chủ nhật 04/10/2026 · 90 phút · Online</span>
+      <div class="sp-strip sp3">
+        <div class="sp">
+          <img src="images/phan-viet-phong.jpg" alt="Phan Việt Phong">
+          <div><span class="sp-role">Khách mời</span><h4>Phan Việt Phong</h4><p>CEO <b>Ôbobun</b> · Nhà khởi nghiệp, kinh doanh ẩm thực Việt tại Grenoble, Pháp</p></div>
+        </div>
+        <div class="sp">
+          <img src="images/mai-xuan-dat.jpg" alt="Mai Xuân Đạt">
+          <div><span class="sp-role">Host</span><h4>Mai Xuân Đạt</h4><p>Founder <b>Agent Boss Starter</b> · Founder <b>SEONGON</b></p></div>
+        </div>
+        <div class="sp">
+          <img src="images/minh-khoi.jpg" alt="Minh Khôi">
+          <div><span class="sp-role">Khách mời</span><h4>Minh Khôi</h4><p>Founder <b>DAS</b> (Bí Mật Học Viện Số) · Business Architect</p></div>
+        </div>
+      </div>
+      <p class="agenda-label">Diễn biến buổi (dự kiến)</p>
+      <div class="agenda">
+        <div class="a-item"><span class="a-time">20h00</span><div class="a-body"><b>Mở màn</b><p>Sếp Đạt giới thiệu Showcase và 2 khách mời.</p></div></div>
+        <div class="a-item"><span class="a-time">20h10</span><div class="a-body"><b>Case 01: Video khai trương Ôbobun</b><p>Sếp Phong kể từ ý tưởng tới <b>video khai trương</b> đang chạy thật.</p></div></div>
+        <div class="a-item"><span class="a-time">20h35</span><div class="a-body"><b>Case 02: Bộ nhân vật thương hiệu</b><p>Sếp Khôi chỉ cách giữ <b>khuôn mặt thật</b> qua mọi bức ảnh AI.</p></div></div>
+        <div class="a-item"><span class="a-time">21h00</span><div class="a-body"><b>Hỏi đáp trực tiếp</b><p>Hỏi thẳng 2 khách mời về việc của doanh nghiệp bạn.</p></div></div>
+        <div class="a-item"><span class="a-time">21h20</span><div class="a-body"><b>Chốt bài học</b><p>Sếp Đạt tổng kết: việc hình ảnh nào bạn giao được cho AI Agent ngay tuần này.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq-sec">
+    <p class="sec-eyebrow">Câu hỏi thường gặp</p>
+    <h2>Bạn vẫn còn <span class="t-orange">băn khoăn?</span></h2>
+    <div class="faq-list">
+      <details>
+        <summary>Tôi chưa học Agent Boss Starter, có tham gia được không?</summary>
+        <p>Được. Buổi này dành cho cả học viên và người chưa từng dùng AI Agent. Bạn chỉ cần xem và ghi lại việc hình ảnh nào của doanh nghiệp mình muốn giao cho AI.</p>
+      </details>
+      <details>
+        <summary>Tôi không rành công nghệ, cần chuẩn bị gì trước?</summary>
+        <p>Không cần chuẩn bị gì. Mọi thành phẩm và cách làm được trình bày trên màn hình của khách mời.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section id="dang-ky">
+    <div class="cta-box">
+      <div>
+        <p class="sec-eyebrow">Đăng ký tham gia</p>
+        <h2>Đăng ký <span class="t-orange">giữ chỗ ngay</span></h2>
+        <div class="prose">
+          <p>20h00 · <b>Chủ nhật 04/10/2026</b> · Online.</p>
+          <p>Điền thông tin để nhận link tham dự qua email trước giờ bắt đầu.</p>
+        </div>
+      </div>
+      <div class="form-col">
+        <form aria-label="Form đăng ký (bản demo)">
+          <label>Họ tên *<input type="text" name="hoten" placeholder="Nguyễn Văn A" required></label>
+          <label>Email (nhận link tham dự) *<input type="email" name="email" placeholder="ban@congty.vn" required></label>
+          <label>Số điện thoại *<input type="tel" name="sdt" placeholder="09xx xxx xxx" required>
+            <span class="hint">Chỉ dùng để nhắc lịch trước buổi, không gọi bán hàng.</span></label>
+          <label>Bạn là
+            <select name="nhom">
+              <option>Học viên Agent Boss Starter</option>
+              <option>Chủ doanh nghiệp, chưa học Agent Boss</option>
+              <option>Khác</option>
+            </select>
+          </label>
+          <!-- TODO: nối form vào hệ thống thu lead khi dựng trang thật -->
+          <button class="btn" type="button">Đăng ký giữ chỗ</button>
+          <p class="form-note">Nhận link tham dự qua email trước giờ bắt đầu. <em>(Bản nháp: form chưa nối hệ thống.)</em></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Agent Boss · Mai Xuân Đạt</span>
+    <span>Bản nháp nội bộ để duyệt · v2 · 01/10/2026</span>
+  </div>
+</footer>
+
+<div class="sticky-cta"><a class="btn" href="#dang-ky">Đăng ký giữ chỗ</a></div>
+
+<!-- Lớp góp ý chỉ dùng khi duyệt: xoá dòng dưới trước khi lên trang chính thức -->
+<script src="gop-y.js"></script>
+</body>
+</html>
