@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Duyệt content Agent Boss Showcase #01 (04/10)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Roboto+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0B1A2B;--deep:#050D16;--card:#0F1F38;--orange:#FF6A1A;--gray:#9CA3AF;--light:#E5E7EB}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--navy);color:#fff;font-family:'Inter',sans-serif;line-height:1.6}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 20px 80px}
+  .tag{display:inline-block;padding:8px 18px;border-radius:999px;background:rgba(255,106,26,.12);border:1.5px solid rgba(255,106,26,.55);color:var(--orange);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+  h1{margin-top:16px;font-size:clamp(24px,4.5vw,34px);font-weight:800;letter-spacing:-.01em}
+  h1 .cam{color:var(--orange)}
+  .note{margin-top:10px;color:var(--gray);font-size:15px}
+  .note b{color:var(--light)}
+
+  table{width:100%;margin-top:26px;border-collapse:collapse;font-size:15px}
+  th,td{padding:12px 14px;text-align:left;border:1px solid rgba(255,255,255,.12)}
+  th{background:var(--card);color:var(--orange);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  td{color:var(--light)}
+  td .mono{font-family:'Roboto Mono',monospace;font-weight:700;color:#fff;white-space:nowrap}
+
+  .flowbox{margin-top:26px;padding:20px 22px;border-radius:16px;background:var(--card);border:1px solid rgba(255,255,255,.12)}
+  .flowbox .lb{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .flowbox p{margin-top:10px;font-family:'Roboto Mono',monospace;font-size:15px;color:var(--light)}
+  .flowbox i{font-style:normal;color:var(--orange);font-weight:700}
+
+  .post{margin-top:52px;background:var(--card);border:1px solid rgba(255,255,255,.12);border-radius:18px;overflow:hidden}
+  .post-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .date{font-family:'Roboto Mono',monospace;font-weight:700;font-size:15px;color:var(--deep);background:var(--orange);padding:7px 16px;border-radius:999px;white-space:nowrap}
+  .post-head h2{font-size:19px;font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  @media(max-width:760px){.cols{grid-template-columns:1fr}}
+  .caption{padding:22px 24px;font-size:15.5px;color:var(--light);white-space:pre-wrap;border-right:1px solid rgba(255,255,255,.08)}
+  @media(max-width:760px){.caption{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}}
+  .img{padding:22px 24px;background:var(--deep);display:flex;align-items:flex-start;justify-content:center}
+  .img img{width:100%;max-width:520px;border-radius:12px;border:1px solid rgba(255,255,255,.14)}
+  .lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);font-weight:700;padding:16px 24px 0}
+  footer{margin-top:60px;color:var(--gray);font-size:13.5px;text-align:center}
+  footer a{color:var(--orange)}
+
+  .status{margin-left:auto;padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:700;white-space:nowrap}
+  .status.cho{background:rgba(156,163,175,.15);border:1.5px solid rgba(156,163,175,.5);color:#C4CBD4}
+  .status.ok{background:rgba(34,197,94,.15);border:1.5px solid rgba(34,197,94,.6);color:#4ADE80}
+  .status.sua{background:rgba(255,106,26,.15);border:1.5px solid rgba(255,106,26,.6);color:#FF8A4A}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding:18px 24px;border-top:1px solid rgba(255,255,255,.1);background:rgba(5,13,22,.5)}
+  .abtn{border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:12px 22px;border-radius:999px}
+  .abtn.duyet{background:#22C55E;color:#052e14}
+  .abtn.sua{background:transparent;color:#FF8A4A;border:1.5px solid rgba(255,106,26,.6)}
+  .abtn.tai{background:transparent;color:#E5E7EB;border:1.5px solid rgba(255,255,255,.3);text-decoration:none;display:inline-block}
+  .abtn:disabled{opacity:.45;cursor:not-allowed}
+  .cmtbox{display:none;padding:0 24px 20px;background:rgba(5,13,22,.5)}
+  .cmtbox.open{display:block}
+  .cmtbox textarea{width:100%;min-height:90px;background:var(--navy);border:1.5px solid rgba(255,255,255,.25);border-radius:12px;color:#fff;font-family:'Inter',sans-serif;font-size:15px;padding:12px 14px;resize:vertical}
+  .cmtbox textarea:focus{outline:none;border-color:var(--orange)}
+  .cmtrow{margin-top:10px;display:flex;gap:10px}
+  .sentnote{padding:10px 24px 18px;background:rgba(5,13,22,.5);color:var(--gray);font-size:14px;display:none}
+  .sentnote b{color:#FF8A4A}
+  .reset{margin-left:8px;background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="tag">Bản duyệt nội bộ · Agent Boss Showcase #01</span>
+  <h1>2 bài Facebook giới thiệu<br><span class="cam">"Ứng dụng AI Agent cho Visual Production"</span> — lên sóng 20h00 Chủ nhật 04/10</h1>
+  <p class="note">Kính gửi sếp Đạt duyệt <b>nội dung + hình + lịch đăng</b>. Người tổng hợp: <b>Tuấn (CS)</b> · 02/10/2026.</p>
+  <p class="note" style="margin-top:14px">Host <b>anh Mai Xuân Đạt</b> · Khách mời <b>anh Phan Việt Phong</b> (CEO Ôbobun) và <b>anh Minh Khôi</b> (Founder DAS). Lịch chỉ còn 2 ngày nên bộ này gồm <b>2 bài</b>: giới thiệu webinar và giới thiệu khách mời.</p>
+  <p class="note" style="margin-top:14px">Landing nháp: <a style="color:#FF6A1A" href="../../showcase-01/">xem tại đây</a> · Link đăng ký chính thức <b>chưa có</b>, trong bài đang để <b>[link đăng ký]</b>.</p>
+
+  <table>
+    <tr><th>Ngày đăng</th><th>Bài</th><th>Góc nội dung</th></tr>
+    <tr><td><span class="mono">T6 · 02/10</span></td><td>Bài 1 — Giới thiệu webinar</td><td>Hình ảnh là việc tốn tiền, tốn thời gian nhất vì phải thuê ngoài → ngay trong cộng đồng Agent Boss đã có người tự làm bằng AI Agent</td></tr>
+    <tr><td><span class="mono">T7 · 03/10</span></td><td>Bài 2 — Giới thiệu khách mời</td><td>Hai chủ doanh nghiệp, hai lĩnh vực khác nhau (ẩm thực tại Pháp · học viện kinh doanh số), cùng tự đưa AI Agent vào việc hình ảnh</td></tr>
+  </table>
+
+  <div class="post" data-post="Showcase #01 · Bài 1 — Giới thiệu webinar (02/10)" data-img="images/post-gioi-thieu.png" data-dl="showcase01-bai1-gioi-thieu.png">
+    <div class="post-head"><span class="date">T6 · 02/10</span><h2>Bài 1 — Giới thiệu webinar</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption"><b>AGENT BOSS SHOWCASE #01: ỨNG DỤNG AI AGENT CHO VISUAL PRODUCTION – VIDEO, ẢNH &amp; STORYTELLING</b>
+
+Với nhiều chủ doanh nghiệp, hình ảnh luôn là phần việc vừa tốn tiền vừa tốn thời gian nhất. Muốn có một video quảng cáo thì phải thuê ngoài, chờ bản nháp rồi duyệt đi duyệt lại. Muốn có bộ ảnh thương hiệu thì lại phải chờ thêm một đội thiết kế. Và khi sản phẩm xong, thời điểm tốt nhất để tung ra thị trường đôi khi đã trôi qua.
+
+Nhưng câu chuyện đó đang thay đổi. Ngay trong cộng đồng Agent Boss, đã có những chủ doanh nghiệp tự làm phần việc này bằng AI Agent, cho chính doanh nghiệp của mình.
+
+<b>Agent Boss Showcase #01</b> là buổi để chúng ta cùng xem lại những kết quả thật đó:
+
+🔥 <b>Video khai trương cửa hàng tại Pháp</b>: video teasing đếm ngược và video giới thiệu thương hiệu 30 giây, có nhạc, có chuyển động, lồng tiếng Pháp. Tất cả do AI Agent làm.
+
+🔥 <b>Bộ nhân vật thương hiệu hoàn chỉnh</b>: 3 phiên bản hình dạng, 6 tư thế, 6 biểu cảm, giữ đúng khuôn mặt thật qua mọi bức ảnh.
+
+🔥 <b>Quy trình từ ý tưởng tới thành phẩm</b>, được chính người làm kể lại.
+
+🔥 <b>Kinh nghiệm thực tế</b>: những bài học rút ra trong quá trình ứng dụng AI Agent làm visual.
+
+🔥 <b>Hỏi đáp trực tiếp</b> cùng hai khách mời.
+
+Hai khách mời của buổi này không phải dân làm phim hay thiết kế. Họ là những người làm kinh doanh, từng bắt đầu từ khoá Agent Boss Starter, và đã đưa AI Agent vào việc thật của doanh nghiệp mình.
+
+📌 <b>THÔNG TIN SỰ KIỆN</b>
+
+- <b>Chủ đề:</b> Ứng dụng AI Agent cho Visual Production: Video, Ảnh &amp; Storytelling
+- <b>Thời gian:</b> 20h00, Chủ nhật, 04/10/2026
+- <b>Hình thức:</b> Online
+- <b>Host:</b> Mai Xuân Đạt – Founder Agent Boss Starter
+- <b>Khách mời:</b> Phan Việt Phong – CEO Ôbobun · Minh Khôi – Founder DAS
+
+👉 <b>Đăng ký giữ chỗ:</b> [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="images/post-gioi-thieu.png" alt="Visual Bài 1 — Giới thiệu webinar"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="post" data-post="Showcase #01 · Bài 2 — Giới thiệu khách mời (03/10)" data-img="images/post-khach-moi.png" data-dl="showcase01-bai2-khach-moi.png">
+    <div class="post-head"><span class="date">T7 · 03/10</span><h2>Bài 2 — Giới thiệu khách mời</h2></div>
+    <div class="cols">
+      <div>
+        <p class="lbl">Caption</p>
+        <div class="caption"><b>GIỚI THIỆU KHÁCH MỜI — AGENT BOSS SHOWCASE #01 | 20H00 CHỦ NHẬT 04/10/2026</b>
+
+Showcase #01 có sự góp mặt của hai chủ doanh nghiệp ở hai lĩnh vực rất khác nhau: một người kinh doanh ẩm thực Việt ngay giữa nước Pháp, và một người xây dựng học viện về kinh doanh số. Điểm chung của họ là đều đã tự tay đưa AI Agent vào phần việc hình ảnh của doanh nghiệp mình.
+
+🎤 <b>KHÁCH MỜI: PHAN VIỆT PHONG — CEO ÔBOBUN</b>
+
+Anh Phan Việt Phong là nhà khởi nghiệp, người đứng sau Ôbobun, chuỗi 4 cửa hàng bún Việt tại thành phố Grenoble, Pháp. Đợt khai trương cửa hàng Ôbobun Grenette, thay vì thuê một đội làm video như trước, anh dùng AI Agent làm trọn bộ video truyền thông: từ video teasing đếm ngược ngày khai trương, đến video giới thiệu thương hiệu 30 giây có nhạc, chuyển động và giọng đọc tiếng Pháp cho khách bản địa.
+
+Trong buổi Showcase, anh Phong sẽ kể lại hành trình đó: bắt đầu từ đâu, làm thế nào để video ra đúng chất thương hiệu, và những gì anh rút ra sau khi đem video chạy thật.
+
+🎤 <b>KHÁCH MỜI: MINH KHÔI — FOUNDER DAS</b>
+
+Anh Minh Khôi là Founder DAS – Bí Mật Học Viện Số, người theo đuổi việc biến tri thức thành tài sản số. Anh đã dùng AI để dựng trọn một bộ nhân vật thương hiệu cho thương hiệu cá nhân của anh Mai Xuân Đạt, gồm 3 phiên bản hình dạng, 6 tư thế hoạt động và 6 biểu cảm gương mặt. Việc khó nhất là giữ cho nhân vật luôn đúng khuôn mặt thật, để người xem nhận ra ngay dù ở bức ảnh nào.
+
+Trong buổi Showcase, anh Khôi sẽ chia sẻ cách anh làm được điều đó và cách áp dụng cho thương hiệu của chính bạn.
+
+Dẫn dắt chương trình là <b>anh Mai Xuân Đạt – Founder Agent Boss Starter</b>.
+
+📌 Thời gian: 20h00, Chủ nhật, 04/10/2026 · Online
+
+👉 Đăng ký giữ chỗ: [link đăng ký]</div>
+      </div>
+      <div>
+        <p class="lbl" style="background:#050D16">Visual</p>
+        <div class="img"><img src="images/post-khach-moi.png" alt="Visual Bài 2 — Giới thiệu khách mời"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <h1 style="font-size:24px;margin-top:64px">Ấn phẩm dùng trong buổi học</h1>
+  <p class="note">Các ảnh này không đăng Facebook, dùng trong phòng Zoom. Mỗi người một backdrop có tên riêng, để khán giả nhìn ô video là biết ai đang nói.</p>
+
+  <div class="post" data-post="Showcase #01 · Backdrop Zoom — Mai Xuân Đạt" data-img="images/backdrop-zoom-dat.png" data-dl="showcase01-backdrop-dat.png">
+    <div class="post-head"><span class="date">1600×900</span><h2>Backdrop Zoom — anh Mai Xuân Đạt (Host)</h2></div>
+    <div class="img" style="padding:22px 24px"><img src="images/backdrop-zoom-dat.png" alt="Backdrop Zoom — anh Mai Xuân Đạt (Host)"></div>
+  </div>
+
+  <div class="post" data-post="Showcase #01 · Backdrop Zoom — Phan Việt Phong" data-img="images/backdrop-zoom-phong.png" data-dl="showcase01-backdrop-phong.png">
+    <div class="post-head"><span class="date">1600×900</span><h2>Backdrop Zoom — anh Phan Việt Phong</h2></div>
+    <div class="img" style="padding:22px 24px"><img src="images/backdrop-zoom-phong.png" alt="Backdrop Zoom — anh Phan Việt Phong"></div>
+  </div>
+
+  <div class="post" data-post="Showcase #01 · Backdrop Zoom — Minh Khôi" data-img="images/backdrop-zoom-khoi.png" data-dl="showcase01-backdrop-khoi.png">
+    <div class="post-head"><span class="date">1600×900</span><h2>Backdrop Zoom — anh Minh Khôi</h2></div>
+    <div class="img" style="padding:22px 24px"><img src="images/backdrop-zoom-khoi.png" alt="Backdrop Zoom — anh Minh Khôi"></div>
+  </div>
+
+  <div class="post" data-post="Showcase #01 · Màn hình chờ" data-img="images/man-hinh-cho.png" data-dl="showcase01-man-hinh-cho.png">
+    <div class="post-head"><span class="date">1920×1080</span><h2>Màn hình chờ — chia sẻ trước giờ bắt đầu</h2></div>
+    <div class="img" style="padding:22px 24px"><img src="images/man-hinh-cho.png" alt="Màn hình chờ — chia sẻ trước giờ bắt đầu"></div>
+  </div>
+
+  <footer>Bản duyệt nội bộ Agent Boss · <a href="../">bản duyệt buổi 4 Marketing</a> · <a href="../../showcase-01/">Landing nháp Showcase #01</a><br>Tuấn (CS) tổng hợp bằng Claude Code · 02/10/2026</footer>
+</div>
+
+<script>
+// Kết quả duyệt gửi về "hòm thư" ntfy riêng của Showcase #01 — Tuấn poll và báo lại trong Claude Code
+var TOPIC = 'https://ntfy.sh/abs-duyet-showcase01-081a258b39';
+
+document.querySelectorAll('.post[data-post]').forEach(function(post){
+  var name = post.dataset.post, key = 'duyet:' + name;
+  var head = post.querySelector('.post-head');
+
+  var chip = document.createElement('span');
+  chip.className = 'status cho'; chip.textContent = '⏳ Chờ duyệt';
+  head.appendChild(chip);
+
+  var bar = document.createElement('div'); bar.className = 'actions';
+  bar.innerHTML = '<button class="abtn duyet">✅ Duyệt</button>' +
+    '<button class="abtn sua">✏️ Yêu cầu chỉnh sửa</button>' +
+    '<a class="abtn tai" href="' + post.dataset.img + '" download="' + post.dataset.dl + '">⬇️ Tải ảnh</a>';
+  post.appendChild(bar);
+
+  var box = document.createElement('div'); box.className = 'cmtbox';
+  box.innerHTML = '<textarea placeholder="Sếp ghi rõ cần sửa gì (nội dung / hình / lịch đăng)..."></textarea>' +
+    '<div class="cmtrow"><button class="abtn duyet gui">Gửi yêu cầu</button><button class="abtn tai huy">Hủy</button></div>';
+  post.appendChild(box);
+
+  var note = document.createElement('div'); note.className = 'sentnote';
+  post.appendChild(note);
+
+  var bDuyet = bar.querySelector('.duyet'), bSua = bar.querySelector('.sua');
+  var ta = box.querySelector('textarea'), bGui = box.querySelector('.gui'), bHuy = box.querySelector('.huy');
+
+  function setState(st, cmt){
+    if(st === 'ok'){ chip.className = 'status ok'; chip.textContent = '✅ Đã duyệt'; }
+    else if(st === 'sua'){ chip.className = 'status sua'; chip.textContent = '✏️ Chờ chỉnh sửa'; }
+    else { chip.className = 'status cho'; chip.textContent = '⏳ Chờ duyệt'; }
+    bDuyet.disabled = (st !== 'cho'); bSua.disabled = (st !== 'cho');
+    if(st === 'ok'){ note.style.display = 'block'; note.innerHTML = 'Đã gửi kết quả duyệt cho Tuấn. <button class="reset">đổi quyết định</button>'; }
+    else if(st === 'sua' && cmt){ note.style.display = 'block'; note.innerHTML = '<b>Yêu cầu đã gửi:</b> ' + cmt.replace(/</g,'&lt;') + ' <button class="reset">đổi quyết định</button>'; }
+    else { note.style.display = 'none'; note.innerHTML = ''; }
+    var rs = note.querySelector('.reset');
+    if(rs) rs.onclick = function(){ localStorage.removeItem(key); setState('cho'); };
+  }
+
+  function send(text, cb){
+    fetch(TOPIC, {method:'POST', body: text}).then(function(r){ cb(r.ok); }).catch(function(){ cb(false); });
+  }
+
+  var saved = {};
+  try{ saved = JSON.parse(localStorage.getItem(key) || '{}'); }catch(e){}
+  setState(saved.st || 'cho', saved.cmt);
+
+  bDuyet.onclick = function(){
+    bDuyet.disabled = true; bDuyet.textContent = 'Đang gửi...';
+    send('✅ DUYỆT — ' + name, function(ok){
+      bDuyet.textContent = '✅ Duyệt';
+      if(ok){ localStorage.setItem(key, JSON.stringify({st:'ok'})); setState('ok'); }
+      else { alert('Gửi không thành công, sếp bấm thử lại giúp em.'); bDuyet.disabled = false; }
+    });
+  };
+  bSua.onclick = function(){ box.classList.add('open'); ta.focus(); };
+  bHuy.onclick = function(){ box.classList.remove('open'); };
+  bGui.onclick = function(){
+    var c = ta.value.trim();
+    if(!c){ ta.focus(); return; }
+    bGui.disabled = true; bGui.textContent = 'Đang gửi...';
+    send('✏️ YÊU CẦU CHỈNH SỬA — ' + name + '\n' + c, function(ok){
+      bGui.disabled = false; bGui.textContent = 'Gửi yêu cầu';
+      if(ok){ localStorage.setItem(key, JSON.stringify({st:'sua', cmt:c})); box.classList.remove('open'); setState('sua', c); }
+      else { alert('Gửi không thành công, sếp bấm thử lại giúp em.'); }
+    });
+  };
+});
+</script>
+<!-- nguon: team-kit/F-cho-cs-tuan/webinar-ai-agent-marketing/web/ -->
+</body>
+</html>
